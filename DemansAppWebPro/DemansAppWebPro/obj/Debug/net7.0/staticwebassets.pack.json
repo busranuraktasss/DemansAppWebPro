@@ -377,6 +377,10 @@
       "PackagePath": "staticwebassets\\assets\\images\\demans_logo.png"
     },
     {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\assets\\images\\demans_logo_sm.png",
+      "PackagePath": "staticwebassets\\assets\\images\\demans_logo_sm.png"
+    },
+    {
       "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\assets\\images\\error.svg",
       "PackagePath": "staticwebassets\\assets\\images\\error.svg"
     },
