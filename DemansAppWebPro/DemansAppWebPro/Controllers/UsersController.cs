@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 ﻿using DemansAppWebPro.Helper.DTO.Users;
 using EsPark_WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+>>>>>>> 0524d57fdd17e3b5372fb58923fc75b63a35fd15
 
 namespace DemansAppWebPro.Controllers
 {
     public class UsersController : Controller
     {
+<<<<<<< HEAD
         private readonly EntitiesContext _ctx;
 
         public UsersController(EntitiesContext ctx)
@@ -13,10 +18,13 @@ namespace DemansAppWebPro.Controllers
             _ctx = ctx;
         }
 
+=======
+>>>>>>> 0524d57fdd17e3b5372fb58923fc75b63a35fd15
         public IActionResult Index()
         {
             return View();
         }
+<<<<<<< HEAD
 
         [HttpPost]
         public JsonResult ShowUsers()
@@ -106,5 +114,7 @@ namespace DemansAppWebPro.Controllers
             }
         }
 
+=======
+>>>>>>> 0524d57fdd17e3b5372fb58923fc75b63a35fd15
     }
 }
