@@ -5,6 +5,282 @@
       "PackagePath": "staticwebassets\\DemansAppWebPro.bundle.scp.css"
     },
     {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\css\\select2-bootstrap-5-theme.min.css",
+      "PackagePath": "staticwebassets\\Select2\\css\\select2-bootstrap-5-theme.min.css"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\css\\select2.css",
+      "PackagePath": "staticwebassets\\Select2\\css\\select2.css"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\css\\select2.min.css",
+      "PackagePath": "staticwebassets\\Select2\\css\\select2.min.css"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\af.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\af.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ar.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ar.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\az.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\az.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\bg.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\bg.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\bn.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\bn.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\bs.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\bs.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ca.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ca.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\cs.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\cs.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\da.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\da.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\de.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\de.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\dsb.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\dsb.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\el.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\el.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\en.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\en.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\eo.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\eo.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\es.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\es.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\et.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\et.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\eu.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\eu.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\fa.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\fa.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\fi.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\fi.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\fr.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\fr.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\gl.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\gl.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\he.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\he.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\hi.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\hi.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\hr.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\hr.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\hsb.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\hsb.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\hu.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\hu.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\hy.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\hy.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\id.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\id.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\is.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\is.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\it.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\it.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ja.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ja.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ka.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ka.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\km.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\km.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ko.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ko.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\lt.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\lt.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\lv.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\lv.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\mk.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\mk.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ms.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ms.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\nb.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\nb.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ne.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ne.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\nl.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\nl.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\pa.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\pa.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\pl.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\pl.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ps.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ps.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\pt-BR.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\pt-BR.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\pt.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\pt.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ro.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ro.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\ru.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\ru.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\sk.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\sk.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\sl.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\sl.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\sq.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\sq.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\sr-Cyrl.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\sr-Cyrl.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\sr.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\sr.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\sv.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\sv.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\te.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\te.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\th.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\th.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\tk.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\tk.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\tr.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\tr.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\uk.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\uk.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\vi.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\vi.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\zh-CN.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\zh-CN.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\i18n\\zh-TW.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\i18n\\zh-TW.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\select2.full.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\select2.full.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\select2.full.min.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\select2.full.min.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\select2.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\select2.js"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\Select2\\js\\select2.min.js",
+      "PackagePath": "staticwebassets\\Select2\\js\\select2.min.js"
+    },
+    {
       "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\assets\\css\\app-dark.min.css",
       "PackagePath": "staticwebassets\\assets\\css\\app-dark.min.css"
     },
@@ -843,6 +1119,10 @@
     {
       "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\dil.json",
+      "PackagePath": "staticwebassets\\dil.json"
     },
     {
       "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\favicon.ico",

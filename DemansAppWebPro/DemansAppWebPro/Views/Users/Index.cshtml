@@ -1,0 +1,180 @@
+﻿@{
+    ViewData["Title"] = "Kullanıcılar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+
+    <style type="text/css">
+        .table_style{
+            overflow: auto;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        div.dataTables_wrapper div.dataTables_length select {
+            width: 50px !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_length label {
+            
+            margin-left: 10px !important;
+            margin-top: 13px !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_info {
+            margin-left: 10px !important;
+        }
+
+
+
+        div.dataTables_wrapper div.dataTables_filter input {
+          
+            margin-right: 10px !important;
+            margin-top: 13px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            
+            padding: 2px !important
+            
+        }
+
+        div.dataTables_wrapper div.dataTables_paginate {
+           
+            margin-right: 10px !important
+        }
+    </style>
+}
+
+<div class="card card-top">
+    <div class="card-header">
+        <div class="row text-center">
+            <h3 class="page-title col-sm-10">Kullanıcılar</h3>
+            <button type="button" class="btn btn btn-outline-dark col-sm-2 align-self-end" data-bs-toggle="modal" onclick="">Kullanıcı Ekle</button>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="table-responsive">
+        <table id="user_table" class="table table-striped table-bordered dt-responsive nowrap" style="vertical-align:middle; width:100%;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>E-posta</th>
+                    <th>Telefon No</th>
+                    <th>Acil Durum Telefonu</th>
+                    <th>Cinsiyet</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="card-body">
+</div><!--end Users Table-->
+@section scripts {
+    <script type="text/javascript">
+
+        var userTablo = null;
+        $((_$) => {
+            showUsers();
+        });
+        var showUsers = () => {
+            if (userTablo == null)
+                userTablo = $('#user_table').DataTable({
+                    language: { url: '../dil.json' },
+                    processing: true,
+                    serverSide: true,
+                    paging: true,
+                    filter: true,
+                    scrollCollapse: true,
+                    orderMulti: true,
+                    order: [[1, "asc"]],
+                    ajax: {
+                        url: '@Url.Action("ShowUsers", "Users")',
+                        type: "POST",
+                        datatype: "json"
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                    },
+                    columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+                    columns: [
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Id;
+                            }, "name": "Id"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.UserName;
+                            }, "name": "UserName",
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Surname;
+                            }, "name": "Surname"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Email;
+                            }, "name": "Email"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Phone;
+                            }, "name": "Phone"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.EmergencyPhone;
+                            }, "name": "EmergencyPhone"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Sex;
+                            }, "name": "Sex"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": function (data, type, row) {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick=""><i class="dripicons-document-edit"></i></button>
+
+                                       <button type="button"  class="btn btn btn-outline-dark pt-2" onclick=""><i class="dripicons-trash"></i></button>`;
+
+                            }, "name": "RowId", "name": "RowId", "name": "RowId"
+                        },
+                    ],
+                    fixedColumns: true,
+                    scrollCollapse: true,
+                    initComplete: function (settings, json) {
+                        $('#user_table_filter input').unbind();
+                        $('#user_table_filter input').bind('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                userTablo.search(this.value).draw();
+                            }
+                        });
+
+                        $('.dataTables_scrollBody').removeAttr('style').css({
+                            'position': 'relative',
+                            'overflow-y': 'auto',
+                            'overflow-x': 'auto',
+                            'width': '100%',
+                            'max-height': ((window.innerHeight / 2) + 120) + 'px'
+                        });
+
+                    }
+
+                })
+        }
+
+    </script>
+    }

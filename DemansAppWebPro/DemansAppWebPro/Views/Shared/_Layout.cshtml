@@ -20,7 +20,7 @@
 
     <!-- App css -->
 
-    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" />
+    <link href="~/plugins/datatables/datatable2/datatables-1.13.4/css/jquery.datatables.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/icons.min.css" />
     <link rel="stylesheet" type="text/css" href="~/assets/css/metisMenu.min.css" />
     <link rel="stylesheet" type="text/css" href="~/plugins/daterangepicker/daterangepicker.css" />
@@ -35,6 +35,9 @@
     <link rel="stylesheet" type="text/css" href="~/assets/css/app.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Select2/css/select2.css" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    
+    
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" />
     <style type="text/css">
         * {
             vertical-align: middle !important;
@@ -116,7 +119,7 @@
                 <li>
                     <a href="javascript: void(0);"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li class="nav-item"><a class="nav-link" href="index.html"><i class="ti-control-record"></i>Analytics</a></li>
+                        <li class="nav-item"><a class="nav-link" href=@Url.Action("Index", "Users")><i class="ti-control-record"></i>Analytics</a></li>
                         <li class="nav-item"><a class="nav-link" href="sales-index.html"><i class="ti-control-record"></i>Sales</a></li>
                     </ul>
                 </li>
@@ -330,14 +333,14 @@
         </div>
         <!-- Top Bar End -->
         <!-- Page Content-->
-     
+        <div>
+            <main role="main" class="" style="width: 100% !important; position: unset;">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
-    <div>
-        <main role="main" class="" style="width: 100% !important; position: unset;">
-            @RenderBody()
-        </main>
-    </div>
+   
     <!-- end page-wrapper -->
     <!-- jQuery  -->
 
@@ -359,8 +362,7 @@
     <script src="~/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="~/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
 
-
-    <script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/plugins/datatables/datatable2/datatables-1.13.4/js/jquery.datatables.min.js"></script>
     <script src="~/plugins/datatables/dataTables.bootstrap5.min.js"></script>
     <script src="~/plugins/datatables/datatable2/responsive-2.4.1/js/datatables.responsive.js"></script>
     <script src="~/plugins/datatables/datatable2/responsive-2.4.1/js/datatables.responsive.min.js"></script>
