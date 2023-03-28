@@ -73,3 +73,14 @@ D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\ne
 D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\Mono.TextTemplating.dll
 D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\System.CodeDom.dll
 D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\System.Memory.Data.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\Google.Protobuf.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\K4os.Compression.LZ4.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\K4os.Compression.LZ4.Streams.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\K4os.Hash.xxHash.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\MySql.Data.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\runtimes\win-x64\native\comerr64.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\runtimes\win-x64\native\gssapi64.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\runtimes\win-x64\native\k5sprt64.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\runtimes\win-x64\native\krb5_64.dll
+D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro\bin\Debug\net7.0\runtimes\win-x64\native\krbcc64.dll

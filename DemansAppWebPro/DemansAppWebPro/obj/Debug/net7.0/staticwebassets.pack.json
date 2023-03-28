@@ -2561,12 +2561,12 @@
       "PackagePath": "staticwebassets\\plugins\\repeater\\jquery.repeater.min.js"
     },
     {
-      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\plugins\\select2\\select2.min.css",
-      "PackagePath": "staticwebassets\\plugins\\select2\\select2.min.css"
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\plugins\\repeater\\select2\\select2.min.css",
+      "PackagePath": "staticwebassets\\plugins\\repeater\\select2\\select2.min.css"
     },
     {
-      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\plugins\\select2\\select2.min.js",
-      "PackagePath": "staticwebassets\\plugins\\select2\\select2.min.js"
+      "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\plugins\\repeater\\select2\\select2.min.js",
+      "PackagePath": "staticwebassets\\plugins\\repeater\\select2\\select2.min.js"
     },
     {
       "Id": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\plugins\\summernote\\font\\summernote.eot",

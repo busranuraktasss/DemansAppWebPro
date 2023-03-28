@@ -7,11 +7,11 @@ namespace DemansAppWebPro.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly EntitiesContext _ctx;
+        private readonly EntitiesContext db;
 
-        public UsersController(EntitiesContext ctx)
+        public UsersController(EntitiesContext _db)
         {
-            _ctx = ctx;
+            db = _db;
         }
 
         public IActionResult Index()
@@ -47,9 +47,9 @@ namespace DemansAppWebPro.Controllers
                 //Paging Size 
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
-                var recordsTotal = _ctx.Users.Count();
+                var recordsTotal = db.Users.Count();
 
-                var _users_list = _ctx.Users.Where(w => w.UserName.Contains(searchValue) )
+                var _users_list = db.Users.Where(w => w.UserName.Contains(searchValue) )
                     .Select(s => new showUsersRequest()
                     {
                         Id = s.Id,

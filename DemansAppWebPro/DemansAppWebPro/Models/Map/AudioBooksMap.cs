@@ -11,10 +11,12 @@ namespace DemansAppWebPro.Models.Map
             builder.HasKey(e => e.Id);
 
 
-            builder.Property(p => p.Name).HasColumnType("string").IsRequired();
-            builder.Property(p => p.Subject).HasColumnType("string").IsRequired();
-            builder.Property(p => p.Text).HasColumnType("string").IsRequired();
-            builder.Property(p => p.UserId).HasColumnType("int").IsRequired();
+            builder.Property(p => p.Name).HasColumnType("string").IsRequired(true);
+            builder.Property(p => p.Subject).HasColumnType("string").IsRequired(true);
+            builder.Property(p => p.Text).HasColumnType("string").IsRequired(true);
+            builder.Property(p => p.Url).HasColumnType("string").IsRequired(true);
+            builder.Property(p => p.UserId).HasColumnType("int").IsRequired(false);
+            builder.Property(p => p.Status).HasColumnType("int").IsRequired(true);
 
 
         }

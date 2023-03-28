@@ -8,7 +8,188 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\plugins\select2\**" />
+    <Content Remove="wwwroot\plugins\select2\**" />
+    <EmbeddedResource Remove="wwwroot\plugins\select2\**" />
+    <None Remove="wwwroot\plugins\select2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\plugins\apex-charts\apexcharts.min.js" />
+    <None Include="wwwroot\plugins\apex-charts\irregular-data-series.js" />
+    <None Include="wwwroot\plugins\apex-charts\ohlc.js" />
+    <None Include="wwwroot\plugins\bootable\bootstable.js" />
+    <None Include="wwwroot\plugins\bootstrap-maxlength\bootstrap-maxlength.min.js" />
+    <None Include="wwwroot\plugins\bootstrap-session-timeout\bootstrap-session-timeout.min.js" />
+    <None Include="wwwroot\plugins\bootstrap-touchspin\js\jquery.bootstrap-touchspin.min.js" />
+    <None Include="wwwroot\plugins\chartjs\chart.min.js" />
+    <None Include="wwwroot\plugins\clipboard\clipboard.min.js" />
+    <None Include="wwwroot\plugins\datatables\buttons.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\buttons.colVis.min.js" />
+    <None Include="wwwroot\plugins\datatables\buttons.html5.min.js" />
+    <None Include="wwwroot\plugins\datatables\buttons.print.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bootstrap.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bootstrap.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bootstrap4.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bootstrap4.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bootstrap5.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bulma.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.bulma.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.foundation.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.foundation.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.jqueryui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.jqueryui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.semanticui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\autoFill.semanticui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\dataTables.autoFill.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\AutoFill-2.5.3\js\dataTables.autoFill.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bootstrap5.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bulma.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.bulma.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.foundation.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\jquery.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DataTables-1.13.4\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\datatables.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\datatables.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DateTime-1.4.0\js\dataTables.dateTime.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\DateTime-1.4.0\js\dataTables.dateTime.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\dataTables.fixedColumns.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\dataTables.fixedColumns.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bootstrap.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bootstrap.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bootstrap4.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bootstrap4.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bootstrap5.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bulma.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.bulma.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.foundation.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.foundation.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.jqueryui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.jqueryui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.semanticui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\FixedColumns-4.2.2\js\fixedColumns.semanticui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\dataTables.responsive.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\dataTables.responsive.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bootstrap.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bootstrap.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bootstrap4.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bootstrap4.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bootstrap5.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bulma.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.bulma.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.foundation.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.foundation.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.jqueryui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.jqueryui.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.semanticui.js" />
+    <None Include="wwwroot\plugins\datatables\datatable2\Responsive-2.4.1\js\responsive.semanticui.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bootstrap5.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bulma.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.bulma.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.foundation.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\jquery.dataTables.js" />
+    <None Include="wwwroot\plugins\datatables\DataTables-1.13.1\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\dataTables.bootstrap5.min.js" />
+    <None Include="wwwroot\plugins\datatables\dataTables.buttons.min.js" />
+    <None Include="wwwroot\plugins\datatables\datatables.js" />
+    <None Include="wwwroot\plugins\datatables\datatables.min.js" />
+    <None Include="wwwroot\plugins\datatables\dataTables.responsive.min.js" />
+    <None Include="wwwroot\plugins\datatables\jquery.dataTables.min.js" />
+    <None Include="wwwroot\plugins\datatables\jszip.min.js" />
+    <None Include="wwwroot\plugins\datatables\pdfmake.min.js" />
+    <None Include="wwwroot\plugins\datatables\responsive.bootstrap4.min.js" />
+    <None Include="wwwroot\plugins\datatables\vfs_fonts.js" />
+    <None Include="wwwroot\plugins\daterangepicker\daterangepicker.js" />
+    <None Include="wwwroot\plugins\dragula\dragula.min.js" />
+    <None Include="wwwroot\plugins\dropify\js\dropify.min.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.canvaswrapper.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.colorhelpers.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.axislabels.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.browser.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.drawSeries.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.legend.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.pie.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.saturated.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.stack.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.tooltip.min.js" />
+    <None Include="wwwroot\plugins\flot-chart\jquery.flot.uiConstants.js" />
+    <None Include="wwwroot\plugins\fullcalendar\packages\core\main.js" />
+    <None Include="wwwroot\plugins\fullcalendar\packages\daygrid\main.js" />
+    <None Include="wwwroot\plugins\fullcalendar\packages\interaction\main.js" />
+    <None Include="wwwroot\plugins\fullcalendar\packages\list\main.js" />
+    <None Include="wwwroot\plugins\fullcalendar\packages\timegrid\main.js" />
+    <None Include="wwwroot\plugins\gmaps\gmaps.min.js" />
+    <None Include="wwwroot\plugins\huebee\huebee.pkgd.min.js" />
+    <None Include="wwwroot\plugins\idle-timer\idle-timer.min.js" />
+    <None Include="wwwroot\plugins\ion-rangeslider\ion.rangeSlider.min.js" />
+    <None Include="wwwroot\plugins\jquery-steps\jquery.steps.min.js" />
+    <None Include="wwwroot\plugins\jvectormap\gdp-data.js" />
+    <None Include="wwwroot\plugins\jvectormap\jquery-jvectormap-2.0.2.min.js" />
+    <None Include="wwwroot\plugins\jvectormap\jquery-jvectormap-ca-lcc.js" />
+    <None Include="wwwroot\plugins\jvectormap\jquery-jvectormap-uk-mill-en.js" />
+    <None Include="wwwroot\plugins\jvectormap\jquery-jvectormap-us-aea-en.js" />
+    <None Include="wwwroot\plugins\jvectormap\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <None Include="wwwroot\plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <None Include="wwwroot\plugins\leaflet\leaflet.js" />
+    <None Include="wwwroot\plugins\lightbox\jquery.magnific-popup.js" />
+    <None Include="wwwroot\plugins\lightpick\lightpick.js" />
+    <None Include="wwwroot\plugins\morris\morris.min.js" />
+    <None Include="wwwroot\plugins\nestable\jquery.nestable.min.js" />
+    <None Include="wwwroot\plugins\parsleyjs\parsley.min.js" />
+    <None Include="wwwroot\plugins\prettify\run_prettify.js" />
+    <None Include="wwwroot\plugins\raphael\raphael.min.js" />
+    <None Include="wwwroot\plugins\rating\jquery.barrating.min.js" />
+    <None Include="wwwroot\plugins\repeater\jquery.repeater.min.js" />
+    <None Include="wwwroot\plugins\repeater\select2\select2.min.js" />
+    <None Include="wwwroot\plugins\RWD-Table-Patterns\dist\js\rwd-table.min.js" />
+    <None Include="wwwroot\plugins\summernote\font\summernote.woff2" />
+    <None Include="wwwroot\plugins\summernote\summernote-bs4.min.js" />
+    <None Include="wwwroot\plugins\sweet-alert2\sweetalert2.min.js" />
+    <None Include="wwwroot\plugins\timepicker\bootstrap-material-datetimepicker.js" />
+    <None Include="wwwroot\plugins\tiny-editable\mindmup-editabletable.js" />
+    <None Include="wwwroot\plugins\tiny-editable\numeric-input-example.js" />
+    <None Include="wwwroot\plugins\tinymce\tinymce.min.js" />
+    <None Include="wwwroot\plugins\tippy\tippy.all.min.js" />
+    <None Include="wwwroot\plugins\treeview\jstree.min.js" />
+    <None Include="wwwroot\plugins\x-editable\js\bootstrap-editable.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +203,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MySql.Data" Version="8.0.32.1" />
   </ItemGroup>
 
 </Project>
