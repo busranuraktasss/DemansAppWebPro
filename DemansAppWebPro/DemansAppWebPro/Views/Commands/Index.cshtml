@@ -104,13 +104,73 @@
         </div>
     </div>
 </div><!--end AudioBook's Modal-->
+
+<div class="modal fade" id="usersModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="usersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal_style" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="usersModalLabel">Erişim Sağlayan Kullanıcılar</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="document.location.reload(true);" aria-label="Close"></button>
+            </div><!--end modal-header-->
+            <div class="modal-body">
+                <form id="users-form">
+                    <input type="hidden" value="0" id="userId" name="userId" />
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table id="users_table" class="table table-striped table-bordered dt-responsive nowrap" style="vertical-align:middle; width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="table-style">Ad Soyad</th>
+                                        <th class="table-style">Refakatçı Adı</th>
+                                        <th class="table-style">Kullanıcı Çıkar</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" onclick="document.location.reload(true);" data-bs-dismiss="modal">TAMAM</button>
+            </div>
+        </div>
+    </div>
+</div><!--end users Modal-->
+
+<div class="modal fade" id="addUserModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal_style" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="addUserModalLabel">Kullanıcı Ekle / Çıkar</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload();" aria-label="Close"></button>
+            </div><!--end modal-header-->
+            <div class="modal-body">
+                <form id="userupdate-form">
+                    <input type="hidden" value="0" id="userupdateId" name="userupdateId" />
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 form-label text-start" for="usersmultiple"><b>Lokasyon </b><span class="text-danger">*</span></label>
+                        <select class="col-md-8 multiple-select debts" multiple="multiple" id="usersmultiple" name="usersmultiple"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="javascript:addUser();">TAMAM</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="reload();" data-bs-dismiss="modal">VAZGEÇ</button>
+            </div>
+        </div>
+    </div>
+</div><!--end usersUpdate Modal-->
 @section scripts {
     <script type="text/javascript">
 
         var commandsTablo = null;
+        var userTablo = null;
         $((_$) => {
             showCommands();
             reload();
+            $('#usersmultiple').select2({ dropdownParent: $('#addUserModal'), width: '100%', placeholder: "Seçiniz..." });
+
         });
 
         var showModal = () => {
@@ -307,5 +367,455 @@
             });
         }
 
+        var getsetModal = (sId) => {
+
+            $('#AddOrUpdateId').val("");
+            $.getJSON('@Url.Action("GetCommands", "Commands")', { sId: sId }, (d, s) => {
+                if (s === 'success') {
+                    $('#komutAdi').val(d.data.ProcessName);
+                    $('#AddOrUpdateId').val(d.data.Id);
+                    $('#commandsModal').modal('show');
+                }
+            })
+        }
+
+        var updateCommands = () => {
+
+            var ProcessName = document.getElementById("komutAdi").value;
+            var Id = document.getElementById("AddOrUpdateId").value;
+
+            if (!ProcessName) {
+                Command: toastr["warning"]("Lütfen Komut Adı bilgisini giriniz.", "Ekleme başarısız!")
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "8000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                return;
+            }
+            var formData = new FormData(document.getElementById('commandsAddOrUpdate-form'));
+            formData.append('ProcessName', ProcessName);
+            formData.append('Id', Id);
+        
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("updateCommands","Commands")',
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (d) {
+                    if (d.Status == true) {
+                        console.log('Gelen -> ', d);
+
+                        Command: toastr["success"]("Güncelleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        if (commandsTablo != null)
+                            commandsTablo.ajax.reload();
+                    }
+                    else {
+                        Command: toastr["error"]("Güncelleme işlemi gerçekleşemedi.'")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                },
+            });
+            if (commandsTablo != null)
+                commandsTablo.ajax.reload();
+
+            $('#commandsModal').modal('hide');
+        }
+
+        var deleteCommands = (delId) => {
+            Swal.fire({
+                title: 'Silmek istediğinize emin misiniz?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hayır',
+                confirmButtonColor: '#4a804d',
+                cancelButtonColor: '#b22222',
+                confirmButtonText: 'Evet'
+            })
+                .then((result) => {
+
+                    if (result.value == true) {
+                        $.getJSON('@Url.Action("DeleteCommands","Commands")', { pr: delId }, (d, s) => {
+                            if (s === "success") {
+
+                                if (d.Status == true) {
+                                    commandsTablo.ajax.reload();
+                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                } else {
+                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                }
+                            }
+                            if (commandsTablo != null)
+                                commandsTablo.ajax.reload();
+                        });
+
+                    }
+                });
+        }
+
+        var showUsersModal = (sId) => {
+
+            $('#usersModal').modal('show');
+            $('#userId').val(sId);
+            showUsers(sId);
+        }
+
+        var showUsers = (sId) => {
+            if (userTablo != null) userTablo = null;
+
+            if (userTablo == null)
+                userTablo = $('#users_table').DataTable({
+                    language: { url: '../dil.json' },
+                    processing: true,
+                    serverSide: true,
+                    paging: true,
+                    filter: true,
+                    scrollCollapse: true,
+                    orderMulti: true,
+                    order: [[0, "desc"]],
+                    ajax: {
+                        url: '@Url.Action("ShowUsers", "Commands")',
+                        type: "POST",
+                        datatype: "json",
+                        data: function (d) {
+                            d.sId = sId
+                        },
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                    },
+                    columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+                    columns: [
+                        {
+                            "render": (data, type, row) => {
+                                var adSoyad = row.UserName + ' ' + row.Surname;
+                                return adSoyad;
+                            }, "name": "UserName", "name": "Surname"
+                        },
+                        {
+                            "render": (data, type, row) => {
+                                return row.companionName;
+                            }, "name": "companionName"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: deleteUser(${row.Id});"><i class="dripicons-exit"></i></button>`;
+
+                            }, "name": "Id"
+                        },
+                    ],
+                    fixedColumns: true,
+                    scrollCollapse: true,
+                    initComplete: function (settings, json) {
+                        $('#userTablo_filter input').unbind();
+                        $('#userTablo_filter input').bind('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                userTablo.search(this.value).draw();
+                            }
+                        });
+
+                        $('.dataTables_scrollBody').removeAttr('style').css({
+                            'position': 'relative',
+                            'overflow-y': 'auto',
+                            'overflow-x': 'auto',
+                            'width': '100%',
+                            'max-height': ((window.innerHeight / 2) + 120) + 'px'
+                        });
+
+                    }
+
+                });
+
+
+
+        }
+
+        var showaddUserModal = (sId) => {
+            $('#userupdateId').val(sId);
+            getSelect(sId);
+            $('#addUserModal').modal('show');
+        }
+
+        var getSelect = (sId) => {
+            $.getJSON('@Url.Action("GetSelect", "Commands")', { sId: sId }, (d, s) => {
+                if (s === "success") {
+
+                    if (d.Data == null && d.data.length > 0) {
+                        $('#usersmultiple').empty();
+                        $('#usersmultiple').append(`<option value="0" disabled >Lütfen Kullanıcı Seçiniz...</option>`);
+                        for (let item of d.data) {
+                            var nameSurname = item.UserName + ' ' + item.Surname;
+                            $('#usersmultiple').append(`<option value="${item.Id}">${nameSurname}</option>`);
+                        }
+
+                        $("#usersmultiple").append(s);
+                        $("#usersmultiple").val(d.selected);
+                    }
+                }
+
+            })
+        }
+
+        var addUser = () => {
+
+            var commandId = $('#userupdateId').val();
+            var userIdmultiple = $('#usersmultiple').val();
+
+            $.post('@Url.Action("AddUser","Commands")', { commandId: commandId, userIds: userIdmultiple }, (d, s) => {
+                if (s === "success") {
+                    if (d.Status == true) {
+                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+
+                    }
+                    else {
+                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                }
+            });
+
+            $('#addUserModal').modal('hide');
+
+        }
+
+        var deleteUser = (delId) => {
+
+            var commandId = $('#userId').val();
+
+            Swal.fire({
+                title: 'Çıkarmak istediğinize emin misiniz?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hayır',
+                confirmButtonColor: '#4a804d',
+                cancelButtonColor: '#b22222',
+                confirmButtonText: 'Evet'
+            })
+                .then((result) => {
+                    if (result.value == true) {
+                        $.getJSON('@Url.Action("DeleteUser","Commands")', { pr: delId, commandId: commandId }, (d, s) => {
+                            if (s === "success") {
+                                if (d.Status == true) {
+                                    userTablo.ajax.reload();
+
+                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                } else {
+                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                }
+                            }
+                            if (userTablo != null)
+                                userTablo.ajax.reload();
+                        });
+                    }
+                });
+        }
+
+        var checkCommands = (checkId) => {
+            $.post('@Url.Action("CheckCommands","Commands")', { request: checkId }, (d, s) => {
+
+                if (s == 'success') {
+                    if (commandsTablo != null)
+                        commandsTablo.ajax.reload();
+
+                    Command: toastr["success"]("Durum değiştirildi.")
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "8000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
+                else {
+                    Command: toastr["error"]("Durum değiştirilemedi.")
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
+            });
+        }
     </script>
     }

@@ -130,7 +130,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title m-0" id="usersModalLabel">Erişim Sağlayan Kullanıcılar</h6>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="document.location.reload(true);" aria-label="Close"></button>
             </div><!--end modal-header-->
             <div class="modal-body">
                 <form id="users-form">
@@ -150,7 +150,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">TAMAM</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="document.location.reload(true);" data-bs-dismiss="modal">TAMAM</button>
             </div>
         </div>
     </div>
@@ -203,6 +203,8 @@
 
         var reload = () => {
             document.getElementById("audioBooksAddOrUpdate-form").reset();
+            document.getElementById("users-form").reset();
+            document.getElementById("userupdate-form").reset();
         }
 
         var showAudioBooks = () => {
@@ -554,7 +556,7 @@
                             if (s === "success") {
 
                                 if (d.Status == true) {
-                                    tariffTablo.ajax.reload();
+                                    audioBookTablo.ajax.reload();
                                     Command: toastr["success"]("Silme işlemi gerçekleşti.")
 
                                     toastr.options = {
@@ -612,6 +614,9 @@
         }
 
         var showUsers = (sId) => {
+          if(userTablo != null)userTablo = null;
+        
+
             if (userTablo == null)
                 userTablo = $('#users_table').DataTable({
                     language: { url: '../dil.json' },
@@ -669,7 +674,8 @@
                     }
 
                 });
-
+            
+            
             
         }
 
@@ -825,7 +831,6 @@
         }
 
         var checkAudioBook = (checkId) => {
-            console.log(checkId);
             $.post('@Url.Action("CheckAudioBook","AudioBooks")', { request: checkId }, (d, s) => {
 
                 if (s == 'success') {

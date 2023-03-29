@@ -4,7 +4,10 @@ using DemansAppWebPro.Models;
 using EsPark_WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DemansAppWebPro.Controllers
 {
@@ -204,8 +207,7 @@ namespace DemansAppWebPro.Controllers
 
                     var _d_book_list_current = db.AudioBooks.Where(w => w.Id == _book_ıd).FirstOrDefault();
 
-                    _d_book_list_current.Status = 0;//Soft Delete
-                    db.AudioBooks.Update(_d_book_list_current);
+                    db.AudioBooks.Remove(_d_book_list_current);
                     await db.SaveChangesAsync();
                 }
 
@@ -290,7 +292,7 @@ namespace DemansAppWebPro.Controllers
                             Url = audio_book.Url,
                             UserId = userId,
                             Text = audio_book.Text,
-                            Status = 1,
+                            Status = audio_book.Status,
 
                         };
                         db.AudioBooks.Add(_add_user);

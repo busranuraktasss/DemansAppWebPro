@@ -15,5 +15,7 @@
         public string Phone { get; set; }
 
         public bool? Sex { get; set; }
+
+        public string companionName { get; set; }
     }
 }
