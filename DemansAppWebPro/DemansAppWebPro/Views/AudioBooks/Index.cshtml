@@ -70,7 +70,7 @@
                     <th class="table-style">Url</th>
                     <th class="table-style">Düzenle/Sil</th>
                     <th class="table-style">Kullanıcılar</th>
-                    <th class="table-style">Kullanıcı Ekle/Çıkar</th>
+                    <th class="table-style">Kullanıcı Ekle</th>
                     <th class="table-style">Durumu</th>
                 </tr>
             </thead>
@@ -134,12 +134,14 @@
             </div><!--end modal-header-->
             <div class="modal-body">
                 <form id="users-form">
+                    <input type="hidden" value="0" id="userId" name="userId" />
                     <div class="card">
                     <div class="table-responsive">
                         <table id="users_table" class="table table-striped table-bordered dt-responsive nowrap" style="vertical-align:middle; width:100%;">
                             <thead>
                                 <tr>
                                     <th class="table-style">Ad Soyad</th>
+                                    <th class="table-style">Kullanıcı Çıkar</th>
                                 </tr>
                             </thead>
                         </table>
@@ -154,11 +156,11 @@
     </div>
 </div><!--end users Modal-->
 
-<div class="modal fade" id="userUpdateModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="userUpdateModalLabel" aria-hidden="true">
+<div class="modal fade" id="addUserModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog modal_style" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title m-0" id="userUpdateModalLabel">Kullanıcı Ekle / Çıkar</h6>
+                <h6 class="modal-title m-0" id="addUserModalLabel">Kullanıcı Ekle / Çıkar</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload();" aria-label="Close"></button>
             </div><!--end modal-header-->
             <div class="modal-body">
@@ -172,7 +174,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-sm" onclick="javascript:userUpdate();">TAMAM</button>
+                <button type="button" class="btn btn-success btn-sm" onclick="javascript:addUser();">TAMAM</button>
                 <button type="button" class="btn btn-primary btn-sm" onclick="reload();" data-bs-dismiss="modal">VAZGEÇ</button>
             </div>
         </div>
@@ -187,7 +189,7 @@
         $((_$) => {
             showAudioBooks();
             reload();
-            $('#usersmultiple').select2({ dropdownParent: $('#userUpdateModal'), width: '100%', placeholder: "Seçiniz..." });
+            $('#usersmultiple').select2({ dropdownParent: $('#addUserModal'), width: '100%', placeholder: "Seçiniz..." });
         });
 
         var showModal = () => {
@@ -272,7 +274,7 @@
                         {
                             "className": "table_style",
                             "render": function (data, type, row) {
-                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: showUserUpdateModal(${row.Id});"><i class="dripicons-document-edit"></i></button>`;
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: showaddUserModal(${row.Id});"><i class="dripicons-document-edit"></i></button>`;
 
                             }, "name": "Id", "name": "Id"
                         },
@@ -281,7 +283,7 @@
                             "render": function (data, type, row) {
                                 let check = row.Status == 1 ? 'checked' : 'nchecked';
                                 return `<div class="form-check form-switch form-switch-warning" style="pading-left:70px;">
-                                                <input class="form-check-input" type="checkbox" id="checked_${row.Id}" onclick="" ${check}>
+                                                        <input class="form-check-input" type="checkbox" id="checked_${row.Id}" onclick="javascript: checkAudioBook(${row.Id})" ${check}>
                                                 </div>`;
                             }, "name": "Status"
                         },
@@ -605,6 +607,7 @@
         var showUsersModal = (sId) => {
 
             $('#usersModal').modal('show');
+            $('#userId').val(sId);
             showUsers(sId);
         }
 
@@ -637,6 +640,13 @@
                                 return adSoyad;
                             }, "name": "UserName", "name": "Surname"
                         },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                               return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: deleteUser(${row.Id});"><i class="dripicons-exit"></i></button>`;
+
+                            }, "name": "Id"
+                        },
                     ],
                     fixedColumns: true,
                     scrollCollapse: true,
@@ -663,11 +673,10 @@
             
         }
 
-        var showUserUpdateModal = (sId) => {
+        var showaddUserModal = (sId) => {
             $('#userupdateId').val(sId);
             getSelect(sId);
-            $('#userUpdateModal').modal('show');
-
+            $('#addUserModal').modal('show');
         }
 
         var getSelect = (sId) => {
@@ -690,12 +699,181 @@
             })
         }
 
-        var userUpdate = () => {
-           var audioBookId =  $('#userupdateId').val();
-           var userIdmultiple = $('#usersmultiple').val();
-           //---------------------
+        var addUser = () => {
+
+            var audioBookId = $('#userupdateId').val();
+            var userIdmultiple = $('#usersmultiple').val();
+
+            $.post('@Url.Action("AddUser","AudioBooks")', { audioBookId: audioBookId, userIds: userIdmultiple }, (d, s) => {
+                if (s === "success") {
+                    if (d.Status == true) {
+                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+
+                    }
+                    else {
+                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                }
+            });
+
+            $('#addUserModal').modal('hide');
 
         }
 
+        var deleteUser = (delId) => {
+
+            var bookId = $('#userId').val();
+
+            Swal.fire({
+                title: 'Çıkarmak istediğinize emin misiniz?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hayır',
+                confirmButtonColor: '#4a804d',
+                cancelButtonColor: '#b22222',
+                confirmButtonText: 'Evet'
+            })
+                .then((result) => {
+                    if (result.value == true) {
+                        $.getJSON('@Url.Action("DeleteUser","AudioBooks")', { pr: delId , bookId : bookId}, (d, s) => {
+                            if (s === "success") {
+                                if (d.Status == true) {
+                                    userTablo.ajax.reload();
+
+                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                } else {
+                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                }
+                            }
+                            if (userTablo != null)
+                                userTablo.ajax.reload();
+                        });
+                    }
+                });
+        }
+
+        var checkAudioBook = (checkId) => {
+            console.log(checkId);
+            $.post('@Url.Action("CheckAudioBook","AudioBooks")', { request: checkId }, (d, s) => {
+
+                if (s == 'success') {
+                    if (audioBookTablo != null)
+                        audioBookTablo.ajax.reload();
+
+                    Command: toastr["success"]("Durum değiştirildi.")
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "8000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
+                else {
+                    Command: toastr["error"]("Durum değiştirilemedi.")
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                }
+            });
+        }
     </script>
     }

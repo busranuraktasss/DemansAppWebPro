@@ -258,7 +258,6 @@ namespace DemansAppWebPro.Controllers
             var _book_name = db.AudioBooks.Where(w => w.Id == sId).Select(s => s.Name).FirstOrDefault();
             lıd = db.AudioBooks.Where(w => w.Name == _book_name).Select(s => s.UserId.ToString()).ToList();
 
-
                 ListCount = db.Users
                .Select(s => new showUsersRequest()
                {
@@ -267,19 +266,98 @@ namespace DemansAppWebPro.Controllers
                    Surname = s.Surname,
 
                }).ToList();
-          
-
 
             return Json(new { data = ListCount, selected = lıd, status = true });
-
-
-
-
-
-
-
-
         }
 
+        [HttpPost]
+        public async Task<JsonResult> AddUser(int audioBookId, int[] userIds)
+        {
+            if (userIds != null)
+            {
+                var audio_book = db.AudioBooks.Where(w => w.Id == audioBookId).FirstOrDefault();
+
+                for(var i = 0; i< userIds.Length;i++)
+                {
+                    var userId = userIds[i];
+                    var _registered_user = db.AudioBooks.Where(w => w.Name == audio_book.Name && w.Subject == audio_book.Subject && w.Url == audio_book.Url && w.UserId == userId).FirstOrDefault();
+                    if (_registered_user == null)
+                    {
+                        var _add_user = new AudioBooks()
+                        {
+                            Name = audio_book.Name,
+                            Subject = audio_book.Subject,
+                            Url = audio_book.Url,
+                            UserId = userId,
+                            Text = audio_book.Text,
+                            Status = 1,
+
+                        };
+                        db.AudioBooks.Add(_add_user);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                return Json(new { Status = true, Messages = "Success", Code = 200 });
+
+            }
+            return Json(new { Status = false, data = "" });
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> DeleteUser(int pr , int bookId)
+        {
+            try
+            {
+                var _d_audio_book_user = await db.AudioBooks.Where(w => w.Id == bookId).FirstOrDefaultAsync();
+                var _d_user = await db.AudioBooks.Where(w => w.UserId == pr && w.Name == _d_audio_book_user.Name && w.Url == _d_audio_book_user.Url).FirstOrDefaultAsync();
+                if (_d_user == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
+
+                db.AudioBooks.Remove(_d_user);//Hard Delete
+                await db.SaveChangesAsync();
+
+                return Json(new { Status = true, data = "" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = false, data = "", messages = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult CheckAudioBook(int request)
+        {
+            try
+            {
+                var _c_audio_book = db.AudioBooks.Where(w => w.Id == request).FirstOrDefault();
+                var _c_audio_book_list = db.AudioBooks.Where(w => w.Name == _c_audio_book.Name && w.Url == _c_audio_book.Url).Select(s => new {s.Status , s.Id}).ToList();
+
+                for(var j = 0; j < _c_audio_book_list.Count(); j++)
+                {
+                    var _status = _c_audio_book_list[j].Status;
+                    var _s_audio_book_id = _c_audio_book_list[j].Id;
+                    var _s_audio_book = db.AudioBooks.Where(w => w.Id == _s_audio_book_id).FirstOrDefault();
+
+                    if ( _status == 1)
+                    {
+                        _s_audio_book.Status = 0;
+
+                        db.AudioBooks.Update(_s_audio_book);
+                        db.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        _s_audio_book.Status = 1;
+
+                        db.AudioBooks.Update(_s_audio_book);
+                        db.SaveChangesAsync();
+                    }
+                }
+                return Json(new { Status = true});
+            }
+            catch
+            {
+                return Json(new { Status = false});
+            }
+        }
     }
 }
