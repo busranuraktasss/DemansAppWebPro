@@ -1670,7 +1670,7 @@ hr {
 
 .badge.badge-outline-warning {
     border: 1px solid rgba(255,184,34,0.5);
-    color: #ffb822
+    color: #ED5E31
 }
 
 .badge.badge-outline-danger {
@@ -1891,11 +1891,11 @@ hr {
 
 .btn-soft-warning {
     background-color: rgba(255,184,34,0.18);
-    color: #ffb822
+    color: #ED5E31
 }
 
     .btn-soft-warning:hover {
-        background-color: #ffb822;
+        background-color: #ED5E31;
         color: #fff
     }
 
@@ -2046,13 +2046,13 @@ hr {
     }
 
 .btn-gradient-warning {
-    background: linear-gradient(14deg, #ffb822 0%, rgba(255,184,34,0.7));
+    background: linear-gradient(14deg, #ED5E31 0%, rgba(255,184,34,0.7));
     color: #fff;
     border: none
 }
 
     .btn-gradient-warning:hover, .btn-gradient-warning:focus, .btn-gradient-warning:active, .btn-gradient-warning.active, .btn-gradient-warning.focus, .btn-gradient-warning:active, .btn-gradient-warning:focus, .btn-gradient-warning:hover, .open > .dropdown-toggle.btn-gradient-warning, .btn-gradient-warning.active, .btn-gradient-warning:active, .show > .btn-gradient-warning.dropdown-toggle {
-        background: linear-gradient(14deg, #ffb822 0%, rgba(255,184,34,0.7));
+        background: linear-gradient(14deg, #ED5E31 0%, rgba(255,184,34,0.7));
         color: #fff
     }
 
@@ -2404,7 +2404,7 @@ table.dataTable {
         }
 
         .alert.custom-alert.custom-alert-warning:after {
-            background-color: #ffb822
+            background-color: #ED5E31
         }
 
     .alert.icon-custom-alert {
@@ -2456,9 +2456,9 @@ table.dataTable {
     }
 
     .alert.alert-outline-warning {
-        border: 1px solid #ffb822;
+        border: 1px solid #ED5E31;
         background-color: transparent;
-        color: #ffb822
+        color: #ED5E31
     }
 
     .alert.alert-outline-info {
@@ -2601,7 +2601,7 @@ label {
 }
 
 .has-warning .form-control {
-    border-color: #ffb822;
+    border-color: #ED5E31;
     box-shadow: none
 }
 
@@ -2778,8 +2778,8 @@ dt {
 }
 
 .form-switch.form-switch-warning .form-check-input:checked {
-    background-color: #ffb822;
-    border-color: #ffb822
+    background-color: #ED5E31;
+    border-color: #ED5E31
 }
 
 .form-switch.form-switch-danger .form-check-input:checked {
@@ -3652,7 +3652,7 @@ dt {
 }
 
 .ct-chart .ct-series.ct-series-c .ct-point, .ct-chart .ct-series.ct-series-c .ct-line {
-    stroke: #ffb822
+    stroke: #ED5E31
 }
 
 .ct-chart .ct-series.ct-series-c .ct-bar {
@@ -3664,7 +3664,7 @@ dt {
 }
 
 .ct-chart .ct-series.ct-series-d .ct-slice-donut {
-    stroke: #ffb822
+    stroke: #ED5E31
 }
 
 .ct-chart .ct-series.ct-series-e .ct-bar, .ct-chart .ct-series.ct-series-e .ct-line, .ct-chart .ct-series.ct-series-e .ct-point {
@@ -4979,7 +4979,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 .bg-soft-warning {
     background-color: rgba(255,184,34,0.08) !important;
-    color: #ffb822 !important
+    color: #ED5E31 !important
 }
 
 .bg-soft-info {
@@ -5029,7 +5029,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 .bg-warning-50 {
     background-color: rgba(255,184,34,0.5) !important;
-    color: #ffb822 !important
+    color: #ED5E31 !important
 }
 
 .bg-info-50 {
@@ -5135,7 +5135,7 @@ code[class*="language-"], pre[class*="language-"] {
 
     .badge.badge-soft-warning {
         background-color: rgba(255,184,34,0.15) !important;
-        color: #ffb822 !important;
+        color: #ED5E31 !important;
         box-shadow: 0px 0px 13px 0px rgba(255,184,34,0.05)
     }
 
@@ -5230,7 +5230,7 @@ code[class*="language-"], pre[class*="language-"] {
 }
 
 .icon-dual-warning {
-    color: #ffb822;
+    color: #ED5E31;
     fill: rgba(255,184,34,0.25)
 }
 
@@ -5366,9 +5366,9 @@ code[class*="language-"], pre[class*="language-"] {
     }
 
     .card-eco .card-eco-title.eco-title-warning {
-        background-color: #ffb822;
+        background-color: #ED5E31;
         color: #fff;
-        box-shadow: 0px 0px 0px 1px #ffb822
+        box-shadow: 0px 0px 0px 1px #ED5E31
     }
 
 .card-eco .bg-pattern {
@@ -5406,7 +5406,7 @@ code[class*="language-"], pre[class*="language-"] {
     }
 
     .card-eco .card-eco-icon.bg-icon-warning {
-        background-color: #ffb822;
+        background-color: #ED5E31;
         box-shadow: 0px 5px 5px 0.25px rgba(255,184,34,0.5)
     }
 
@@ -7774,8 +7774,8 @@ input.add-file-input {
 }
 
 .checkbox-warning input[type="checkbox"]:checked + label::before {
-    background-color: #ffb822;
-    border-color: #ffb822
+    background-color: #ED5E31;
+    border-color: #ED5E31
 }
 
 .checkbox-warning input[type="checkbox"]:checked + label::after {
@@ -7945,15 +7945,15 @@ input.add-file-input {
 }
 
 .radio-warning input[type="radio"] + label::after {
-    background-color: #ffb822
+    background-color: #ED5E31
 }
 
 .radio-warning input[type="radio"]:checked + label::before {
-    border-color: #ffb822
+    border-color: #ED5E31
 }
 
 .radio-warning input[type="radio"]:checked + label::after {
-    background-color: #ffb822
+    background-color: #ED5E31
 }
 
 .radio-success input[type="radio"] + label::after {
@@ -8123,7 +8123,7 @@ input.add-file-input {
 }
 
 .radio2.radio-warning2 input[type="radio"] + label::before {
-    background-color: #ffb822
+    background-color: #ED5E31
 }
 
 .radio2.radio-warning2 input[type="radio"] + label::after {
@@ -8131,11 +8131,11 @@ input.add-file-input {
 }
 
 .radio2.radio-warning2 input[type="radio"]:checked + label::before {
-    border-color: #ffb822
+    border-color: #ED5E31
 }
 
 .radio2.radio-warning2 input[type="radio"]:checked + label::after {
-    border-color: #ffb822
+    border-color: #ED5E31
 }
 
 .radio2.radio-info2 input[type="radio"] + label::before {
@@ -8479,7 +8479,7 @@ input.add-file-input {
             }
 
         .ribbon1 span.rib1-warning:before, .ribbon1 span.rib1-warning {
-            background: #ffb822
+            background: #ED5E31
         }
 
             .ribbon1 span.rib1-warning:after {
@@ -8531,7 +8531,7 @@ input.add-file-input {
     }
 
     .ribbon1.rib1-warning:after {
-        border-top-color: #ffb822
+        border-top-color: #ED5E31
     }
 
     .ribbon1.rib1-danger:after {
@@ -8629,7 +8629,7 @@ input.add-file-input {
         }
 
     .ribbon2.rib2-warning {
-        background: #ffb822
+        background: #ED5E31
     }
 
         .ribbon2.rib2-warning:before {
@@ -8637,8 +8637,8 @@ input.add-file-input {
         }
 
         .ribbon2.rib2-warning:after {
-            border-left: 15px solid #ffb822;
-            border-right: 15px solid #ffb822
+            border-left: 15px solid #ED5E31;
+            border-right: 15px solid #ED5E31
         }
 
     .ribbon2.rib2-pink {
@@ -8713,7 +8713,7 @@ input.add-file-input {
         }
 
     .ribbon3.rib3-warning {
-        background: #ffb822
+        background: #ED5E31
     }
 
         .ribbon3.rib3-warning:before {
@@ -8721,7 +8721,7 @@ input.add-file-input {
         }
 
         .ribbon3.rib3-warning:after {
-            border-right: 15px solid #ffb822
+            border-right: 15px solid #ED5E31
         }
 
     .ribbon3.rib3-success {
@@ -8797,8 +8797,8 @@ input.add-file-input {
         }
 
         .ribbon4 .ribbon4-band.ribbon4-band-warning {
-            box-shadow: 0 0 0 3px #ffb822,0px 21px 5px -18px rgba(48,62,103,0.6);
-            background: #ffb822
+            box-shadow: 0 0 0 3px #ED5E31,0px 21px 5px -18px rgba(48,62,103,0.6);
+            background: #ED5E31
         }
 
     .ribbon4.rib4-primary:before, .ribbon4.rib4-primary:after {

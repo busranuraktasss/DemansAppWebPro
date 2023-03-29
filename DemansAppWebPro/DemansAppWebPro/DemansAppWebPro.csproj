@@ -8,17 +8,83 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="obj\**" />
     <Compile Remove="wwwroot\plugins\select2\**" />
+    <Content Remove="obj\**" />
     <Content Remove="wwwroot\plugins\select2\**" />
+    <EmbeddedResource Remove="obj\**" />
     <EmbeddedResource Remove="wwwroot\plugins\select2\**" />
+    <None Remove="obj\**" />
     <None Remove="wwwroot\plugins\select2\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="bin\Debug\net7.0\appsettings.Development.json" />
+    <Content Include="bin\Debug\net7.0\appsettings.json" />
+    <Content Include="bin\Debug\net7.0\DemansAppWebPro.deps.json" />
+    <Content Include="bin\Debug\net7.0\DemansAppWebPro.runtimeconfig.json" />
+    <Content Include="bin\Debug\net7.0\DemansAppWebPro.staticwebassets.runtime.json" />
     <Content Include="Controllers\HomeController.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net7.0\Azure.Core.dll" />
+    <None Include="bin\Debug\net7.0\Azure.Identity.dll" />
+    <None Include="bin\Debug\net7.0\BouncyCastle.Crypto.dll" />
+    <None Include="bin\Debug\net7.0\DemansAppWebPro.dll" />
+    <None Include="bin\Debug\net7.0\DemansAppWebPro.exe" />
+    <None Include="bin\Debug\net7.0\DemansAppWebPro.pdb" />
+    <None Include="bin\Debug\net7.0\Google.Protobuf.dll" />
+    <None Include="bin\Debug\net7.0\Humanizer.dll" />
+    <None Include="bin\Debug\net7.0\K4os.Compression.LZ4.dll" />
+    <None Include="bin\Debug\net7.0\K4os.Compression.LZ4.Streams.dll" />
+    <None Include="bin\Debug\net7.0\K4os.Hash.xxHash.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Identity.Client.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.SqlServer.Server.dll" />
+    <None Include="bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net7.0\Mono.TextTemplating.dll" />
+    <None Include="bin\Debug\net7.0\MySql.Data.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\comerr64.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\gssapi64.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\k5sprt64.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\krb5_64.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\krbcc64.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net7.0\System.CodeDom.dll" />
+    <None Include="bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll" />
+    <None Include="bin\Debug\net7.0\System.Drawing.Common.dll" />
+    <None Include="bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll" />
+    <None Include="bin\Debug\net7.0\System.Memory.Data.dll" />
+    <None Include="bin\Debug\net7.0\System.Runtime.Caching.dll" />
+    <None Include="bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll" />
+    <None Include="bin\Debug\net7.0\System.Security.Permissions.dll" />
+    <None Include="bin\Debug\net7.0\System.Windows.Extensions.dll" />
     <None Include="wwwroot\plugins\apex-charts\apexcharts.min.js" />
     <None Include="wwwroot\plugins\apex-charts\irregular-data-series.js" />
     <None Include="wwwroot\plugins\apex-charts\ohlc.js" />
@@ -204,6 +270,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MySql.Data" Version="8.0.32.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Release\net7.0\" />
   </ItemGroup>
 
 </Project>
