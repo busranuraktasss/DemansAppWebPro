@@ -12,7 +12,7 @@ namespace DemansAppWebPro.Models.Map
 
 
             builder.Property(p => p.Email).HasColumnType("string").IsRequired(true);
-            builder.Property(p => p.Address).HasColumnType("string").IsRequired(true);
+            builder.Property(p => p.Adress).HasColumnType("string").IsRequired(true);
             builder.Property(p => p.Name).HasColumnType("string").IsRequired(true);
             builder.Property(p => p.Surname).HasColumnType("string").IsRequired(true);
             builder.Property(p => p.Phone).HasColumnType("string").IsRequired(true);
