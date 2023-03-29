@@ -3,19 +3,309 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css{
-
     <style type="text/css">
+        .table_style {
+            overflow: auto;
+            max-width: 150px;
+            text-align: center;
+        }
 
+        .table_style {
+            text-align: center !important
+        }
+
+        div.dataTables_wrapper div.dataTables_length select {
+            width: 50px !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_length label {
+            margin-left: 10px !important;
+            margin-top: 13px !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_info {
+            margin-left: 10px !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter input {
+            margin-right: 10px !important;
+            margin-top: 13px !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 2px !important
+        }
+
+        div.dataTables_wrapper div.dataTables_paginate {
+            margin-right: 10px !important
+        }
+
+        .modal-input-style {
+            margin-left: 10px !important;
+        }
+
+        .modal-label-style {
+            padding-left: 20px !important;
+        }
     </style>
 }
 
-<h5>Burası Commands</h5>
+<div class="card card-top">
+    <div class="card-header">
+        <div class="row text-center">
+            <h3 class="page-title col-sm-10">Komutlar</h3>
+            <button type="button" class="btn btn btn-outline-dark col-sm-2 align-self-end" data-bs-toggle="modal" onclick="javascripts: showModal();">Komut Ekle</button>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="table-responsive">
+        <table id="command_table" class="table table-striped table-bordered dt-responsive nowrap" style="vertical-align:middle; width:100%;">
+            <thead>
+                <tr>
+                    <th class="table-style">Id</th>
+                    <th class="table-style">Ad</th>
+                    <th class="table-style">Düzenle/Sil</th>
+                    <th class="table-style">Kullanıcılar</th>
+                    <th class="table-style">Kullanıcı Ekle</th>
+                    <th class="table-style">Durum</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="card-body">
+</div><!--end Commands Table-->
 
+
+<div class="modal fade" id="commandsModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="commandsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal_style" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="commandsModalLabel">Komut Ekle / Güncelle</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload();" aria-label="Close"></button>
+            </div><!--end modal-header-->
+            <div class="modal-body">
+                <form id="commandsAddOrUpdate-form">
+                    <input type="hidden" value="0" id="AddOrUpdateId" name="AddOrUpdateId" />
+
+                    <div class="mb-3 row">
+                        <label for="komutAdi" class="modal-label-style col-sm-3 form-label align-self-center mb-lg-0">Komut Adı</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control modal-input-style" id="komutAdi" placeholder="Komut Adı">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" onclick="javascript:getUpdateOrAdd();">TAMAM</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="reload();" data-bs-dismiss="modal">VAZGEÇ</button>
+            </div>
+        </div>
+    </div>
+</div><!--end AudioBook's Modal-->
 @section scripts {
     <script type="text/javascript">
 
+        var commandsTablo = null;
         $((_$) => {
+            showCommands();
+            reload();
         });
+
+        var showModal = () => {
+            $('#komutAdi').val('');
+            $('#commandsModal').modal('show');
+        }
+
+        var reload = () => {
+            document.getElementById("commandsAddOrUpdate-form").reset();
+        }
+
+        var showCommands = () => {
+            if (commandsTablo == null)
+                commandsTablo = $('#command_table').DataTable({
+                    language: { url: '../dil.json' },
+                    processing: true,
+                    serverSide: true,
+                    paging: true,
+                    filter: true,
+                    scrollCollapse: true,
+                    orderMulti: true,
+                    order: [[1, "asc"]],
+                    ajax: {
+                        url: '@Url.Action("ShowCommands", "Commands")',
+                        type: "POST",
+                        datatype: "json"
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                    },
+                    columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+                    columns: [
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Id;
+                            }, "name": "Id"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.Name;
+                            }, "name": "Name",
+                        },
+                        {
+                            "className": "table_style",
+                            "render": function (data, type, row) {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.Id})"><i class="dripicons-document-edit"></i></button>
+                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteCommands(${row.Id})"><i class="dripicons-trash"></i></button>`;
+                            }, "name": "Id", "name": "Id"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": function (data, type, row) {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: showUsersModal(${row.Id});"><i class="dripicons-user"></i></button>`;
+                            }, "name": "Id"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": function (data, type, row) {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: showaddUserModal(${row.Id});"><i class="dripicons-document-edit"></i></button>`;
+                            }, "name": "Id", "name": "Id"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": function (data, type, row) {
+                                let check = row.Status == 1 ? 'checked' : 'nchecked';
+                                return `<div class="form-check form-switch form-switch-warning" style="pading-left:70px;">
+                                        <input class="form-check-input" type="checkbox" id="checked_${row.Id}" onclick="javascript: checkCommands(${row.Id})" ${check}></div>`;
+                            }, "name": "Status"
+                        },
+                    ],
+                    fixedColumns: true,
+                    scrollCollapse: true,
+                    initComplete: function (settings, json) {
+                        $('#command_table_filter input').unbind();
+                        $('#command_table_filter input').bind('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                commandsTablo.search(this.value).draw();
+                            }
+                        });
+
+                        $('.dataTables_scrollBody').removeAttr('style').css({
+                            'position': 'relative',
+                            'overflow-y': 'auto',
+                            'overflow-x': 'auto',
+                            'width': '100%',
+                            'max-height': ((window.innerHeight / 2) + 120) + 'px'
+                        });
+
+                    }
+
+                })
+        }
+
+        var getUpdateOrAdd = () => {
+
+            if (document.getElementById("AddOrUpdateId").value > 0) {
+                javascript: updateCommands();
+            }
+            else {
+                javascript: addCommands();
+            }
+        }
+
+        var addCommands = () => {
+
+            var ProcessNameControl = $('[id = "komutAdi"]').val();
+
+            if (!ProcessNameControl) {
+                Command: toastr["warning"]("Lütfen Komut Adı bilgisini giriniz.", "Ekleme başarısız!")
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "8000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append('ProcessName', ProcessNameControl);
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddCommands","Commands")',
+                data: formData,
+                async: true,
+                contentType: false,
+                processData: false,
+                success: data => {
+
+                    if (data.Status == true) {
+
+                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        document.getElementById("commandsAddOrUpdate-form").reset();
+
+                        $('#commandsModal').modal('hide');
+
+                        if (commandsTablo != null)
+                            commandsTablo.ajax.reload();
+                    }
+                    else {
+                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                    $('#commandsModal').modal('hide');
+                },
+            });
+        }
 
     </script>
     }
