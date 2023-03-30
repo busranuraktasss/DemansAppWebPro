@@ -11,16 +11,22 @@ namespace DemansAppWebPro.Models.Map
             builder.HasKey(e => e.Id);
 
 
-            builder.Property(p => p.Day).HasColumnType("string").IsRequired();
             builder.Property(p => p.Name).HasColumnType("string").IsRequired();
-            builder.Property(p => p.Time).HasColumnType("date").IsRequired();
             builder.Property(p => p.UsageDuration).HasColumnType("string").IsRequired();
-            builder.Property(p => p.UsagePurpose).HasColumnType("string").IsRequired();
-            builder.Property(p => p.UserId).HasColumnType("int").IsRequired();
-            builder.Property(p => p.CompanionId).HasColumnType("int").IsRequired();
+            builder.Property(p => p.UsagePurpose).HasColumnType("string").IsRequired(false);
+            builder.Property(p => p.StartDate).HasColumnType("datetime").IsRequired();
+            builder.Property(p => p.EndDate).HasColumnType("datetime").IsRequired();
+            builder.Property(p => p.Moon).HasColumnType("bit").IsRequired();
+            builder.Property(p => p.Afternoon).HasColumnType("bit").IsRequired();
+            builder.Property(p => p.Evening).HasColumnType("bit").IsRequired();
+            builder.Property(p => p.Night).HasColumnType("bit").IsRequired();
+            builder.Property(p => p.MoonTime).HasColumnType("string").IsRequired(false);
+            builder.Property(p => p.AfternoonTime).HasColumnType("string").IsRequired(false);
+            builder.Property(p => p.EveningTime).HasColumnType("string").IsRequired(false);
+            builder.Property(p => p.NightTime).HasColumnType("string").IsRequired(false);
+            builder.Property(p => p.UserId).HasColumnType("int").IsRequired(false);
 
-
-        }
+    }
 
     }
 }
