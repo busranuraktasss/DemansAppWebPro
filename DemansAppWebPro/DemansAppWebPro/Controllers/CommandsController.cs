@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using DemansAppWebPro.Helper.DTO.Commands;
 using DemansAppWebPro.Helper.DTO.Users;
 using DemansAppWebPro.Models;
-using System.Linq;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemansAppWebPro.Controllers
