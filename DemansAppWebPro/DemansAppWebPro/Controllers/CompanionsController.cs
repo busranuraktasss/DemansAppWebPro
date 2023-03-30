@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 using EsPark_WebApplication.Models;
 using DemansAppWebPro.Helper.DTO.Companions;
 using DemansAppWebPro.Helper.DTO.Users;
-using DemansAppWebPro.Helper.DTO.AudioBooks;
 using DemansAppWebPro.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DemansAppWebPro.Controllers
 {
@@ -67,7 +64,7 @@ namespace DemansAppWebPro.Controllers
 
 
                   }).Skip(skip).Take(pageSize).ToList();
-            
+
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     switch (sortColumn)
@@ -102,7 +99,6 @@ namespace DemansAppWebPro.Controllers
 
                 return Json(new
                 {
-                    draw = draw,
                     recordsFiltered = recordsTotal,
                     recordsTotal = recordsTotal,
                     data = showCompanionsRequest
@@ -115,19 +111,41 @@ namespace DemansAppWebPro.Controllers
         }
 
         [HttpGet]
-        public JsonResult Dropdown1()
+        public JsonResult Dropdown1(int sId)
         {
-            var s_users = db.Companions.Select(s => s.UserId).ToList();
-            var user_list = db.Users.Where(t => t.UserName != null)
-                .Select(s => new showUsersRequest()
+            if (sId != null)
+            {
+                var _c_user = db.Companions.Where(w => w.Id == sId).Select(s => s.UserId).FirstOrDefault();
+
+                var _s_user = db.Users.Where(w => w.Id == _c_user)
+                    .Select(s => new showUsersRequest()
+                    {
+                        Id = s.Id,
+                        UserName = s.UserName,
+                        Surname = s.Surname,
+                    }).ToList();
+                return Json(new { data= _s_user }) ;
+
+            }
+            else
+            {
+                var showUsersRequest = new List<showUsersRequest>();
+                db.Users.ToList().ForEach(s =>
                 {
-                    Id = s.Id,
-                    UserName = s.UserName,
-                    Surname = s.Surname,
+                    var user_list = new showUsersRequest();
+                    var companion_list = db.Companions.Where(w => w.UserId == s.Id).FirstOrDefault();
+                    if (companion_list == null)
+                    {
+                        user_list.Id = s.Id;
+                        user_list.UserName = s.UserName;
+                        user_list.Surname = s.Surname;
+                        showUsersRequest.Add(user_list);
 
-                }).ToList();
+                    }
+                });
 
-            return Json(new { data = user_list , selected = user_list });
+                return Json(new { data = showUsersRequest });
+            }
         }
 
         [HttpPost]
@@ -156,6 +174,71 @@ namespace DemansAppWebPro.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetCompanions(int sId)
+        {
+            var _companions_current = await db.Companions.Where(f => f.Id == sId).Select(s => new { s.Id, s.Name, s.Surname, s.Adress, s.Email, s.Phone, s.Sex, s.UserId }).FirstOrDefaultAsync();
+            return Json(new { Status = true, data = _companions_current, Messages = "Success", Code = 200 });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> UpdateCompanions(updateCompanionsRequest request)
+        {
+            try
+            {
+                var _u_companions = db.Companions.Where(w => w.Id == request.Id).FirstOrDefault();
+                if (_u_companions == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
+
+                _u_companions.Name = request.Name;
+                _u_companions.Surname = request.Surname;
+                _u_companions.Adress = request.Adress;
+                _u_companions.Email = request.Email;
+                _u_companions.Phone = request.Phone;
+                _u_companions.Sex = request.Sex;
+
+                db.Companions.Update(_u_companions);
+                await db.SaveChangesAsync();
+                
+                return Json(new { Status = true, Messages = "Değiştirme işlemi başarılı" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = false, data = "", Messages = ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public async Task<JsonResult> DeleteCompanions(int pr)
+        {
+            try
+            {
+                var _d_companions = await db.Companions.Where(w => w.Id == pr).FirstOrDefaultAsync();
+                if (_d_companions == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
+
+                var _d_command_ids = db.Commands.Where(w => w.CompanionId == pr).Select(s => s.Id).ToList();
+
+                if(_d_command_ids != null)
+                {
+                    for(var i = 0; i< _d_command_ids.Count(); i++)
+                    {
+                        var _d_command_id = _d_command_ids[i];
+                        var _d_command = db.Commands.Where(w => w.Id == _d_command_id).FirstOrDefault();
+                        db.Commands.Remove(_d_command);
+                        await db.SaveChangesAsync();
+                    }
+                }
+
+               db.Companions.Remove(_d_companions);//Hard Delete
+               await db.SaveChangesAsync();
+
+                return Json(new { Status = true, data = "" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = false, data = "", messages = ex.Message });
+            }
+        }
+
     }
 }
-  

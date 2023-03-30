@@ -101,7 +101,7 @@
                 <form id="companionsAddOrUpdate-form">
                     <input type="hidden" value="0" id="AddOrUpdateId" name="AddOrUpdateId" />
 
-                    <div class="mb-3 row">
+                    <div class="mb-3 row userdropdown">
                         <label for="Dropdown1" class="modal-label-style col-sm-3 form-label align-self-center mb-lg-0">Kullanıcı</label>
                         <select class="col-sm-8 dropdown-control dropdown-style" id="Dropdown1" name="Dropdown1"></select>
                     </div>
@@ -175,6 +175,7 @@
             $('#adres').val('');
             $('#eposta').val('');
             $('#tel').val('');
+            document.getElementById('women').checked = true;
 
             $('#companionModal').modal('show');
         }
@@ -284,25 +285,17 @@
                 })
         }
 
-        var dropdown1 = () => {
+        var dropdown1 = (sId) => {
 
-            $(document).ready(function () {
-                $.ajax({
-                    type: "GET",
-                    url: '@Url.Action("Dropdown1", "Companions")',
-                    data: "json",
-                    success: function (data) {
+            $.getJSON('@Url.Action("Dropdown1", "Companions")', { sId: sId }, (d, s) => {
 
-                        for (var i = 0; i < data.data.length; i++) {
-                            $('#Dropdown1').empty();
-                           var s = s + '<option value="' + data.data[i].Id + '">' + data.data[i].UserName + ' ' + data.data[i].Surname + '</option>';
-                        }
-                        //id sine göre if le <option valueları disabled yap
-                        $("#Dropdown1").append(s);
-                        $("#Dropdown1").val(d.selected);
-                    }
-                });
-            });
+                for (var i = 0; i < d.data.length; i++) {
+                    $('#Dropdown1').empty();
+                    var s = s + '<option value="' + d.data[i].Id + '">' + d.data[i].UserName + ' ' + d.data[i].Surname + '</option>';
+                }
+                $("#Dropdown1").html(s);
+            
+            })
         }
 
         var getUpdateOrAdd = () => {
@@ -323,12 +316,15 @@
             var AddressControl = $('[id ="adres"]').val();
             var EpostaControl = $('[id ="eposta"]').val();
             var PhoneControl = $('[id ="tel"]').val();
-            var SexControl = 1;
+            var SexControl = true;
             if (document.getElementById('women').checked == true) {
                 SexControl = true;
+                console.log("true" + SexControl);
             }
             else {
                 SexControl = false;
+                console.log("false" + SexControl);
+
             }
 
             if (!UserControl || !CompanionNameControl || !CompanionSurnameControl || !AddressControl || !EpostaControl || !PhoneControl ) {
@@ -352,29 +348,6 @@
                 }
                 return;
             }
-
-            if (SexContol == 1) {
-                Command: toastr["warning"]("Lütfen Cinsiyet bilgisini giriniz.", "Ekleme başarısız!")
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "8000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                return;
-            }
-
             var formData = new FormData();
             formData.append('UserId', UserControl);
             formData.append('Name', CompanionNameControl);
@@ -418,7 +391,7 @@
 
                         $('#companionModal').modal('hide');
 
-                        if (audioBookTablo != null)
+                        if (companionTablo != null)
                             companionTablo.ajax.reload();
                     }
                     else {
@@ -447,5 +420,202 @@
             });
         }
 
+        var getsetModal = (sId) => {
+
+            dropdown1(sId);
+            $('#AddOrUpdateId').val("");
+            $.getJSON('@Url.Action("GetCompanions", "Companions")', { sId: sId }, (d, s) => {
+                if (s === 'success') {
+                    $('#refakatciAdi').val(d.data.Name);
+                    $('#refakatciSoyadi').val(d.data.Surname);
+                    $('#adres').val(d.data.Adress);
+                    $('#eposta').val(d.data.Email);
+                    $('#tel').val(d.data.Phone);
+
+                    if(d.data.Sex == true){
+                        document.getElementById('women').checked = true;
+                    }else{
+                        document.getElementById('men').checked = true;
+                    }
+                    $('#AddOrUpdateId').val(d.data.Id);
+                    $('#companionModal').modal('show');
+                }
+            })
+        }
+
+        var updateCompanion = () => {
+
+            var Id = document.getElementById("AddOrUpdateId").value;
+            var Name = document.getElementById("refakatciAdi").value;
+            var Surname = document.getElementById("refakatciSoyadi").value;
+            var Adres = document.getElementById("adres").value;
+            var Email = document.getElementById("eposta").value;
+            var Phone = document.getElementById("tel").value;
+            var Sex = true;
+            if (document.getElementById('women').checked == true){
+                Sex = true;
+            }else{
+                Sex = false;
+            }
+
+
+            if (!Name || !Surname || !Adres || !Email || !Phone ) {
+                Command: toastr["warning"]("Lütfen Refakatçi Adı / Refakatçi Soyadı / Adres / E-posta / Telefon bilgisini giriniz.", "Ekleme başarısız!")
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "8000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                return;
+            }
+            var formData = new FormData(document.getElementById('companionsAddOrUpdate-form'));
+            formData.append('Id', Id);
+            formData.append('Name', Name);
+            formData.append('Surname', Surname);
+            formData.append('Adress', Adres);
+            formData.append('Email', Email);
+            formData.append('Phone', Phone);
+            formData.append('Sex', Sex);
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateCompanions","Companions")',
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (d) {
+                    if (d.Status == true) {
+                        console.log('Gelen -> ', d);
+
+                        Command: toastr["success"]("Güncelleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        if (companionTablo != null)
+                            companionTablo.ajax.reload();
+                    }
+                    else {
+                        Command: toastr["error"]("Güncelleme işlemi gerçekleşemedi.'")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                },
+            });
+            if (companionTablo != null)
+                companionTablo.ajax.reload();
+
+            $('#companionModal').modal('hide');
+        }
+
+        var deleteCompanions = (delId) => {
+            Swal.fire({
+                title: 'Silmek istediğinize emin misiniz?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hayır',
+                confirmButtonColor: '#4a804d',
+                cancelButtonColor: '#b22222',
+                confirmButtonText: 'Evet'
+            })
+                .then((result) => {
+
+                    if (result.value == true) {
+                        $.getJSON('@Url.Action("DeleteCompanions","Companions")', { pr: delId }, (d, s) => {
+                            if (s === "success") {
+
+                                if (d.Status == true) {
+                                    companionTablo.ajax.reload();
+                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                } else {
+                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                }
+                            }
+                            if (companionTablo != null)
+                                companionTablo.ajax.reload();
+                        });
+
+                    }
+                });
+        }
     </script>
     }

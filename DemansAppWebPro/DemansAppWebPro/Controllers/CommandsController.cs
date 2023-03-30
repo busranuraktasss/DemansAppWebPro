@@ -199,7 +199,6 @@ namespace DemansAppWebPro.Controllers
             }
         }
 
-
         [HttpPost]
         public JsonResult ShowUsers(int sId)
         {
@@ -232,7 +231,6 @@ namespace DemansAppWebPro.Controllers
                 return Json(new { status = true, data = "", messages = ex.Message });
             }
         }
-
 
         [HttpGet]
         public async Task<JsonResult> GetSelect(int sId)
