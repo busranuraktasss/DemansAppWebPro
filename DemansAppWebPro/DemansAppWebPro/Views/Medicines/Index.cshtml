@@ -47,11 +47,13 @@
         .modal-label-style {
             padding-left: 20px !important;
         }
-        .textarea-style{
+
+        .textarea-style {
             width: 71% !important;
             margin-left: 18px !important;
         }
-        .label-style{
+
+        .label-style {
             padding-left: 20px !important;
             padding-top: 6px !important;
         }
@@ -161,10 +163,51 @@
                 <form id="userupdate-form">
                     <input type="hidden" value="0" id="userupdateId" name="userupdateId" />
 
-                    <div class="mb-3 row userdropdown">
+                    <div class="mb-5 row userdropdown">
                         <label for="Dropdown1" class="modal-label-style col-sm-3 form-label align-self-center mb-lg-0">Kullanıcı</label>
                         <select class="col-sm-8 dropdown-control dropdown-style" id="Dropdown1" name="Dropdown1"></select>
                     </div>
+                    <div class="mb-5 row">
+
+                    <div class="checkbox checkbox-purple checkbox-circle col-sm-5 ">
+                        <div class="col-sm-5">
+                            <input id="moon" type="checkbox" checked="">
+                            <label for="moon">Sabah</label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-7 row">
+                        <label for="moonTime" class="col-sm-3">İlaç Saati</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control modal-input-style" id="moonTime" placeholder="00:00">
+                        </div>
+                    </div>
+
+                    </div>
+
+
+
+
+
+                    <div class="checkbox checkbox-purple checkbox-circle mb-3 row">
+                        <input id="afternoon" type="checkbox" checked="">
+                        <label for="afternoon">Öğle</label>
+                    </div>
+                    <div class="checkbox checkbox-purple checkbox-circle mb-3 row">
+                        <input id="evening" type="checkbox" checked="">
+                        <label for="evening">Akşam</label>
+                    </div>
+                    <div class="checkbox checkbox-purple checkbox-circle mb-3 row">
+                        <input id="night" type="checkbox" checked="">
+                        <label for="night">Gece</label>
+                    </div>
+                    <label for="moonTime" class="col-sm-3">İlaç Saati</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control modal-input-style" id="moonTime" placeholder="00:00">
+                    </div>
+
+
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -180,7 +223,8 @@
         var medicineTable = null;
         var userTable = null;
 
-        $((_$) => {;
+        $((_$) => {
+            ;
 
             showMedicines();
             reload();
@@ -240,7 +284,7 @@
                             "className": "table_style",
                             "render": function (data, type, row) {
                                 return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.Id})"><i class="dripicons-document-edit"></i></button>
-                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteMedicines(${row.Id})"><i class="dripicons-trash"></i></button>`;
+                                                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteMedicines(${row.Id})"><i class="dripicons-trash"></i></button>`;
                             }, "name": "Id", "name": "Id"
                         },
                         {
@@ -558,7 +602,7 @@
         }
 
         var showUsersModal = (sId) => {
-            
+
             $('#usersModal').modal('show');
             $('#userId').val(sId);
             showUsers(sId);
