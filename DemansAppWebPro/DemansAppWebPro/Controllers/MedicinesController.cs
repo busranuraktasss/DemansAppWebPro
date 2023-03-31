@@ -225,15 +225,30 @@ namespace DemansAppWebPro.Controllers
                         list.UserName = user_list.UserName;
                         list.Surname = user_list.Surname;
                         list.Moon = medicine_list.Moon == true ? "Sabah" : " ";
-                        if (medicine_list.Moon == true) list.Afternoon = medicine_list.Afternoon == true ? " - Öğle" : " ";
-                        else list.Afternoon = medicine_list.Afternoon == true ? "Öğle" : " ";
-
-                        if (medicine_list.Moon == true || medicine_list.Afternoon == true) list.Evening = medicine_list.Evening == true ? " - Akşam" : " ";
-                        else list.Evening = medicine_list.Evening == true ? "Akşam" : " ";
-
-                        if (medicine_list.Moon == true || medicine_list.Afternoon == true || medicine_list.Evening == true) list.Night = medicine_list.Night == true ? " - Gece" : " ";
-                        else list.Night = medicine_list.Night == true ? "Gece" : " "
-                            ;
+                        if (medicine_list.Moon == true)
+                        {
+                            list.Afternoon = medicine_list.Afternoon == true ? " - Öğle" : " ";
+                        }
+                        else
+                        {
+                            list.Afternoon = medicine_list.Afternoon == true ? "Öğle" : " ";
+                        }
+                        if (medicine_list.Moon == true || medicine_list.Afternoon == true)
+                        {
+                            list.Evening = medicine_list.Evening == true ? " - Akşam" : " ";
+                        }
+                        else
+                        {
+                            list.Evening = medicine_list.Evening == true ? "Akşam" : " ";
+                        }
+                        if (medicine_list.Moon == true || medicine_list.Afternoon == true || medicine_list.Evening == true)
+                        {
+                            list.Night = medicine_list.Night == true ? " - Gece" : " ";
+                        }
+                        else
+                        {
+                            list.Night = medicine_list.Night == true ? "Gece" : " ";
+                        }
 
                         list.UsageDay = list.Moon + " " + list.Afternoon + " " + list.Evening + " " + list.Night;
 
@@ -241,6 +256,7 @@ namespace DemansAppWebPro.Controllers
                         int UsageTime = (int)results.TotalDays;
 
                         list.UsageTime = UsageTime;
+
                         list.Time = medicine_list.MoonTime + " " + medicine_list.AfternoonTime + " " + medicine_list.EveningTime + " " + medicine_list.NightTime;
 
                         showMedicineUserRequest.Add(list);
@@ -279,7 +295,7 @@ namespace DemansAppWebPro.Controllers
 
                 var user_control = db.Users.Where(w => w.Id == l_user && _l_user_id_list.Contains(l_user)).FirstOrDefault();
 
-                if(user_control == null)
+                if (user_control == null)
                 {
                     var user = db.Users.Where(w => w.Id == l_user).FirstOrDefault();
 
@@ -287,13 +303,60 @@ namespace DemansAppWebPro.Controllers
                     list.UserName = user.UserName;
                     list.Surname = user.Surname;
                     showMedicineUserRequest.Add(list);
-                    
+
                 }
 
             }
             return Json(new { data = showMedicineUserRequest });
 
 
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> AddUser(addMedicineUserRequest rq)
+        {
+            TimeSpan results = rq.EndDate - rq.StartDate;
+            int UsagePurpose = (int)results.TotalDays;
+            var _add_user = new Medicines()
+            {
+                Name = db.Medicines.Where(w => w.Id == rq.MedicineId).Select(s => s.Name).First(),
+                UsagePurpose = UsagePurpose.ToString(),
+                UsageDuration = db.Medicines.Where(w => w.Id == rq.MedicineId).Select(s => s.UsageDuration).First(),
+                StartDate = rq.StartDate,
+                EndDate = rq.EndDate,
+                Moon = rq.Moon,
+                Afternoon = rq.Afternoon,
+                Evening = rq.Evening,
+                Night = rq.Evening,
+                MoonTime = rq.MoonTime,
+                AfternoonTime = rq.AfternoonTime,
+                EveningTime = rq.EveningTime,
+                NightTime = rq.NightTime,
+                UserId = rq.UserId,
+            };
+            db.Medicines.Add(_add_user);
+            await db.SaveChangesAsync();
+
+            return Json(new { Status = true, Messages = "Success", Code = 200 });
+
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> DeleteUser(int pr)
+        {
+            try
+            {var _d_user = await db.Medicines.Where(w => w.Id == pr).FirstOrDefaultAsync();
+                if (_d_user == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
+
+                db.Medicines.Remove(_d_user);//Hard Delete
+                await db.SaveChangesAsync();
+
+                return Json(new { Status = true, data = "" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Status = false, data = "", messages = ex.Message });
+            }
         }
 
     }

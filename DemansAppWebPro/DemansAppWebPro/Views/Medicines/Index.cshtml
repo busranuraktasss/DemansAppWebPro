@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section css{
+    <link href="~/plugins/timepicker/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <style type="text/css">
         .table_style {
             overflow: auto;
@@ -57,6 +58,31 @@
             padding-left: 20px !important;
             padding-top: 6px !important;
         }
+
+        .checkbox {
+            padding-left: 20px !important;
+        }
+
+        .dropdown-style {
+            height: 35px !important;
+            border-radius: 7px !important;
+            border-color: darkgrey;
+        }
+
+        label {
+            font-size: 14px !important;
+            color: #303e67 !important;
+            font-weight: 600 !important;
+        }
+
+        .medicine-time {
+            margin-top: -6px !important;
+        }
+
+        .date-style {
+            margin-left: -6px !important;
+        }
+
     </style>
 }
 
@@ -127,7 +153,7 @@
             </div><!--end modal-header-->
             <div class="modal-body">
                 <form id="users-form">
-                    <input type="hidden" value="0" id="userId" name="userId" />
+                    <input type="hidden" value="0" id="medicineId" name="medicineId" />
                     <div class="card">
                         <div class="table-responsive">
                             <table id="users_table" class="table table-striped table-bordered dt-responsive nowrap" style="vertical-align:middle; width:100%;">
@@ -163,50 +189,87 @@
                 <form id="userupdate-form">
                     <input type="hidden" value="0" id="userupdateId" name="userupdateId" />
 
-                    <div class="mb-5 row userdropdown">
-                        <label for="Dropdown1" class="modal-label-style col-sm-3 form-label align-self-center mb-lg-0">Kullanıcı</label>
+                    <div class="mb-4 row userdropdown">
+                        <label for="Dropdown1" class="modal-label-style col-sm-4 form-label align-self-center mb-lg-0">Kullanıcı</label>
                         <select class="col-sm-8 dropdown-control dropdown-style" id="Dropdown1" name="Dropdown1"></select>
                     </div>
-                    <div class="mb-5 row">
+                    <div class="mb-3 row">
 
-                    <div class="checkbox checkbox-purple checkbox-circle col-sm-5 ">
-                        <div class="col-sm-5">
-                            <input id="moon" type="checkbox" checked="">
-                            <label for="moon">Sabah</label>
+                        <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                            <div>
+                                <input id="moon" type="checkbox">
+                                <label for="moon">Sabah</label>
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-7 row">
-                        <label for="moonTime" class="col-sm-3">İlaç Saati</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control modal-input-style" id="moonTime" placeholder="00:00">
+                        <div class="col-sm-8 row">
+                            <label for="moonTime" class="col-sm-4">İlaç Saati</label>
+                            <div class="col-sm-8 medicine-time">
+                                <input type="time" class="form-control modal-input-style time-style" id="moonTime">
+                            </div>
                         </div>
-                    </div>
 
                     </div>
+                    <div class="mb-3 row">
+                        <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                            <div>
+                                <input id="afternoon" type="checkbox">
+                                <label for="afternoon">Öğle</label>
 
+                            </div>
+                        </div>
+                        <div class="col-sm-8 row">
+                            <label for="afternoonTime" class="col-sm-4">İlaç Saati</label>
+                            <div class="col-sm-8 medicine-time">
+                                <input type="time" class="form-control modal-input-style time-style" id="afternoonTime">
+                            </div>
+                        </div>
 
-
-
-
-                    <div class="checkbox checkbox-purple checkbox-circle mb-3 row">
-                        <input id="afternoon" type="checkbox" checked="">
-                        <label for="afternoon">Öğle</label>
                     </div>
-                    <div class="checkbox checkbox-purple checkbox-circle mb-3 row">
-                        <input id="evening" type="checkbox" checked="">
-                        <label for="evening">Akşam</label>
-                    </div>
-                    <div class="checkbox checkbox-purple checkbox-circle mb-3 row">
-                        <input id="night" type="checkbox" checked="">
-                        <label for="night">Gece</label>
-                    </div>
-                    <label for="moonTime" class="col-sm-3">İlaç Saati</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control modal-input-style" id="moonTime" placeholder="00:00">
-                    </div>
+                    <div class="mb-3 row">
+                        <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                            <div>
+                                <input id="evening" type="checkbox">
+                                <label for="evening">Akşam</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 row">
+                            <label for="eveningTime" class="col-sm-4">İlaç Saati</label>
+                            <div class="col-sm-8 medicine-time">
+                                <input type="time" class="form-control modal-input-style time-style" id="eveningTime">
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                            <div>
+                                <input id="night" type="checkbox">
+                                <label for="night">Gece</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 row">
+                            <label for="nightTime" class="col-sm-4">İlaç Saati</label>
+                            <div class="col-sm-8 medicine-time">
+                                <input type="time" class="form-control modal-input-style time-style" id="nightTime">
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="form-label col-sm-4" for="date1" style="padding-left:20px !important;">Başlangıç Tarihi</label>
+                        <div class="col-sm-8">
+                            <input class="form-control date-style" type="date" id="date1" name="date1">
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="form-label col-sm-4" for="date2" style="padding-left:20px !important;">Bitiş Tarihi</label>
+                        <div class="col-sm-8">
+                            <input class="form-control date-style" type="date" id="date2" name="date2">
+                        </div>
+
+                    </div>
 
                 </form>
             </div>
@@ -218,18 +281,69 @@
     </div>
 </div><!--end usersUpdate Modal-->
 @section scripts {
+    <script src="~/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
     <script type="text/javascript">
 
         var medicineTable = null;
         var userTable = null;
 
+        var moonTime = true;
+        var afternoonTime = true;
+        var eveningTime = true;
+        var nightTime = true;
+
         $((_$) => {
-            ;
 
             showMedicines();
             reload();
+            getDate();
+            $('.time-style').prop('disabled', true);
+        });
 
-        })
+        var getDate = () => {
+            var today = new Date();
+
+            document.getElementById("date1").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+            document.getElementById("date2").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        }
+
+        $('#moon').click(function () {
+            if (moonTime) {
+                $('#moonTime').prop('disabled', false);
+                moonTime = false;
+            } else {
+                $('#moonTime').prop('disabled', true);
+                moonTime = true;
+            }
+        });
+        $('#afternoon').click(function () {
+            if (afternoonTime) {
+                $('#afternoonTime').prop('disabled', false);
+                afternoonTime = false;
+            } else {
+                $('#afternoonTime').prop('disabled', true);
+                afternoonTime = true;
+            }
+        });
+        $('#evening').click(function () {
+            if (eveningTime) {
+                $('#eveningTime').prop('disabled', false);
+                eveningTime = false;
+            } else {
+                $('#eveningTime').prop('disabled', true);
+                eveningTime = true;
+            }
+        });
+        $('#night').click(function () {
+            if (nightTime) {
+                $('#nightTime').prop('disabled', false);
+                nightTime = false;
+            } else {
+                $('#nightTime').prop('disabled', true);
+                nightTime = true;
+            }
+        });
+
         var showModal = () => {
             $('#ilacAdi').val('');
             $('#usage_duration').val('');
@@ -284,7 +398,7 @@
                             "className": "table_style",
                             "render": function (data, type, row) {
                                 return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.Id})"><i class="dripicons-document-edit"></i></button>
-                                                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteMedicines(${row.Id})"><i class="dripicons-trash"></i></button>`;
+                                                                                                                <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteMedicines(${row.Id})"><i class="dripicons-trash"></i></button>`;
                             }, "name": "Id", "name": "Id"
                         },
                         {
@@ -604,7 +718,7 @@
         var showUsersModal = (sId) => {
 
             $('#usersModal').modal('show');
-            $('#userId').val(sId);
+            $('#medicineId').val(sId);
             showUsers(sId);
         }
 
@@ -701,6 +815,163 @@
 
             })
         }
+
+        var addUser = () => {
+
+            var medicineId = $('#userupdateId').val();
+            var userId = $('#Dropdown1').val();
+            var moonStatus = document.getElementById('moon').checked;
+            var afternoonStatus = document.getElementById('afternoon').checked;
+            var eveningStatus = document.getElementById('evening').checked;
+            var nightStatus = document.getElementById('night').checked;
+            var moonTimeValue = document.getElementById('moonTime').value;
+            var afternoonTimeValue = document.getElementById('afternoonTime').value;
+            var eveningTimeValue = document.getElementById('eveningTime').value;
+            var nightTimeValue = document.getElementById('nightTime').value;
+            var startdate = document.getElementById('date1').value;
+            var enddate = document.getElementById('date2').value;
+
+            var formData = new FormData();
+            formData.append('MedicineId', medicineId);
+            formData.append('UserId', userId);
+            formData.append('Moon', moonStatus);
+            formData.append('Afternoon', afternoonStatus);
+            formData.append('Evening', eveningStatus);
+            formData.append('Night', nightStatus);
+            formData.append('MoonTime', moonTimeValue);
+            formData.append('AfternoonTime', afternoonTimeValue);
+            formData.append('EveningTime', eveningTimeValue);
+            formData.append('NightTime', nightTimeValue);
+            formData.append('StartDate', startdate);
+            formData.append('EndDate', enddate);
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddUser","Medicines")',
+                data: formData,
+                async: true,
+                contentType: false,
+                processData: false,
+                success: data => {
+
+                    if (data.Status == true) {
+
+                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        document.getElementById("medicinesAddOrUpdate-form").reset();
+
+                        $('#medicinesModal').modal('hide');
+                    }
+                    else {
+                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                    $('#addUserModal').modal('hide');
+                },
+            });
+        }
+
+        var deleteUser = (delId) => {
+
+            Swal.fire({
+                title: 'Çıkarmak istediğinize emin misiniz?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hayır',
+                confirmButtonColor: '#4a804d',
+                cancelButtonColor: '#b22222',
+                confirmButtonText: 'Evet'
+            })
+                .then((result) => {
+                    if (result.value == true) {
+                        $.getJSON('@Url.Action("DeleteUser","Medicines")', { pr: delId }, (d, s) => {
+                            if (s === "success") {
+                                if (d.Status == true) {
+                                    userTable.ajax.reload();
+
+                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                } else {
+                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+                                    toastr.options = {
+                                        "closeButton": false,
+                                        "debug": false,
+                                        "newestOnTop": false,
+                                        "progressBar": false,
+                                        "positionClass": "toast-top-right",
+                                        "preventDuplicates": false,
+                                        "onclick": null,
+                                        "showDuration": "300",
+                                        "hideDuration": "1000",
+                                        "timeOut": "8000",
+                                        "extendedTimeOut": "1000",
+                                        "showEasing": "swing",
+                                        "hideEasing": "linear",
+                                        "showMethod": "fadeIn",
+                                        "hideMethod": "fadeOut"
+                                    }
+                                }
+                            }
+                            if (userTable != null)
+                                userTable.ajax.reload();
+                        });
+                    }
+                });
+        }
+
 
     </script>
     }
