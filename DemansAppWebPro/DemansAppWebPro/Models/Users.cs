@@ -20,5 +20,7 @@ namespace DemansAppWebPro.Models
         public string Phone { get; set; }
 
         public bool? Sex { get; set; }
+        public int Status { get; set; }
+
     }
 }

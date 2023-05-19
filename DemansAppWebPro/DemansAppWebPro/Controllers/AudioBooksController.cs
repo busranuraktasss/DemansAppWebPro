@@ -1,7 +1,6 @@
 ﻿using DemansAppWebPro.Helper.DTO.AudioBooks;
 using DemansAppWebPro.Helper.DTO.Users;
 using DemansAppWebPro.Models;
-using EsPark_WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -227,7 +226,7 @@ namespace DemansAppWebPro.Controllers
                 var _audio_books_name = db.AudioBooks.Where(w => w.Id == sId).Select(s => s.Name).FirstOrDefault();
                 var _audio_books_id_list = db.AudioBooks.Where(w => w.Name == _audio_books_name).Select(s => s.UserId).ToList();
 
-                var showUsersRequest = db.Users.Where(w => _audio_books_id_list.Contains(w.Id))
+                var showUsersRequest = db.Users.Where(w => _audio_books_id_list.Contains(w.Id) && w.Status == 1)
                     .Select(s => new showUsersRequest()
                     {
                         Id = s.Id,
@@ -260,7 +259,7 @@ namespace DemansAppWebPro.Controllers
             var _book_name = db.AudioBooks.Where(w => w.Id == sId).Select(s => s.Name).FirstOrDefault();
             lıd = db.AudioBooks.Where(w => w.Name == _book_name).Select(s => s.UserId.ToString()).ToList();
 
-                ListCount = db.Users
+                ListCount = db.Users.Where(w => w.Status == 1)
                .Select(s => new showUsersRequest()
                {
                    Id = s.Id,

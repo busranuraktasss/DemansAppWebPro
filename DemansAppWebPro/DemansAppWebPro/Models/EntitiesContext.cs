@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using DemansAppWebPro.Models.Map;
 using DemansAppWebPro.Models;
 
-namespace EsPark_WebApplication.Models
+namespace DemansAppWebPro.Models
 {
     public class EntitiesContext : DbContext
     {

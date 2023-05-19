@@ -1,4 +1,4 @@
-﻿using EsPark_WebApplication.Models;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using DemansAppWebPro.Helper.DTO.Commands;
 using DemansAppWebPro.Helper.DTO.Users;
@@ -203,7 +203,7 @@ namespace DemansAppWebPro.Controllers
                 var _commands_name = db.Commands.Where(w => w.Id == sId).Select(s => s.ProcessName).FirstOrDefault();
                 var _commands_id_list = db.Commands.Where(w => w.ProcessName == _commands_name).Select(s => s.UserId).ToList();
 
-                var showUsersRequest = db.Users.Where(w => _commands_id_list.Contains(w.Id))
+                var showUsersRequest = db.Users.Where(w => _commands_id_list.Contains(w.Id) && w.Status == 1)
                     .Select(s => new showUsersRequest()
                     {
                         Id = s.Id,
@@ -233,11 +233,23 @@ namespace DemansAppWebPro.Controllers
         {
             List<showUsersRequest> ListCount;
             List<string> lıd = new List<string>();
+            List<int> companion = new List<int>();
 
             var _command_name = db.Commands.Where(w => w.Id == sId).Select(s => s.ProcessName).FirstOrDefault();
             lıd = db.Commands.Where(w => w.ProcessName == _command_name).Select(s => s.UserId.ToString()).ToList();
 
-            ListCount = db.Users
+
+            var users = db.Users.Select(s => s.Id).ToList();
+            for(var i =0; i < users.Count(); i++)
+            {
+                var userId = users[i];
+                var companionId = db.Companions.Where(w => w.UserId == userId).Select(s => s.UserId).FirstOrDefault();
+                if(companionId != null) companion.Add((int)companionId);
+
+            }
+
+
+            ListCount = db.Users.Where(w => w.Status == 1 && companion.Contains(w.Id))
            .Select(s => new showUsersRequest()
            {
                Id = s.Id,

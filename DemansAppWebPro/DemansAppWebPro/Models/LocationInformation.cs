@@ -14,5 +14,6 @@ namespace DemansAppWebPro.Models
         public string Lng { get; set; }
 
         public int? UserId { get; set; }
+        public Boolean Status { get; set; }
     }
 }

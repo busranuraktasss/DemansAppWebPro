@@ -256,6 +256,7 @@
     <None Include="wwwroot\plugins\tippy\tippy.all.min.js" />
     <None Include="wwwroot\plugins\treeview\jstree.min.js" />
     <None Include="wwwroot\plugins\x-editable\js\bootstrap-editable.min.js" />
+    <None Include="wwwroot\sweet-alert2\sweetalert2.min.js" />
   </ItemGroup>
 
   <ItemGroup>

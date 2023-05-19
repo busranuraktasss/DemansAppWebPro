@@ -18,6 +18,7 @@ namespace DemansAppWebPro.Models.Map
             builder.Property(p => p.Phone).HasColumnType("string").IsRequired(true);
             builder.Property(p => p.Sex).HasColumnType("boolean").IsRequired(false);
             builder.Property(p => p.UserId).HasColumnType("int").IsRequired(false);
+            builder.Property(p => p.Status).HasColumnType("int").IsRequired(false);
 
 
         }

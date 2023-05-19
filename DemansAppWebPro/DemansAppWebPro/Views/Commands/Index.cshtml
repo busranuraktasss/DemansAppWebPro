@@ -50,7 +50,7 @@
     </style>
 }
 
-<div class="card card-top">
+<div class="card ">
     <div class="card-header">
         <div class="row text-center">
             <h3 class="page-title col-sm-10">Komutlar</h3>
@@ -280,24 +280,12 @@
             var ProcessNameControl = $('[id = "komutAdi"]').val();
 
             if (!ProcessNameControl) {
-                Command: toastr["warning"]("Lütfen Komut Adı bilgisini giriniz.", "Ekleme başarısız!")
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "8000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+               
+                Swal.fire(
+                    'Ekleme başarısız!',
+                    'Lütfen Komut Adı bilgisini giriniz.',
+                    'warning'
+                )
                 return;
             }
 
@@ -315,25 +303,22 @@
 
                     if (data.Status == true) {
 
-                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi başarıyla gerçekleşti.'
+                        })
                         document.getElementById("commandsAddOrUpdate-form").reset();
 
                         $('#commandsModal').modal('hide');
@@ -342,25 +327,22 @@
                             commandsTablo.ajax.reload();
                     }
                     else {
-                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi gerçekleşemedi.'
+                        })
                     }
                     $('#commandsModal').modal('hide');
                 },
@@ -385,24 +367,12 @@
             var Id = document.getElementById("AddOrUpdateId").value;
 
             if (!ProcessName) {
-                Command: toastr["warning"]("Lütfen Komut Adı bilgisini giriniz.", "Ekleme başarısız!")
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "8000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+            
+                Swal.fire(
+                    'Güncelleme başarısız!',
+                    'Lütfen Komut Adı bilgisini giriniz.',
+                    'warning'
+                )
                 return;
             }
             var formData = new FormData(document.getElementById('commandsAddOrUpdate-form'));
@@ -421,48 +391,42 @@
                     if (d.Status == true) {
                         console.log('Gelen -> ', d);
 
-                        Command: toastr["success"]("Güncelleme işlemi başarıyla gerçekleşti.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Güncelleme işlemi başarıyla gerçekleşti.'
+                        })
                         if (commandsTablo != null)
                             commandsTablo.ajax.reload();
                     }
                     else {
-                        Command: toastr["error"]("Güncelleme işlemi gerçekleşemedi.'")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Güncelleme işlemi gerçekleşemedi.'
+                        })
                     }
                 },
             });
@@ -490,45 +454,39 @@
 
                                 if (d.Status == true) {
                                     commandsTablo.ajax.reload();
-                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi başarıyla gerçekleşti.'
+                                    })
                                 } else {
-                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi gerçekleşemedi.'
+                                    })
                                 }
                             }
                             if (commandsTablo != null)
@@ -646,51 +604,45 @@
 
             var commandId = $('#userupdateId').val();
             var userIdmultiple = $('#usersmultiple').val();
-
+            console.log(userIdmultiple);
             $.post('@Url.Action("AddUser","Commands")', { commandId: commandId, userIds: userIdmultiple }, (d, s) => {
                 if (s === "success") {
                     if (d.Status == true) {
-                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi başarıyla gerçekleşti.'
+                        })
 
                     }
                     else {
-                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi gerçekleşemedi.'
+                        })
                     }
                 }
             });
@@ -719,45 +671,39 @@
                                 if (d.Status == true) {
                                     userTablo.ajax.reload();
 
-                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi başarıyla gerçekleşti.'
+                                    })
                                 } else {
-                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi gerçekleşemedi.'
+                                    })
                                 }
                             }
                             if (userTablo != null)
@@ -774,46 +720,40 @@
                     if (commandsTablo != null)
                         commandsTablo.ajax.reload();
 
-                    Command: toastr["success"]("Durum değiştirildi.")
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "8000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Durum değiştirildi.'
+                    })
                 }
                 else {
-                    Command: toastr["error"]("Durum değiştirilemedi.")
+                             const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Durum değiştirelemedi.'
+                    })
                 }
             });
         }

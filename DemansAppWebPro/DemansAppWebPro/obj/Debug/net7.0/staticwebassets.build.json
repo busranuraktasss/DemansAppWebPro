@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NktnXjDtxWgQ/FODGE/LnDchZ48P/LeSQ8EUwAcjbNQ=",
+  "Hash": "81Z8q9F3l8jpjlLvHehjxHFEzay+ehqWcucbsve4yr4=",
   "Source": "DemansAppWebPro",
   "BasePath": "_content/DemansAppWebPro",
   "Mode": "Default",
@@ -11354,6 +11354,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Select2\\js\\select2.min.js"
+    },
+    {
+      "Identity": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\sweet-alert2\\sweetalert2.min.css",
+      "SourceId": "DemansAppWebPro",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\",
+      "BasePath": "_content/DemansAppWebPro",
+      "RelativePath": "sweet-alert2/sweetalert2.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\sweet-alert2\\sweetalert2.min.css"
+    },
+    {
+      "Identity": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\sweet-alert2\\sweetalert2.min.js",
+      "SourceId": "DemansAppWebPro",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\wwwroot\\",
+      "BasePath": "_content/DemansAppWebPro",
+      "RelativePath": "sweet-alert2/sweetalert2.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\sweet-alert2\\sweetalert2.min.js"
     }
   ]
 }

@@ -47,7 +47,8 @@
         .modal-label-style {
             padding-left: 20px !important;
         }
-        .dropdown-style{
+
+        .dropdown-style {
             background-color: white;
             border: 1px solid #aaa;
             border-radius: 6px;
@@ -140,11 +141,11 @@
                         <label class="col-sm-3 form-label modal-label-style " style="font-weight:bold">Cinsiyet</label>
                         <div class="col-sm-7" style="margin-left:13px;">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sex" id="women" value="0"/>
+                                <input class="form-check-input" type="radio" name="sex" id="women" value="0" />
                                 <label class="form-check-label" for="women">Kadın</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sex" id="men" value="1"/>
+                                <input class="form-check-input" type="radio" name="sex" id="men" value="1" />
                                 <label class="form-check-label" for="men">Erkek</label>
                             </div>
                         </div>
@@ -234,13 +235,13 @@
                             "render": (data, type, row) => {
                                 return row.Phone;
                             }, "name": "Phone"
-                        }, 
+                        },
                         {
                             "className": "table_style",
                             "render": (data, type, row) => {
-                                var cinsiyet ;
-                                if(row.Sex == true){cinsiyet = "Kadın";}
-                                else{cinsiyet = "Erkek";}
+                                var cinsiyet;
+                                if (row.Sex == true) { cinsiyet = "Kadın"; }
+                                else { cinsiyet = "Erkek"; }
                                 return cinsiyet;
                             }, "name": "Sex"
                         },
@@ -256,11 +257,11 @@
                             "render": function (data, type, row) {
                                 return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.Id})"><i class="dripicons-document-edit"></i></button>
 
-                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteCompanions(${row.Id})"><i class="dripicons-trash"></i></button>`;
+                                                <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteCompanions(${row.Id})"><i class="dripicons-trash"></i></button>`;
 
                             }, "name": "Id", "name": "Id"
                         },
-                        
+
                     ],
                     fixedColumns: true,
                     scrollCollapse: true,
@@ -294,7 +295,7 @@
                     var s = s + '<option value="' + d.data[i].Id + '">' + d.data[i].UserName + ' ' + d.data[i].Surname + '</option>';
                 }
                 $("#Dropdown1").html(s);
-            
+
             })
         }
 
@@ -327,7 +328,7 @@
 
             }
 
-            if (!UserControl || !CompanionNameControl || !CompanionSurnameControl || !AddressControl || !EpostaControl || !PhoneControl ) {
+            if (!UserControl || !CompanionNameControl || !CompanionSurnameControl || !AddressControl || !EpostaControl || !PhoneControl) {
                 Command: toastr["warning"]("Lütfen Kullanıcı / Refakatçi Adı / Refakatçi Soyadı / Adres / Email / Telefon bilgisini giriniz.", "Ekleme başarısız!")
                 toastr.options = {
                     "closeButton": true,
@@ -432,9 +433,9 @@
                     $('#eposta').val(d.data.Email);
                     $('#tel').val(d.data.Phone);
 
-                    if(d.data.Sex == true){
+                    if (d.data.Sex == true) {
                         document.getElementById('women').checked = true;
-                    }else{
+                    } else {
                         document.getElementById('men').checked = true;
                     }
                     $('#AddOrUpdateId').val(d.data.Id);
@@ -452,14 +453,14 @@
             var Email = document.getElementById("eposta").value;
             var Phone = document.getElementById("tel").value;
             var Sex = true;
-            if (document.getElementById('women').checked == true){
+            if (document.getElementById('women').checked == true) {
                 Sex = true;
-            }else{
+            } else {
                 Sex = false;
             }
 
 
-            if (!Name || !Surname || !Adres || !Email || !Phone ) {
+            if (!Name || !Surname || !Adres || !Email || !Phone) {
                 Command: toastr["warning"]("Lütfen Refakatçi Adı / Refakatçi Soyadı / Adres / E-posta / Telefon bilgisini giriniz.", "Ekleme başarısız!")
                 toastr.options = {
                     "closeButton": true,

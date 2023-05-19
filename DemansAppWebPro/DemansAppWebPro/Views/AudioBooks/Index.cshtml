@@ -50,7 +50,7 @@
     </style>
 }
 
-<div class="card card-top">
+<div class="card">
     <div class="card-header">
         <div class="row text-center">
             <h3 class="page-title col-sm-10">Sesli Kitap</h3>
@@ -257,6 +257,7 @@
                                 return row.Url;
                             }, "name": "Url"
                         },
+                        //Sesli Kitap Düzenle / Sil
                         {
                             "className": "table_style",
                             "render": function (data, type, row) {
@@ -266,6 +267,7 @@
 
                             }, "name": "Id", "name": "Id"
                         },
+                        //Erişim Sağlayan Kullanıcılar
                         {
                             "className": "table_style",
                             "render": function (data, type, row) {
@@ -273,6 +275,7 @@
 
                             }, "name": "Id"
                         },
+                        //Kullanıcı Ekle
                         {
                             "className": "table_style",
                             "render": function (data, type, row) {
@@ -280,6 +283,7 @@
 
                             }, "name": "Id", "name": "Id"
                         },
+                        //Sesli Kitap Durum
                         {
                             "className": "table_style",
                             "render": function (data, type, row) {
@@ -331,24 +335,12 @@
             var UrlControl = $('[id ="sesDosyasi"]').val();
 
             if (!NameControl || !SubjectControl || !TextControl || !UrlControl) {
-                Command: toastr["warning"]("Lütfen Kitap Adı / Konusu / Bilgi / Dosya Seçimi bilgisini giriniz.", "Ekleme başarısız!")
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "8000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+              
+                Swal.fire(
+                    'Ekleme başarısız!',
+                    'Lütfen Kitap Adı / Konusu / Bilgi / Dosya Seçimi bilgisini giriniz.',
+                    'warning'
+                )
                 return;
             }
 
@@ -368,26 +360,22 @@
                 success: data => {
 
                     if (data.Status == true) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
-
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi başarıyla gerçekleşti.'
+                        })
                         document.getElementById("audioBooksAddOrUpdate-form").reset();
 
                         $('#audioBooksModal').modal('hide');
@@ -396,25 +384,22 @@
                             audioBookTablo.ajax.reload();
                     }
                     else {
-                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi gerçekleşemedi.'
+                        })
                     }
                     $('#audioBooksModal').modal('hide');
                 },
@@ -450,24 +435,12 @@
 
 
             if (!Name || !Subject || !Text || !Url) {
-                Command: toastr["warning"]("Lütfen Kitap Adı / Konusu / Bilgi / Dosya Seçimi bilgisini giriniz.", "Ekleme başarısız!")
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "8000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+               
+                Swal.fire(
+                    'Güncelleme başarısız!',
+                    'Lütfen Kitap Adı / Konusu / Bilgi / Dosya Seçimi bilgisini giriniz.',
+                    'warning'
+                )
                 return;
             }
             var formData = new FormData(document.getElementById('audioBooksAddOrUpdate-form'));
@@ -488,48 +461,42 @@
                     if (d.Status == true) {
                         console.log('Gelen -> ', d);
 
-                        Command: toastr["success"]("Güncelleme işlemi başarıyla gerçekleşti.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Güncelleme işlemi başarıyla gerçekleşti.'
+                        })
                         if (audioBookTablo != null)
                             audioBookTablo.ajax.reload();
                     }
                     else {
-                        Command: toastr["error"]("Güncelleme işlemi gerçekleşemedi.'")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "8000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Güncelleme işlemi gerçekleşemedi.'
+                        })
                     }
                 },
             });
@@ -557,45 +524,39 @@
 
                                 if (d.Status == true) {
                                     audioBookTablo.ajax.reload();
-                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi başarıyla gerçekleşti.'
+                                    })
                                 } else {
-                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi gerçekleşemedi.'
+                                    })
                                 }
                             }
                             if (audioBookTablo != null)
@@ -672,6 +633,7 @@
                         });
 
                     }
+                    
 
                 });
             
@@ -688,7 +650,7 @@
         var getSelect = (sId) => {
             $.getJSON('@Url.Action("GetSelect", "AudioBooks")', { sId: sId }, (d, s) => {
                 if (s === "success") {
-
+                   
                     if (d.Data == null && d.data.length > 0) {
                         $('#usersmultiple').empty();
                         $('#usersmultiple').append(`<option value="0" disabled >Lütfen Kullanıcı Seçiniz...</option>`);
@@ -713,47 +675,41 @@
             $.post('@Url.Action("AddUser","AudioBooks")', { audioBookId: audioBookId, userIds: userIdmultiple }, (d, s) => {
                 if (s === "success") {
                     if (d.Status == true) {
-                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": true,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi başarıyla gerçekleşti.'
+                        })
 
                     }
                     else {
-                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.")
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toast-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "5000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        }
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Ekleme işlemi gerçekleşemedi.'
+                        })
                     }
                 }
             });
@@ -782,45 +738,39 @@
                                 if (d.Status == true) {
                                     userTablo.ajax.reload();
 
-                                    Command: toastr["success"]("Silme işlemi gerçekleşti.")
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Çıkarma işlemi başarıyla gerçekleşti.'
+                                    })
                                 } else {
-                                    Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+                                  const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
 
-                                    toastr.options = {
-                                        "closeButton": false,
-                                        "debug": false,
-                                        "newestOnTop": false,
-                                        "progressBar": false,
-                                        "positionClass": "toast-top-right",
-                                        "preventDuplicates": false,
-                                        "onclick": null,
-                                        "showDuration": "300",
-                                        "hideDuration": "1000",
-                                        "timeOut": "8000",
-                                        "extendedTimeOut": "1000",
-                                        "showEasing": "swing",
-                                        "hideEasing": "linear",
-                                        "showMethod": "fadeIn",
-                                        "hideMethod": "fadeOut"
-                                    }
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Çıkarma işlemi gerçekleşemedi.'
+                                    })
                                 }
                             }
                             if (userTablo != null)
@@ -837,46 +787,40 @@
                     if (audioBookTablo != null)
                         audioBookTablo.ajax.reload();
 
-                    Command: toastr["success"]("Durum değiştirildi.")
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "8000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Durum değiştirildi.'
+                    })
                 }
                 else {
-                    Command: toastr["error"]("Durum değiştirilemedi.")
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
 
-                    toastr.options = {
-                        "closeButton": false,
-                        "debug": false,
-                        "newestOnTop": false,
-                        "progressBar": false,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "hideDuration": "1000",
-                        "timeOut": "5000",
-                        "extendedTimeOut": "1000",
-                        "showEasing": "swing",
-                        "hideEasing": "linear",
-                        "showMethod": "fadeIn",
-                        "hideMethod": "fadeOut"
-                    }
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Durum değiştirilemedi.'
+                    })
                 }
             });
         }

@@ -25,6 +25,7 @@ namespace DemansAppWebPro.Models.Map
             builder.Property(p => p.EveningTime).HasColumnType("string").IsRequired(false);
             builder.Property(p => p.NightTime).HasColumnType("string").IsRequired(false);
             builder.Property(p => p.UserId).HasColumnType("int").IsRequired(false);
+            builder.Property(p => p.Status).HasColumnType("bit").IsRequired(true);
 
     }
 
