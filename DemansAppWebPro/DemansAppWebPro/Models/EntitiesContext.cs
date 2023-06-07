@@ -26,6 +26,7 @@ namespace DemansAppWebPro.Models
             modelBuilder.ApplyConfiguration(new PicturesMap());
             modelBuilder.ApplyConfiguration(new TracesOfLoveMap());
             modelBuilder.ApplyConfiguration(new UsersMap());
+            modelBuilder.ApplyConfiguration(new AdminsMap());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -40,6 +41,7 @@ namespace DemansAppWebPro.Models
         public DbSet<Pictures> Pictures { get; set; }
         public DbSet<TracesOfLove> TracesOfLove { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Admins> Admins { get; set; }
        
     }
 }

@@ -182,7 +182,7 @@
     <div class="modal-dialog modal_style" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title m-0" id="addUserModalLabel">Kullanıcı Ekle / Çıkar</h6>
+                <h6 class="modal-title m-0" id="addUserModalLabel">Kullanıcı Ekle</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload();" aria-label="Close"></button>
             </div><!--end modal-header-->
             <div class="modal-body">
@@ -760,7 +760,7 @@
                         },
                         {
                             "render": (data, type, row) => {
-                                return row.UsageTime;
+                                return row.UsageTime + " " + "gün";
                             }, "name": "UsageTime"
                         },
                         {

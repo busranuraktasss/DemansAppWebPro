@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CHMQ/EHp/aSmmF0YuDpksZd095067CUsEUp5EftgPxku5RJ0l9E7mepzVghgXSetrlpP+1C+k62gl9/CDxLmOQ==",
+  "dgSpecHash": "+adKGpUiHECgQ5b/7oYNsHNDzOz3bFZk0tsk2A+Pg410DAiTFlkx13laTKBGEzNeqWroaogQbA7/mFJtd8RATg==",
   "success": true,
   "projectFilePath": "D:\\Github Projeleri\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro\\DemansAppWebPro.csproj",
   "expectedPackageFiles": [
@@ -47,6 +47,7 @@
     "C:\\Users\\busra\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\busra\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\busra\\.nuget\\packages\\mysql.data\\8.0.32.1\\mysql.data.8.0.32.1.nupkg.sha512",
+    "C:\\Users\\busra\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\busra\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\busra\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\busra\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",

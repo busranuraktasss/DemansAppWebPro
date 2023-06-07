@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<EntitiesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataConnection")));
 
-//builder.Services.AddAuthentication(
-//    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.LoginPath = "/Login/Index/"; }
-//);
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.LoginPath = "/Login/Index/"; }
+);
 builder.Services.AddAuthorization();
 
 builder.Services.AddControllers()
@@ -40,7 +40,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 
 });

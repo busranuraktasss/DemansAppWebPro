@@ -125,6 +125,7 @@ namespace DemansAppWebPro.Controllers
                     UsageDuration = UsageDuration,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now,
+                    Status = true,
 
                 };
                 db.Medicines.Add(_medicines);
@@ -176,6 +177,7 @@ namespace DemansAppWebPro.Controllers
         [HttpGet]
         public async Task<JsonResult> DeleteMedicines(int pr)
         {
+            //hard delete değiştri soft delete yap
             try
             {
                 var _d_medicines = await db.Medicines.Where(w => w.Id == pr).FirstOrDefaultAsync();
@@ -218,7 +220,7 @@ namespace DemansAppWebPro.Controllers
                     if (_user_id != null)
                     {
                         var medicine_list = db.Medicines.Where(w => w.Name == _medicines_name && w.UserId == _user_id).FirstOrDefault();
-                        var user_list = db.Users.Where(w => w.Id == _user_id).FirstOrDefault();
+                        var user_list = db.Users.Where(w => w.Id == _user_id).Select(s => new { s.UserName , s.Surname}).FirstOrDefault();
 
                         //medicine Id
                         list.Id = medicine_list.Id;
@@ -286,18 +288,18 @@ namespace DemansAppWebPro.Controllers
 
             var showMedicineUserRequest = new List<showMedicineUserRequest>();
 
-            var l_user_list = db.Users.Select(s => s.Id).ToList();
+            var l_user_list = db.Users.Where(w => w.Status == 1).Select(s => s.Id).ToList();
 
             for (var k = 0; k < l_user_list.Count(); k++)
             {
                 var list = new showMedicineUserRequest();
                 var l_user = l_user_list[k];
 
-                var user_control = db.Users.Where(w => w.Id == l_user && _l_user_id_list.Contains(l_user)).FirstOrDefault();
+                var user_control = db.Medicines.Where(w => w.UserId == l_user).FirstOrDefault();
 
                 if (user_control == null)
                 {
-                    var user = db.Users.Where(w => w.Id == l_user).FirstOrDefault();
+                    var user = db.Users.Where(w => w.Id == l_user).Select(s =>  new { s.Id, s.UserName, s.Surname }).FirstOrDefault();
 
                     list.Id = user.Id;
                     list.UserName = user.UserName;
@@ -307,6 +309,7 @@ namespace DemansAppWebPro.Controllers
                 }
 
             }
+
             return Json(new { data = showMedicineUserRequest });
 
 
@@ -333,6 +336,7 @@ namespace DemansAppWebPro.Controllers
                 EveningTime = rq.EveningTime,
                 NightTime = rq.NightTime,
                 UserId = rq.UserId,
+                Status = true,
             };
             db.Medicines.Add(_add_user);
             await db.SaveChangesAsync();
