@@ -66,7 +66,7 @@
     <div class="card-header">
         <div class="row text-center">
             <h3 class="page-title col-sm-10">Refakatçiler</h3>
-            <button type="button" class="btn btn btn-outline-dark col-sm-2 align-self-end" data-bs-toggle="modal" onclick="javascripts: showModal();">Refakatçi Ekle</button>
+            <button type="button" class="btn btn btn-outline-dark col-sm-2 align-self-end" data-bs-toggle="modal" onclick="showModal()">Refakatçi Ekle</button>
         </div>
     </div>
 </div>
@@ -167,7 +167,6 @@
         $((_$) => {
             showCompanions();
             reload();
-            dropdown1();
         });
 
         var showModal = () => {
@@ -177,8 +176,11 @@
             $('#eposta').val('');
             $('#tel').val('');
             document.getElementById('women').checked = true;
+            dropdown1();
 
             $('#companionModal').modal('show');
+            
+
         }
 
         var reload = () => {
@@ -289,12 +291,14 @@
         var dropdown1 = (sId) => {
 
             $.getJSON('@Url.Action("Dropdown1", "Companions")', { sId: sId }, (d, s) => {
-
+                console.log(d.data);
                 for (var i = 0; i < d.data.length; i++) {
                     $('#Dropdown1').empty();
                     var s = s + '<option value="' + d.data[i].Id + '">' + d.data[i].UserName + ' ' + d.data[i].Surname + '</option>';
+                    console.log(d.data[i].UserName);
                 }
                 $("#Dropdown1").html(s);
+               
 
             })
         }

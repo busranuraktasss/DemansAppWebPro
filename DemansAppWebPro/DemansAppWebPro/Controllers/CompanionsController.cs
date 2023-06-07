@@ -48,7 +48,7 @@ namespace DemansAppWebPro.Controllers
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
 
-                var showCompanionsRequest = db.Companions.Where(w => w.Name.Contains(searchValue))
+                var showCompanionsRequest = db.Companions.Where(w => w.Name.Contains(searchValue) && w.Status == 1)
                   .Select(s => new showCompanionsRequest()
                   {
                       Id = s.Id,
@@ -112,11 +112,10 @@ namespace DemansAppWebPro.Controllers
         [HttpGet]
         public JsonResult Dropdown1(int sId)
         {
-            if (sId != null)
-            {
+          
                 var _c_user = db.Companions.Where(w => w.Id == sId).Select(s => s.UserId).FirstOrDefault();
 
-                var _s_user = db.Users.Where(w => w.Id == _c_user)
+                var _s_user = db.Users.Where(w => w.Status == 1)
                     .Select(s => new showUsersRequest()
                     {
                         Id = s.Id,
@@ -125,26 +124,7 @@ namespace DemansAppWebPro.Controllers
                     }).ToList();
                 return Json(new { data= _s_user }) ;
 
-            }
-            else
-            {
-                var showUsersRequest = new List<showUsersRequest>();
-                db.Users.ToList().ForEach(s =>
-                {
-                    var user_list = new showUsersRequest();
-                    var companion_list = db.Companions.Where(w => w.UserId == s.Id).FirstOrDefault();
-                    if (companion_list == null)
-                    {
-                        user_list.Id = s.Id;
-                        user_list.UserName = s.UserName;
-                        user_list.Surname = s.Surname;
-                        showUsersRequest.Add(user_list);
-
-                    }
-                });
-
-                return Json(new { data = showUsersRequest });
-            }
+           
         }
 
         [HttpPost]
@@ -161,6 +141,7 @@ namespace DemansAppWebPro.Controllers
                     Sex = request.Sex,
                     Phone = request.Phone,
                     UserId = request.UserId,
+                    Status = 1
                 };
                 db.Companions.Add(_companions);
                 await db.SaveChangesAsync();

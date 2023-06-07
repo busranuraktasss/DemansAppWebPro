@@ -21,12 +21,13 @@ namespace DemansAppWebPro.Controllers
         [HttpPost]
         public JsonResult ShiftMap()
         {
-            var shiftMap = db.LocationInformation.Select(s => new shiftMapRequest
+            var shiftMap = db.LocationInformation
+                .Select(s => new shiftMapRequest
             {
                 Lat = s.Lat,
                 Lng = s.Lng,
-                UserName = db.Users.Where(w => w.Id == s.Id).Select(s => s.UserName).FirstOrDefault(),
-                Surname = db.Users.Where(w => w.Id == s.Id).Select(s => s.Surname).FirstOrDefault(),
+                UserName = db.Users.Where(w => w.Id == s.UserId).Select(s => s.UserName).FirstOrDefault(),
+                Surname = db.Users.Where(w => w.Id == s.UserId).Select(s => s.Surname).FirstOrDefault(),
 
             }).ToList();
 
