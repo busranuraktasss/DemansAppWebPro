@@ -39,6 +39,10 @@
         div.dataTables_wrapper div.dataTables_paginate {
             margin-right: 10px !important
         }
+
+        .map {
+            margin-top: 35px !important;
+        }
     </style>
 }
 
@@ -118,7 +122,31 @@
         </div>
     </div>
 </div><!--end TraceOfLove's Modal-->
+
+<div class="modal fade" id="mapModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal_style" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="mapModalLabel">Konum Bilgisi</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload();" aria-label="Close"></button>
+            </div><!--end modal-header-->
+            <div class="modal-body">
+                <form id="map-form">
+                    <input type="hidden" value="0" id="mapId" name="mapId" />
+                    <div class="map" id="map" style="height:600px;"></div>
+
+
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div><!--end Map Modal-->
+
+
 @section scripts {
+    <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=en_RU&amp;apikey=<788dcc52-1903-474c-96f8-82b437dcc613"></script>
+
     <script type="text/javascript">
 
         var traceOfLoveTablo = null;
@@ -127,20 +155,64 @@
             reload();
         });
 
+        ymaps.ready(showMap);
+
+        var  showMap = (sId) => {
+
+            $('#mapId').val(0);
+
+
+            $('#mapModal').modal('show');
+
+            var myMap = new ymaps.Map("map", {
+                center: [40.69976154407544, 29.888037639972598],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            })
+
+            $.post('@Url.Action("ShiftMap","TracesOfLove")', { sId: sId }, (d, s) => {
+                for (var i = 0; i < d.data.length; i++) {
+                    var Lat = d.data[i].Lat;
+                    var Lng = d.data[i].Lng;
+                    var Place = d.data[i].PlaceName;
+
+                    myGeoObject = new ymaps.GeoObject({
+                        geometry: {
+                            type: "Point",
+                            coordinates: [Lat, Lng]
+                        },
+                        properties: {
+                            iconContent: Place
+                        }
+                    }, {
+                        preset: 'islands#redStretchyIcon'
+                    })
+                    myMap.geoObjects
+                        .add(myGeoObject);
+                }
+
+
+            })
+
+        }
+
         var showModal = () => {
-            $('#kullaniciAdi').val('');
-            $('#kullaniciSoyadi').val('');
+            $('#mekanAdi').val('');
             $('#eposta').val('');
             $('#tel').val('');
-            $('#acilTel').val('');
+            $('#lat').val('');
+            $('#lng').val('');
             $('#AddOrUpdateId').val(0);
-            document.getElementById('women').checked = true;
+           
 
             $('#traceOfLoveModal').modal('show');
         }
 
         var reload = () => {
             document.getElementById("traceOfLoveAddOrUpdate-form").reset();
+            document.getElementById("map-form").reset();
+            $(".map").empty();
         }
 
         var showTraceOfLove = () => {
@@ -155,7 +227,7 @@
                     orderMulti: true,
                     order: [[1, "asc"]],
                     ajax: {
-                        url: '@Url.Action("ShowTraceOfLove", "Users")',
+                        url: '@Url.Action("ShowTraceOfLove", "TracesOfLove")',
                         type: "POST",
                         datatype: "json"
                     },
@@ -172,14 +244,8 @@
                         {
                             "className": "table_style",
                             "render": (data, type, row) => {
-                                return row.UserName;
-                            }, "name": "UserName",
-                        },
-                        {
-                            "className": "table_style",
-                            "render": (data, type, row) => {
-                                return row.Surname;
-                            }, "name": "Surname"
+                                return row.PlaceName;
+                            }, "name": "PlaceName",
                         },
                         {
                             "className": "table_style",
@@ -195,25 +261,18 @@
                         },
                         {
                             "className": "table_style",
-                            "render": (data, type, row) => {
-                                return row.EmergencyPhone;
-                            }, "name": "EmergencyPhone"
-                        },
-                        {
-                            "className": "table_style",
-                            "render": (data, type, row) => {
-                                if (row.Sex == true) return 'KADIN';
-                                else return 'ERKEK';
-                            }, "name": "Sex"
+                            "render": function (data, type, row) {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: showMap(${row.Id});"><i class="dripicons-document-edit"></i></button>`;
+                            }, "name": "Id"
                         },
                         {
                             "className": "table_style",
                             "render": function (data, type, row) {
                                 return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.Id})"><i class="dripicons-document-edit"></i></button>
 
-                                                       <button type="button"  class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteUser(${row.Id})"><i class="dripicons-trash"></i></button>`;
+                                                               <button type="button"  class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteTraceOfLove(${row.Id})"><i class="dripicons-trash"></i></button>`;
 
-                            }, "name": "RowId", "name": "RowId", "name": "RowId"
+                            }, "name": "RowId", "name": "RowId"
                         },
                     ],
                     fixedColumns: true,
@@ -242,47 +301,40 @@
         var getUpdateOrAdd = () => {
 
             if (document.getElementById("AddOrUpdateId").value > 0) {
-                javascript: updateUser();
+                javascript: updateTraceOfLove();
             }
             else {
-                javascript: addUser();
+                javascript: addTraceOfLove();
             }
         }
 
-        var addUser = () => {
+        var addTraceOfLove = () => {
 
-            var UserNameControl = $('[id = "kullaniciAdi"]').val();
-            var UserSurnameControl = $('[id ="kullaniciSoyadi"]').val();
+            var PlaceNameControl = $('[id = "mekanAdi"]').val();
             var EpostaControl = $('[id ="eposta"]').val();
             var PhoneControl = $('[id ="tel"]').val();
-            var EmergencyPhoneControl = $('[id ="acilTel"]').val();
-            var SexControl = true;
-            if (document.getElementById('women').checked == true) {
-                SexControl = true;
-            }
-            else {
-                SexControl = false;
-            }
+            var LatControl = $('[id ="lat"]').val();
+            var LngControl = $('[id ="lng"]').val();
 
-            if (!UserNameControl || !UserSurnameControl || !EpostaControl || !PhoneControl || !EmergencyPhoneControl) {
+
+            if (!PlaceNameControl || !LatControl || !LngControl) {
                 Swal.fire(
                     'Ekleme başarısız!',
-                    'Lütfen Kullanıcı Adı / Kullanıcı Soyadı / Email / Telefon /Acil Telefon Numarası bilgisini giriniz.',
+                    'Lütfen Mekan Adı / Lat / Lng bilgisini giriniz.',
                     'warning'
                 )
                 return;
             }
             var formData = new FormData();
-            formData.append('UserName', UserNameControl);
-            formData.append('Surname', UserSurnameControl);
+            formData.append('PlaceName', PlaceNameControl);
             formData.append('Email', EpostaControl);
             formData.append('Phone', PhoneControl);
-            formData.append('EmergencyPhone', EmergencyPhoneControl);
-            formData.append('Sex', SexControl);
+            formData.append('Lat', LatControl);
+            formData.append('Lng', LngControl);
 
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("AddUser","Users")',
+                url: '@Url.Action("AddTraceOfLove","TracesOfLove")',
                 data: formData,
                 async: true,
                 contentType: false,
@@ -340,61 +392,49 @@
         var getsetModal = (sId) => {
 
             $('#AddOrUpdateId').val("");
-            $.getJSON('@Url.Action("GetUsers", "Users")', { sId: sId }, (d, s) => {
+            $.getJSON('@Url.Action("GetTraceOfLove", "TracesOfLove")', { sId: sId }, (d, s) => {
                 if (s === 'success') {
-                    $('#kullaniciAdi').val(d.data.UserName);
-                    $('#kullaniciSoyadi').val(d.data.Surname);
+                    $('#mekanAdi').val(d.data.PlaceName);
                     $('#eposta').val(d.data.Email);
                     $('#tel').val(d.data.Phone);
-                    $('#acilTel').val(d.data.EmergencyPhone);
+                    $('#lat').val(d.data.Lat);
+                    $('#lng').val(d.data.Lng);
 
-                    if (d.data.Sex == true) {
-                        document.getElementById('women').checked = true;
-                    } else {
-                        document.getElementById('men').checked = true;
-                    }
                     $('#AddOrUpdateId').val(d.data.Id);
                     $('#traceOfLoveModal').modal('show');
                 }
             })
         }
 
-        var updateUser = () => {
+        var updateTraceOfLove = () => {
 
             var Id = document.getElementById("AddOrUpdateId").value;
-            var Name = document.getElementById("kullaniciAdi").value;
-            var Surname = document.getElementById("kullaniciSoyadi").value;
+            var Name = document.getElementById("mekanAdi").value;
             var Email = document.getElementById("eposta").value;
             var Phone = document.getElementById("tel").value;
-            var EmergencyPhone = document.getElementById("acilTel").value;
-            var Sex = true;
-            if (document.getElementById('women').checked == true) {
-                Sex = true;
-            } else {
-                Sex = false;
-            }
+            var Lat = document.getElementById("lat").value;
+            var Lng = document.getElementById("lng").value;
 
 
-            if (!Name || !Surname || !Email || !Phone || !EmergencyPhone) {
+            if (!Name || !Lat || !Lng) {
                 Swal.fire(
                     'Güncelleme başarısız!',
-                    'Lütfen Kullanıcı Adı / Kullanıcı Soyadı / E-posta / Telefon / Acil Telefon Numarası bilgisini giriniz.',
+                    'Lütfen Mekan Adı / Lat / Lng bilgisini giriniz.',
                     'warning'
                 )
                 return;
             }
             var formData = new FormData(document.getElementById('traceOfLoveAddOrUpdate-form'));
             formData.append('Id', Id);
-            formData.append('UserName', Name);
-            formData.append('Surname', Surname);
+            formData.append('PlaceName', Name);
             formData.append('Email', Email);
             formData.append('Phone', Phone);
-            formData.append('EmergencyPhone', EmergencyPhone);
-            formData.append('Sex', Sex);
+            formData.append('Lat', Lat);
+            formData.append('Lng', Lng);
 
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("UpdateUser","Users")',
+                url: '@Url.Action("UpdateTraceOfLove","TracesOfLove")',
                 data: formData,
                 processData: false,
                 contentType: false,
@@ -448,7 +488,7 @@
             $('#traceOfLoveModal').modal('hide');
         }
 
-        var deleteUser = (delId) => {
+        var deleteTraceOfLove = (delId) => {
             Swal.fire({
                 title: 'Silmek istediğinize emin misiniz?',
                 icon: 'question',
@@ -461,7 +501,7 @@
                 .then((result) => {
 
                     if (result.value == true) {
-                        $.getJSON('@Url.Action("DeleteUser","Users")', { pr: delId }, (d, s) => {
+                        $.getJSON('@Url.Action("DeleteTraceOfLove","TracesOfLove")', { pr: delId }, (d, s) => {
                             if (s === "success") {
 
                                 if (d.Status == true) {

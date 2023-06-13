@@ -4,7 +4,7 @@ using System.Data;
 
 namespace DemansAppWebPro.Models
 {
-    public class TracesOfLove
+    public class TraceOfLoves
     {
         [Key]
         public int Id { get; set; }

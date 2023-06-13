@@ -1,4 +1,5 @@
-﻿using DemansAppWebPro.Helper.DTO.TraceOfLove;
+﻿using DemansAppWebPro.Helper.DTO.LocationInformation;
+using DemansAppWebPro.Helper.DTO.TraceOfLove;
 using DemansAppWebPro.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,9 +47,9 @@ namespace DemansAppWebPro.Controllers
                 //Paging Size 
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
-                var recordsTotal = db.TracesOfLove.Count();
+                var recordsTotal = db.TraceOfLoves.Count();
 
-                var _users_list = db.TracesOfLove.Where(w => w.PlaceName.Contains(searchValue) )
+                var _tracesOfLove_list = db.TraceOfLoves.Where(w => w.PlaceName.Contains(searchValue) )
                     .Select(s => new showTraceOfLoveRequest()
                     {
                         Id = s.Id,
@@ -64,29 +65,29 @@ namespace DemansAppWebPro.Controllers
                 {
                     switch (sortColumn)
                     {
-                        case "RowId":
+                        case "Id":
                             if (sortColumnDir == "desc")
-                                _users_list = (from o in _users_list orderby o.Id ascending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.Id ascending select o).ToList();
                             else
-                                _users_list = (from o in _users_list orderby o.Id descending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.Id descending select o).ToList();
                             break;
                         case "PlaceName":
                             if (sortColumnDir == "desc")
-                                _users_list = (from o in _users_list orderby o.PlaceName descending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.PlaceName descending select o).ToList();
                             else
-                                _users_list = (from o in _users_list orderby o.PlaceName ascending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.PlaceName ascending select o).ToList();
                             break;
                         case "Phone":
                             if (sortColumnDir == "desc")
-                                _users_list = (from o in _users_list orderby o.Phone descending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.Phone descending select o).ToList();
                             else
-                                _users_list = (from o in _users_list orderby o.Phone ascending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.Phone ascending select o).ToList();
                             break;
                         default:
                             if (sortColumnDir == "desc")
-                                _users_list = (from o in _users_list orderby o.Id descending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.Id descending select o).ToList();
                             else
-                                _users_list = (from o in _users_list orderby o.Id ascending select o).ToList();
+                                _tracesOfLove_list = (from o in _tracesOfLove_list orderby o.Id ascending select o).ToList();
                             break;
                     }
                 }
@@ -96,7 +97,7 @@ namespace DemansAppWebPro.Controllers
                     draw = draw,
                     recordsFiltered = recordsTotal,
                     recordsTotal = recordsTotal,
-                    data = _users_list
+                    data = _tracesOfLove_list
                 });
             }
             catch (Exception ex)
@@ -106,11 +107,11 @@ namespace DemansAppWebPro.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddTraceOfLove(addTraceOfLoveRequest request)
+        public JsonResult AddTraceOfLove(addTraceOfLoveRequest request)
         {
             try
-            {
-                var _traceOfLove = new TracesOfLove()
+            { 
+                var _traceOfLove = new TraceOfLoves()
                 {
                     PlaceName = request.PlaceName,
                     Email = request.Email,
@@ -118,10 +119,10 @@ namespace DemansAppWebPro.Controllers
                     Lat = request.Lat,
                     Lng = request.Lng,
                 };
-                db.TracesOfLove.Add(_traceOfLove);
-                await db.SaveChangesAsync();
+                db.TraceOfLoves.Add(_traceOfLove);
+                db.SaveChanges();
 
-                return Json(new { Status = true, Messages = "Ekleme işlemi hatalı." });
+                return Json(new { Status = true });
             }
             catch (Exception ex)
             {
@@ -132,7 +133,7 @@ namespace DemansAppWebPro.Controllers
         [HttpGet]
         public async Task<JsonResult> GetTraceOfLove(int sId)
         {
-            var _traceOfLove_current = await db.TracesOfLove.Where(f => f.Id == sId).Select(s => new { s.Id, s.PlaceName, s.Email, s.Lat, s.Lng, s.Phone }).FirstOrDefaultAsync();
+            var _traceOfLove_current = await db.TraceOfLoves.Where(f => f.Id == sId).Select(s => new { s.Id, s.PlaceName, s.Email, s.Lat, s.Lng, s.Phone }).FirstOrDefaultAsync();
             return Json(new { Status = true, data = _traceOfLove_current, Messages = "Success", Code = 200 });
         }
 
@@ -141,7 +142,7 @@ namespace DemansAppWebPro.Controllers
         {
             try
             {
-                var _u_traceOfLove = db.TracesOfLove.Where(w => w.Id == request.Id).FirstOrDefault();
+                var _u_traceOfLove = db.TraceOfLoves.Where(w => w.Id == request.Id).FirstOrDefault();
                 if (_u_traceOfLove == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
 
                 _u_traceOfLove.PlaceName = request.PlaceName;
@@ -150,7 +151,7 @@ namespace DemansAppWebPro.Controllers
                 _u_traceOfLove.Phone = request.Phone;
                 _u_traceOfLove.Lng = request.Lng;
 
-                db.TracesOfLove.Update(_u_traceOfLove);
+                db.TraceOfLoves.Update(_u_traceOfLove);
                 await db.SaveChangesAsync();
 
                 return Json(new { Status = true, Messages = "Değiştirme işlemi başarılı" });
@@ -166,10 +167,10 @@ namespace DemansAppWebPro.Controllers
         {
             try
             {
-                var _d_traceOfLove = await db.TracesOfLove.Where(w => w.Id == pr).FirstOrDefaultAsync();
+                var _d_traceOfLove = await db.TraceOfLoves.Where(w => w.Id == pr).FirstOrDefaultAsync();
                 if (_d_traceOfLove == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
 
-                db.TracesOfLove.Remove(_d_traceOfLove);//Hard Delete
+                db.TraceOfLoves.Remove(_d_traceOfLove);//Hard Delete
                 await db.SaveChangesAsync();
 
                 return Json(new { Status = true, data = "" });
@@ -178,6 +179,23 @@ namespace DemansAppWebPro.Controllers
             {
                 return Json(new { Status = false, data = "", messages = ex.Message });
             }
+        }
+
+        [HttpPost]
+        public JsonResult ShiftMap(int sId)
+        {
+            var shiftMap = db.TraceOfLoves.Where(w => w.Id == sId)
+                .Select(s => new shiftMapRequest
+                {
+                    Lat = s.Lat,
+                    Lng = s.Lng,
+                    PlaceName = s.PlaceName
+
+                }).ToList();
+
+            return Json(new { status = true, data = shiftMap });
+
+
         }
     }
 }
