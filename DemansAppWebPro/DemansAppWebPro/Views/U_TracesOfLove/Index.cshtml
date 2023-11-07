@@ -1,0 +1,191 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "TracesOfLove Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+  
+}
+
+@section css{
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Sevgi İzi Noktaları</h4>
+                    <p class="text-muted mb-0">Haritadan size en yakın noktayı seçiniz.</p>
+                </div><!--end card-header-->
+                <div class="map" id="map" style="height:600px;"></div>
+            </div><!--end card-->
+        </div> <!-- end col -->
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Sevgi İzi Noktası Ara</h4>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="input-group mb-3">
+                            <input type="text" id="search_input" class="form-control" placeholder="Ara" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-secondary button-style" type="button" id="button_search" onclick="searchButton();"><i class="fas fa-search"></i></button>
+                        </div>
+                        <table class="table  table-bordered table-sm" id="placeTable">
+                            <thead>
+                                <tr>
+                                    <th>İl</th>
+                                    <th>Mekan Adı</th>
+                                    <th>Telefon No</th>
+                            </thead>
+                        </table>
+                    </div>
+                    <span class="float-right">
+                    </span><!--end table-->
+                </div><!--end card-body-->
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=en_RU&amp;apikey=<788dcc52-1903-474c-96f8-82b437dcc613"></script>
+    <script type="text/javascript">
+
+        var placeTable = null;
+        var searchName;
+
+        $((_$) => {
+
+        });
+
+        ymaps.ready(init);
+
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [40.69976154407544, 29.888037639972598],
+                zoom: 10
+            }, {
+                searchControlProvider: 'yandex#search'
+            })
+
+            $.post('@Url.Action("ShiftMap","U_TracesOfLove")', (d, s) => {
+
+                for (var i = 0; i < d.data.length; i++) {
+                    var Lat = d.data[i].lat;
+                    var Lng = d.data[i].lng;
+                    var Place = d.data[i].placeName;
+
+                    myGeoObject = new ymaps.GeoObject({
+                        geometry: {
+                            type: "Point",
+                            coordinates: [Lat, Lng]
+                        },
+                        properties: {
+                            iconContent: Place
+                        }
+                    }, {
+                        preset: 'islands#redStretchyIcon'
+                    })
+                    myMap.geoObjects
+                        .add(myGeoObject);
+                }
+
+
+            })
+
+        }
+
+        var searchButton = () => {
+
+            searchName = document.getElementById("search_input").value;
+            if (placeTable == null)
+                placeTable = $('#placeTable').DataTable({
+                    language: { url: '../dil.json' },
+                    processing: true,
+                    serverSide: true,
+                    paging: true,
+                    filter: true,
+                    scrollCollapse: true,
+                    orderMulti: true,
+                    order: [[1, "asc"]],
+                    ajax: {
+                        url: '@Url.Action("ShowPlace", "U_TracesOfLove")',
+                        type: "POST",
+                        data: function (d) {
+                            d.cityName = searchName;
+                        },
+                        datatype: "json"
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                    },
+                    columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+                    columns: [
+                        {
+                            "render": (data, type, row) => {
+                                return row.city;
+                            }, "name": "city"
+                        },
+                        {
+                            "render": (data, type, row) => {
+                                return row.placeName;
+                            }, "name": "placeName",
+                        },
+                        {
+                            "render": (data, type, row) => {
+                                return row.phone;
+                            }, "name": "phone"
+                        },
+                    ],
+                    fixedColumns: true,
+                    scrollCollapse: true,
+                    initComplete: function (settings, json) {
+                        $('#placeTable_filter input').unbind();
+                        $('#placeTable_filter input').bind('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                placeTable.search(this.value).draw();
+                            }
+                        });
+
+                        $('.dataTables_scrollBody').removeAttr('style').css({
+                            'position': 'relative',
+                            'overflow-y': 'auto',
+                            'overflow-x': 'auto',
+                            'width': '100%',
+                            'max-height': ((window.innerHeight / 2) + 120) + 'px'
+                        });
+
+                    }
+
+                })
+
+            placeTable.ajax.reload();
+        }
+        $("#search_input").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                $('#button_search').trigger('click');
+            }
+        });
+
+
+
+    </script>
+
+ }

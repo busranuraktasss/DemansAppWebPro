@@ -117,7 +117,7 @@
         <div class="brand">
          
 
-            <a href="@Url.Action("Index", "Users")" class="logo">
+            <a href="@Url.Action("Index", "A_Users")" class="logo">
                 <span>
                     <img src="~/assets/images/demans_logo.png" alt="logo-small" class="logo-sm demans_logo">
                 </span>
@@ -128,40 +128,46 @@
             <ul class="metismenu left-sidenav-menu">
                 <li class="menu-label mt-0">ANA MENÜ</li>
                 <li>
-                    <a href=@Url.Action("Index", "Users")> <i data-feather="user" class="align-self-center menu-icon"></i><span>Kullanıcı Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_Users")> <i data-feather="user" class="align-self-center menu-icon"></i><span>Kullanıcı Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "AudioBooks")> <i data-feather="book-open" class="align-self-center menu-icon"></i><span>Sesli Kitap</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_AudioBooks")> <i data-feather="book-open" class="align-self-center menu-icon"></i><span>Sesli Kitap</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "Commands")> <i data-feather="command" class="align-self-center menu-icon"></i><span>Komutlar</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_Commands")> <i data-feather="command" class="align-self-center menu-icon"></i><span>Komutlar</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "Companions")> <i data-feather="user" class="align-self-center menu-icon"></i><span>Refakatçı Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_Companions")> <i data-feather="user" class="align-self-center menu-icon"></i><span>Refakatçı Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "LocationInformation")> <i data-feather="map" class="align-self-center menu-icon"></i><span>Konum Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_LocationInformation")> <i data-feather="map" class="align-self-center menu-icon"></i><span>Konum Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "Medicines")> <i data-feather="feather" class="align-self-center menu-icon"></i><span>İlaçlar</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_Medicines")> <i data-feather="feather" class="align-self-center menu-icon"></i><span>İlaçlar</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "MotivationSentences")> <i data-feather="smile" class="align-self-center menu-icon"></i><span>Motivasyon Cümleleri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_MotivationSentences")> <i data-feather="smile" class="align-self-center menu-icon"></i><span>Motivasyon Cümleleri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "Pictures")> <i data-feather="image" class="align-self-center menu-icon"></i><span>Resimler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_Pictures")> <i data-feather="image" class="align-self-center menu-icon"></i><span>Resimler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
                 </li>
                 <li>
-                    <a href=@Url.Action("Index", "TracesOfLove")> <i data-feather="heart" class="align-self-center menu-icon"></i><span>Sevgi İzi</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href=@Url.Action("Index", "A_TracesOfLove")> <i data-feather="heart" class="align-self-center menu-icon"></i><span>Sevgi İzi</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
 
+                </li>
+                <li class="menu-item" style="position: fixed; bottom: 30px;">
+                    <a href="@Url.Action("LogOut","Login")" class="menu-link btn-danger" style="border-radius: 2px !important;color: white;width: 200px;height: 35px;">
+                        <i class='bx bx-exit' style="font-size: x-large;"></i>
+                        <div style="padding-left: 45px;">Çıkış Yap</div>
+                    </a>
                 </li>
             </ul>
 

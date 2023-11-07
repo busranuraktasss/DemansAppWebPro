@@ -1,0 +1,898 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "Medicines Page";
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@section css{
+    <link href="~/plugins/timepicker/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+        .dbutton-style {
+            background-color: white !important;
+            border-color: #ED5E31 !important;
+            color: #ED5E31 !important;
+        }
+
+        #ilacAdi {
+            margin-bottom: 5px !important;
+            display:none;
+            margin-left: 200px;
+            border-radius: 5px !important;
+    width: auto;
+        }
+        #ilacBilgi{
+            display:none;
+            margin-left: 200px;
+            width: auto;
+              border-radius: 5px !important;
+        }
+
+        #Dropdown1{
+                border-radius: 5px !important;
+    border: 1px solid #1c19191f;
+        }
+
+        .table_style {
+            text-align: center !important
+        }
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+
+
+    </style>
+}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">İlaç Tablosu</h4>
+                    <p class="text-muted mb-0">İlaçlarınızı görüntüleyin ve düzenleyin.</p>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered table-sm" id="EditMedicinesTable">
+                            <thead>
+                                <tr>
+                                    <th>İlaç adı</th>
+                                    <th>Kullanım Günleri</th>
+                                    <th>Kullanım Süresi</th>
+                                    <th>Kullanım Saati</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <span class="float-right">
+                    </span><!--end table-->
+                </div><!--end card-body-->
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">İlaç ekle</font></font></h4>
+                    <p class="text-muted mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Listenize yeni bir ilaç ekleyin.</font></font></p>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <form id="medicine-form">
+                        <input type="hidden" value="0" id="medicineaddId" name="medicineaddId" />
+
+                        <div class="mb-4 row medicinedropdown">
+                            <label for="Dropdown1" class="modal-label-style col-sm-4 form-label align-self-center mb-lg-0">İlaçlar</label>
+                            <select class="col-sm-6 dropdown-control dropdown-style" id="Dropdown1" name="Dropdown1"></select>
+                             <div class="checkbox checkbox-purple checkbox-circle col-sm-2 checkbox" style="margin-top:8px;">
+                                <div>
+                                    <input id="diger" type="checkbox">
+                                    <label for="diger">Diğer</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+
+                           
+                            <div class=" row">
+                                <input type="text" class="form-control modal-input-style" id="ilacAdi" placeholder="İlaç Adı">
+                                <input type="text" class="form-control modal-input-style" id="ilacBilgi" placeholder="İlaç Bilgisi">
+                            </div>
+
+                        </div>
+                        <div class="mb-3 row">
+
+                            <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                                <div>
+                                    <input id="moon" type="checkbox">
+                                    <label for="moon">Sabah</label>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-8 row">
+                                <label for="moonTime" class="col-sm-4">İlaç Saati</label>
+                                <div class="col-sm-8 medicine-time">
+                                    <input type="time" class="form-control modal-input-style time-style" id="moonTime">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                                <div>
+                                    <input id="afternoon" type="checkbox">
+                                    <label for="afternoon">Öğle</label>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-8 row">
+                                <label for="afternoonTime" class="col-sm-4">İlaç Saati</label>
+                                <div class="col-sm-8 medicine-time">
+                                    <input type="time" class="form-control modal-input-style time-style" id="afternoonTime">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                                <div>
+                                    <input id="evening" type="checkbox">
+                                    <label for="evening">Akşam</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 row">
+                                <label for="eveningTime" class="col-sm-4">İlaç Saati</label>
+                                <div class="col-sm-8 medicine-time">
+                                    <input type="time" class="form-control modal-input-style time-style" id="eveningTime">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="checkbox checkbox-purple checkbox-circle col-sm-4 checkbox">
+                                <div>
+                                    <input id="night" type="checkbox">
+                                    <label for="night">Gece</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 row">
+                                <label for="nightTime" class="col-sm-4">İlaç Saati</label>
+                                <div class="col-sm-8 medicine-time">
+                                    <input type="time" class="form-control modal-input-style time-style" id="nightTime">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="form-label col-sm-4" for="date1" style="padding-left:20px !important;">Başlangıç Tarihi</label>
+                            <div class="col-sm-8">
+                                <input class="form-control date-style" type="date" id="date1" name="date1">
+                            </div>
+
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="form-label col-sm-4" for="date2" style="padding-left:20px !important;">Bitiş Tarihi</label>
+                            <div class="col-sm-8">
+                                <input class="form-control date-style" type="date" id="date2" name="date2">
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary button-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ekle</font></font></button>
+                    </form>
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div>
+    </div>
+</div>
+
+@section scripts {
+   
+        <script src="~/plugins/timepicker/bootstrap-material-datetimepicker.js" ></script>
+    <script type="text/javascript">
+
+                var medicineTable = null;
+        var moonTime = true;
+        var afternoonTime = true;
+        var eveningTime = true;
+        var nightTime = true;
+
+        $((_$) => {
+
+            showMedicines();
+            reload();
+            getDate();
+            dropdown1();
+            $('.time-style').prop('disabled', true);
+        });
+
+        var getDate = () => {
+            var today = new Date();
+
+            document.getElementById("date1").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+            document.getElementById("date2").value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+        }
+
+        var reload = () => {
+            document.getElementById("medicine-form").reset();
+        }
+
+        $('#diger').click(function () {
+            if (document.getElementById('diger').checked == true) {
+                document.querySelector("#ilacAdi").style.display = 'block';
+                document.querySelector("#ilacBilgi").style.display = 'block';
+            } else {
+                document.querySelector("#ilacAdi").style.display = 'none';
+                document.querySelector("#ilacBilgi").style.display = 'none';
+            }
+        });   
+        $('#moon').click(function () {
+            if (moonTime) {
+                $('#moonTime').prop('disabled', false);
+                moonTime = false;
+            } else {
+                $('#moonTime').prop('disabled', true);
+                moonTime = true;
+            }
+        });
+        $('#afternoon').click(function () {
+            if (afternoonTime) {
+                $('#afternoonTime').prop('disabled', false);
+                afternoonTime = false;
+            } else {
+                $('#afternoonTime').prop('disabled', true);
+                afternoonTime = true;
+            }
+        });
+        $('#evening').click(function () {
+            if (eveningTime) {
+                $('#eveningTime').prop('disabled', false);
+                eveningTime = false;
+            } else {
+                $('#eveningTime').prop('disabled', true);
+                eveningTime = true;
+            }
+        });
+        $('#night').click(function () {
+            if (nightTime) {
+                $('#nightTime').prop('disabled', false);
+                nightTime = false;
+            } else {
+                $('#nightTime').prop('disabled', true);
+                nightTime = true;
+            }
+        });
+
+
+        var showMedicines = () => {
+            if (medicineTable == null)
+                medicineTable = $('#EditMedicinesTable').DataTable({
+                    language: { url: '../dil.json' },
+                    processing: true,
+                    serverSide: true,
+                    paging: true,
+                    filter: true,
+                    scrollCollapse: true,
+                    orderMulti: true,
+                    order: [[1, "asc"]],
+                    ajax: {
+                        url: '@Url.Action("ShowMedicines", "U_Medicines")',
+                        type: "POST",
+                        datatype: "json"
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                    },
+                    columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+                    columns: [
+                       
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                console.log(row);
+                                return row.userName;
+                            }, "name": "userName"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.usageDay;
+                            }, "name": "usageDay"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.usageTime + " " + "gün";
+                            }, "name": "usageTime"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": (data, type, row) => {
+                                return row.time;
+                            }, "name": "time"
+                        },
+                        {
+                            "className": "table_style",
+                            "render": function (data, type, row) {
+                                return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.id})"><i class="dripicons-document-edit"></i></button>
+                                                                                                                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteMedicines(${row.id})"><i class="dripicons-trash"></i></button>`;
+                            }, "name": "id", "name": "id"
+                        },
+                       
+                    ],
+                    fixedColumns: true,
+                    scrollCollapse: true,
+                    initComplete: function (settings, json) {
+                        $('#medicine_table_filter input').unbind();
+                        $('#medicine_table_filter input').bind('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                medicineTable.search(this.value).draw();
+                            }
+                        });
+
+                        $('.dataTables_scrollBody').removeAttr('style').css({
+                            'position': 'relative',
+                            'overflow-y': 'auto',
+                            'overflow-x': 'auto',
+                            'width': '100%',
+                            'max-height': ((window.innerHeight / 2) + 120) + 'px'
+                        });
+
+                    }
+
+                })
+        }
+
+         var dropdown1 = (sId) => {
+
+            $.getJSON('@Url.Action("Dropdown1", "U_Medicines")', /*{ sId: sId },*/ (d, s) => {
+
+                for (var i = 0; i < d.data.length; i++) {
+                    $('#Dropdown1').empty();
+                    var s = s + '<option value="' + d.data[i].id + '">'  + d.data[i].userName + '</option>';
+                }
+                $("#Dropdown1").html(s);
+
+            })
+        }
+
+        //var getUpdateOrAdd = () => {
+
+        //    if (document.getElementById("AddOrUpdateId").value > 0) {
+        //        javascript: updateMedicines();
+        //    }
+        //    else {
+        //        javascript: addMedicines();
+        //    }
+        //}
+
+        //var addMedicines = () => {
+
+        //    var NameControl = $('[id = "ilacAdi"]').val();
+        //    var UsageDurationControl = $('[id = "usage_duration"]').val();
+
+        //    if (!NameControl || !UsageDurationControl) {
+        //        Command: toastr["warning"]("Lütfen İlaç Adı / Kullanım Amacı bilgisini giriniz.", "Ekleme başarısız!")
+        //        toastr.options = {
+        //            "closeButton": true,
+        //            "debug": false,
+        //            "newestOnTop": false,
+        //            "progressBar": false,
+        //            "positionClass": "toast-top-right",
+        //            "preventDuplicates": false,
+        //            "onclick": null,
+        //            "showDuration": "300",
+        //            "hideDuration": "1000",
+        //            "timeOut": "8000",
+        //            "extendedTimeOut": "1000",
+        //            "showEasing": "swing",
+        //            "hideEasing": "linear",
+        //            "showMethod": "fadeIn",
+        //            "hideMethod": "fadeOut"
+        //        }
+        //        return;
+        //    }
+
+        //    var formData = new FormData();
+        //    formData.append('Name', NameControl);
+        //    formData.append('UsageDuration', UsageDurationControl);
+
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: '@Url.Action("AddMedicines","U_Medicines")',
+        //        data: formData,
+        //        async: true,
+        //        contentType: false,
+        //        processData: false,
+        //        success: data => {
+
+        //            if (data.Status == true) {
+
+        //                Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+        //                toastr.options = {
+        //                    "closeButton": false,
+        //                    "debug": false,
+        //                    "newestOnTop": false,
+        //                    "progressBar": false,
+        //                    "positionClass": "toast-top-right",
+        //                    "preventDuplicates": false,
+        //                    "onclick": null,
+        //                    "showDuration": "300",
+        //                    "hideDuration": "1000",
+        //                    "timeOut": "8000",
+        //                    "extendedTimeOut": "1000",
+        //                    "showEasing": "swing",
+        //                    "hideEasing": "linear",
+        //                    "showMethod": "fadeIn",
+        //                    "hideMethod": "fadeOut"
+        //                }
+        //                document.getElementById("medicinesAddOrUpdate-form").reset();
+
+        //                $('#medicinesModal').modal('hide');
+
+        //                if (medicineTable != null)
+        //                    medicineTable.ajax.reload();
+        //            }
+        //            else {
+        //                Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+
+        //                toastr.options = {
+        //                    "closeButton": false,
+        //                    "debug": false,
+        //                    "newestOnTop": false,
+        //                    "progressBar": false,
+        //                    "positionClass": "toast-top-right",
+        //                    "preventDuplicates": false,
+        //                    "onclick": null,
+        //                    "showDuration": "300",
+        //                    "hideDuration": "1000",
+        //                    "timeOut": "8000",
+        //                    "extendedTimeOut": "1000",
+        //                    "showEasing": "swing",
+        //                    "hideEasing": "linear",
+        //                    "showMethod": "fadeIn",
+        //                    "hideMethod": "fadeOut"
+        //                }
+        //            }
+        //            $('#medicinesModal').modal('hide');
+        //        },
+        //    });
+        //}
+
+        //var getsetModal = (sId) => {
+
+        //    $('#AddOrUpdateId').val("");
+        //    $.getJSON('@Url.Action("GetMedicines", "U_Medicines")', { sId: sId }, (d, s) => {
+        //        if (s === 'success') {
+        //            $('#ilacAdi').val(d.data.Name);
+        //            $('#usage_duration').val(d.data.UsageDuration);
+        //            $('#AddOrUpdateId').val(d.data.Id);
+        //            $('#medicinesModal').modal('show');
+        //        }
+        //    })
+        //}
+
+        //var updateMedicines = () => {
+
+        //    var Id = document.getElementById("AddOrUpdateId").value;
+        //    var Name = document.getElementById("ilacAdi").value;
+        //    var UsageDuration = document.getElementById("usage_duration").value;
+
+        //    if (!Name || !UsageDuration) {
+        //        Command: toastr["warning"]("Lütfen İlaç Adı / Kullanım Amacı bilgisini giriniz.", "Ekleme başarısız!")
+        //        toastr.options = {
+        //            "closeButton": true,
+        //            "debug": false,
+        //            "newestOnTop": false,
+        //            "progressBar": false,
+        //            "positionClass": "toast-top-right",
+        //            "preventDuplicates": false,
+        //            "onclick": null,
+        //            "showDuration": "300",
+        //            "hideDuration": "1000",
+        //            "timeOut": "8000",
+        //            "extendedTimeOut": "1000",
+        //            "showEasing": "swing",
+        //            "hideEasing": "linear",
+        //            "showMethod": "fadeIn",
+        //            "hideMethod": "fadeOut"
+        //        }
+        //        return;
+        //    }
+        //    var formData = new FormData(document.getElementById('medicinesAddOrUpdate-form'));
+        //    formData.append('Id', Id);
+        //    formData.append('Name', Name);
+        //    formData.append('UsageDuration', UsageDuration);
+
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: '@Url.Action("UpdateMedicines","U_Medicines")',
+        //        data: formData,
+        //        processData: false,
+        //        contentType: false,
+        //        cache: false,
+        //        success: function (d) {
+        //            if (d.Status == true) {
+        //                console.log('Gelen -> ', d);
+
+        //                Command: toastr["success"]("Güncelleme işlemi başarıyla gerçekleşti.")
+
+        //                toastr.options = {
+        //                    "closeButton": false,
+        //                    "debug": false,
+        //                    "newestOnTop": false,
+        //                    "progressBar": false,
+        //                    "positionClass": "toast-top-right",
+        //                    "preventDuplicates": false,
+        //                    "onclick": null,
+        //                    "showDuration": "300",
+        //                    "hideDuration": "1000",
+        //                    "timeOut": "8000",
+        //                    "extendedTimeOut": "1000",
+        //                    "showEasing": "swing",
+        //                    "hideEasing": "linear",
+        //                    "showMethod": "fadeIn",
+        //                    "hideMethod": "fadeOut"
+        //                }
+        //                if (medicineTable != null)
+        //                    medicineTable.ajax.reload();
+        //            }
+        //            else {
+        //                Command: toastr["error"]("Güncelleme işlemi gerçekleşemedi.'")
+
+        //                toastr.options = {
+        //                    "closeButton": false,
+        //                    "debug": false,
+        //                    "newestOnTop": false,
+        //                    "progressBar": false,
+        //                    "positionClass": "toast-top-right",
+        //                    "preventDuplicates": false,
+        //                    "onclick": null,
+        //                    "showDuration": "300",
+        //                    "hideDuration": "1000",
+        //                    "timeOut": "8000",
+        //                    "extendedTimeOut": "1000",
+        //                    "showEasing": "swing",
+        //                    "hideEasing": "linear",
+        //                    "showMethod": "fadeIn",
+        //                    "hideMethod": "fadeOut"
+        //                }
+        //            }
+        //        },
+        //    });
+        //    if (medicineTable != null)
+        //        medicineTable.ajax.reload();
+
+        //    $('#medicinesModal').modal('hide');
+        //}
+
+        //var deleteMedicines = (delId) => {
+        //    Swal.fire({
+        //        title: 'Silmek istediğinize emin misiniz?',
+        //        icon: 'question',
+        //        showCancelButton: true,
+        //        cancelButtonText: 'Hayır',
+        //        confirmButtonColor: '#4a804d',
+        //        cancelButtonColor: '#b22222',
+        //        confirmButtonText: 'Evet'
+        //    })
+        //        .then((result) => {
+
+        //            if (result.value == true) {
+        //                $.getJSON('@Url.Action("DeleteMedicines","U_Medicines")', { pr: delId }, (d, s) => {
+        //                    if (s === "success") {
+
+        //                        if (d.Status == true) {
+        //                            medicineTable.ajax.reload();
+        //                            Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+        //                            toastr.options = {
+        //                                "closeButton": false,
+        //                                "debug": false,
+        //                                "newestOnTop": false,
+        //                                "progressBar": false,
+        //                                "positionClass": "toast-top-right",
+        //                                "preventDuplicates": false,
+        //                                "onclick": null,
+        //                                "showDuration": "300",
+        //                                "hideDuration": "1000",
+        //                                "timeOut": "8000",
+        //                                "extendedTimeOut": "1000",
+        //                                "showEasing": "swing",
+        //                                "hideEasing": "linear",
+        //                                "showMethod": "fadeIn",
+        //                                "hideMethod": "fadeOut"
+        //                            }
+        //                        } else {
+        //                            Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+        //                            toastr.options = {
+        //                                "closeButton": false,
+        //                                "debug": false,
+        //                                "newestOnTop": false,
+        //                                "progressBar": false,
+        //                                "positionClass": "toast-top-right",
+        //                                "preventDuplicates": false,
+        //                                "onclick": null,
+        //                                "showDuration": "300",
+        //                                "hideDuration": "1000",
+        //                                "timeOut": "8000",
+        //                                "extendedTimeOut": "1000",
+        //                                "showEasing": "swing",
+        //                                "hideEasing": "linear",
+        //                                "showMethod": "fadeIn",
+        //                                "hideMethod": "fadeOut"
+        //                            }
+        //                        }
+        //                    }
+        //                    if (medicineTable != null)
+        //                        medicineTable.ajax.reload();
+        //                });
+        //            }
+        //        });
+        //}
+
+        //var showUsersModal = (sId) => {
+
+        //    $('#usersModal').modal('show');
+        //    $('#medicineId').val(sId);
+        //    showUsers(sId);
+        //}
+
+        //var showUsers = (sId) => {
+        //    if (userTable != null) userTable = null;
+
+        //    if (userTable == null)
+        //        userTable = $('#users_table').DataTable({
+        //            language: { url: '../dil.json' },
+        //            processing: true,
+        //            serverSide: true,
+        //            paging: true,
+        //            filter: true,
+        //            scrollCollapse: true,
+        //            orderMulti: true,
+        //            order: [[0, "desc"]],
+        //            ajax: {
+        //                url: '@Url.Action("ShowUsers", "U_Medicines")',
+        //                type: "POST",
+        //                datatype: "json",
+        //                data: function (d) {
+        //                    d.sId = sId
+        //                },
+        //            },
+        //            createdRow: function (row, data, dataIndex) {
+        //            },
+        //            columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+        //            columns: [
+        //                {
+        //                    "render": (data, type, row) => {
+        //                        var adSoyad = row.UserName + ' ' + row.Surname;
+        //                        return adSoyad;
+        //                    }, "name": "UserName", "name": "Surname"
+        //                },
+        //                {
+        //                    "render": (data, type, row) => {
+        //                        return row.UsageDay;
+        //                    }, "name": "UsageDay"
+        //                },
+        //                {
+        //                    "render": (data, type, row) => {
+        //                        return row.UsageTime + " " + "gün";
+        //                    }, "name": "UsageTime"
+        //                },
+        //                {
+        //                    "render": (data, type, row) => {
+        //                        return row.Time;
+        //                    }, "name": "Time"
+        //                },
+        //                {
+        //                    "className": "table_style",
+        //                    "render": (data, type, row) => {
+        //                        return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript: deleteUser(${row.Id});"><i class="dripicons-exit"></i></button>`;
+
+        //                    }, "name": "Id"
+        //                },
+        //            ],
+        //            fixedColumns: true,
+        //            scrollCollapse: true,
+        //            initComplete: function (settings, json) {
+        //                $('#userTablo_filter input').unbind();
+        //                $('#userTablo_filter input').bind('keyup', function (e) {
+        //                    if (e.keyCode == 13) {
+        //                        userTable.search(this.value).draw();
+        //                    }
+        //                });
+
+        //                $('.dataTables_scrollBody').removeAttr('style').css({
+        //                    'position': 'relative',
+        //                    'overflow-y': 'auto',
+        //                    'overflow-x': 'auto',
+        //                    'width': '100%',
+        //                    'max-height': ((window.innerHeight / 2) + 120) + 'px'
+        //                });
+        //            }
+        //        });
+        //}
+
+        //var showaddUserModal = (sId) => {
+        //    $('#userupdateId').val(sId);
+        //    dropdown1(sId);
+        //    $('#addUserModal').modal('show');
+        //}
+
+       
+
+        //var addUser = () => {
+
+        //    var medicineId = $('#userupdateId').val();
+        //    var userId = $('#Dropdown1').val();
+        //    var moonStatus = document.getElementById('moon').checked;
+        //    var afternoonStatus = document.getElementById('afternoon').checked;
+        //    var eveningStatus = document.getElementById('evening').checked;
+        //    var nightStatus = document.getElementById('night').checked;
+        //    var moonTimeValue = document.getElementById('moonTime').value;
+        //    var afternoonTimeValue = document.getElementById('afternoonTime').value;
+        //    var eveningTimeValue = document.getElementById('eveningTime').value;
+        //    var nightTimeValue = document.getElementById('nightTime').value;
+        //    var startdate = document.getElementById('date1').value;
+        //    var enddate = document.getElementById('date2').value;
+
+        //    var formData = new FormData();
+        //    formData.append('MedicineId', medicineId);
+        //    formData.append('UserId', userId);
+        //    formData.append('Moon', moonStatus);
+        //    formData.append('Afternoon', afternoonStatus);
+        //    formData.append('Evening', eveningStatus);
+        //    formData.append('Night', nightStatus);
+        //    formData.append('MoonTime', moonTimeValue);
+        //    formData.append('AfternoonTime', afternoonTimeValue);
+        //    formData.append('EveningTime', eveningTimeValue);
+        //    formData.append('NightTime', nightTimeValue);
+        //    formData.append('StartDate', startdate);
+        //    formData.append('EndDate', enddate);
+
+
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: '@Url.Action("AddUser","U_Medicines")',
+        //        data: formData,
+        //        async: true,
+        //        contentType: false,
+        //        processData: false,
+        //        success: data => {
+
+        //            if (data.Status == true) {
+
+        //                Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+        //                toastr.options = {
+        //                    "closeButton": false,
+        //                    "debug": false,
+        //                    "newestOnTop": false,
+        //                    "progressBar": false,
+        //                    "positionClass": "toast-top-right",
+        //                    "preventDuplicates": false,
+        //                    "onclick": null,
+        //                    "showDuration": "300",
+        //                    "hideDuration": "1000",
+        //                    "timeOut": "8000",
+        //                    "extendedTimeOut": "1000",
+        //                    "showEasing": "swing",
+        //                    "hideEasing": "linear",
+        //                    "showMethod": "fadeIn",
+        //                    "hideMethod": "fadeOut"
+        //                }
+        //                document.getElementById("medicinesAddOrUpdate-form").reset();
+
+        //                $('#medicinesModal').modal('hide');
+        //            }
+        //            else {
+        //                Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+
+        //                toastr.options = {
+        //                    "closeButton": false,
+        //                    "debug": false,
+        //                    "newestOnTop": false,
+        //                    "progressBar": false,
+        //                    "positionClass": "toast-top-right",
+        //                    "preventDuplicates": false,
+        //                    "onclick": null,
+        //                    "showDuration": "300",
+        //                    "hideDuration": "1000",
+        //                    "timeOut": "8000",
+        //                    "extendedTimeOut": "1000",
+        //                    "showEasing": "swing",
+        //                    "hideEasing": "linear",
+        //                    "showMethod": "fadeIn",
+        //                    "hideMethod": "fadeOut"
+        //                }
+        //            }
+        //            $('#addUserModal').modal('hide');
+        //        },
+        //    });
+        //}
+
+        //var deleteUser = (delId) => {
+
+        //    Swal.fire({
+        //        title: 'Çıkarmak istediğinize emin misiniz?',
+        //        icon: 'question',
+        //        showCancelButton: true,
+        //        cancelButtonText: 'Hayır',
+        //        confirmButtonColor: '#4a804d',
+        //        cancelButtonColor: '#b22222',
+        //        confirmButtonText: 'Evet'
+        //    })
+        //        .then((result) => {
+        //            if (result.value == true) {
+        //                $.getJSON('@Url.Action("DeleteUser","U_Medicines")', { pr: delId }, (d, s) => {
+        //                    if (s === "success") {
+        //                        if (d.Status == true) {
+        //                            userTable.ajax.reload();
+
+        //                            Command: toastr["success"]("Silme işlemi gerçekleşti.")
+
+        //                            toastr.options = {
+        //                                "closeButton": false,
+        //                                "debug": false,
+        //                                "newestOnTop": false,
+        //                                "progressBar": false,
+        //                                "positionClass": "toast-top-right",
+        //                                "preventDuplicates": false,
+        //                                "onclick": null,
+        //                                "showDuration": "300",
+        //                                "hideDuration": "1000",
+        //                                "timeOut": "8000",
+        //                                "extendedTimeOut": "1000",
+        //                                "showEasing": "swing",
+        //                                "hideEasing": "linear",
+        //                                "showMethod": "fadeIn",
+        //                                "hideMethod": "fadeOut"
+        //                            }
+        //                        } else {
+        //                            Command: toastr["error"]("Silme işlemi gerçekleşemedi.")
+
+        //                            toastr.options = {
+        //                                "closeButton": false,
+        //                                "debug": false,
+        //                                "newestOnTop": false,
+        //                                "progressBar": false,
+        //                                "positionClass": "toast-top-right",
+        //                                "preventDuplicates": false,
+        //                                "onclick": null,
+        //                                "showDuration": "300",
+        //                                "hideDuration": "1000",
+        //                                "timeOut": "8000",
+        //                                "extendedTimeOut": "1000",
+        //                                "showEasing": "swing",
+        //                                "hideEasing": "linear",
+        //                                "showMethod": "fadeIn",
+        //                                "hideMethod": "fadeOut"
+        //                            }
+        //                        }
+        //                    }
+        //                    if (userTable != null)
+        //                        userTable.ajax.reload();
+        //                });
+        //            }
+        //        });
+        //}
+
+
+    </script>
+    }

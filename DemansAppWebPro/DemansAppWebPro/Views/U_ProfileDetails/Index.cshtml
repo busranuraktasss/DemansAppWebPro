@@ -1,0 +1,156 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "ProfileDetails Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
+
+@section css{
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+        .dbutton-style {
+            background-color: white !important;
+            color: #ED5E31 !important;
+        }
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+
+        .form-control, .form-select {
+            width: 75% !important;
+        }
+
+        .parsley-equalto {
+            margin-left: 200px !important;
+        }
+    </style>
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Profil Detay</font></font></h4>
+            <p class="text-muted mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hasta profilini oluşturun.</font></font></p>
+        </div><!--end card-header-->
+        <div class="card-body">
+            <form>
+
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder="Ad" id="example-text-input" value="@Model.UserName">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Soyadı</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder="Soyad" id="example-text-input" value="@Model.Surname">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cinsiyet</font></font></label>
+                    @if (Model.Sex == true)
+                    {
+                        <div class="col-sm-10">
+                            <select class="form-select" aria-label="Varsayılan seçim örneği">
+                                <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Seçiniz</font></font></option>
+                                <option value="1" selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kadın</font></font></option>
+                                <option value="2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Erkek</font></font></option>
+                            </select>
+                        </div>
+                    }
+                    else if (@Model.Sex == false)
+                    {
+                        <div class="col-sm-10">
+                            <select class="form-select" aria-label="Varsayılan seçim örneği">
+                                <option selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Seçiniz</font></font></option>
+                                <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kadın</font></font></option>
+                                <option value="2" selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Erkek</font></font></option>
+                            </select>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-10">
+                            <select class="form-select" aria-label="Varsayılan seçim örneği">
+                                <option selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Seçiniz</font></font></option>
+                                <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kadın</font></font></option>
+                                <option value="2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Erkek</font></font></option>
+                            </select>
+                        </div>
+
+                    }
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-tel-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Telefon</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="tel" placeholder="1-(555)-555-5555" id="example-tel-input" value="@Model.Phone">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-tel-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Acil Telefon</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="tel" placeholder="1-(555)-555-5555" id="example-acil-tel-input" value="@Model.EmergencyPhone">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-email-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">E-mail</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="email" placeholder="email@email.com" id="example-email-input" value="@Model.Email">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-password-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Şifre</font></font></label>
+                    <div class="col-sm-10">
+
+                        <input class="form-control" type="password" id="Password" name="Password" placeholder="Şifre" value="@Model.Password">
+                    </div>
+                    <ul class="parsley-errors-list filled " id="parsley-id-password"><li class="parsley-equalto">Şifreler aynı olmalı.</li></ul>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-password-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Şifre (Tekrar)</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" id="AgainPassword" name="Password" placeholder="Şifre (Tekrar)" value="@Model.Password">
+                    </div>
+                </div>
+                <div style="margin-left:183px !important;">
+                    <button type="submit" class="btn btn-primary button-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Değişiklikleri Kaydet</font></font></button>
+                    <button type="button" class="btn btn-danger dbutton-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Değişikliklerden vazgeç</font></font></button>
+                </div>
+
+            </form>
+        </div><!--end card-body-->
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+        function passworControl() {
+            var password = document.getElementById("Password").value;
+            var again_password = document.getElementById("AgainPassword").value;
+
+            if (password != again_password) {
+                document.querySelector("#parsley-id-password").style.display = 'block';
+            }
+            else {
+                document.querySelector("#parsley-id-password").style.display = 'none';
+            }
+        }
+
+        $('[type="password"]').keyup(passworControl);
+    </script>
+    }

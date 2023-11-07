@@ -1,0 +1,74 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "Commands Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@section css{
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+        .dbutton-style {
+            background-color: white !important;
+            border-color: #ED5E31 !important;
+            color: #ED5E31 !important;
+        }
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Akıllı Ev Sistemi</font></font></h4>
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0 table-centered">
+                            <thead>
+                                <tr>
+                                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Doğalgaz</font></font></th>
+                                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Elektrik</font></font></th>
+                                    <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Su</font></font></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-right">
+                                        <button type="submit" class="btn btn-primary button-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aç</font></font></button>
+                                        <button type="submit" class="btn btn-primary dbutton-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kapa</font></font></button>
+                                    </td>
+                                    <td class="text-right">
+                                        <button type="submit" class="btn btn-primary button-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aç</font></font></button>
+                                        <button type="submit" class="btn btn-primary dbutton-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kapa</font></font></button>
+                                    </td>
+                                    <td class="text-right">
+                                        <button type="submit" class="btn btn-primary button-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Aç</font></font></button>
+                                        <button type="submit" class="btn btn-primary dbutton-style"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kapa</font></font></button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table><!--end /table-->
+                    </div><!--end /tableresponsive-->
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div>
+    </div>
+</div>

@@ -24,7 +24,7 @@
     <Content Include="bin\Debug\net7.0\DemansAppWebPro.deps.json" />
     <Content Include="bin\Debug\net7.0\DemansAppWebPro.runtimeconfig.json" />
     <Content Include="bin\Debug\net7.0\DemansAppWebPro.staticwebassets.runtime.json" />
-    <Content Include="Controllers\HomeController.cs" />
+    <Content Include="Controllers\A_HomeController.cs" />
   </ItemGroup>
 
   <ItemGroup>

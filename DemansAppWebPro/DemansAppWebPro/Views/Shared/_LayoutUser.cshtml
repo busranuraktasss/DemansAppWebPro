@@ -1,0 +1,253 @@
+﻿<html style="overflow-x:hidden;">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/htmls; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-9" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1254" />
+    <meta http-equiv="content-type" content="text/html; charset=x-mac-turkish" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="TR" />
+    <title>@ViewData["Title"] - DemansApp</title>
+    <link rel="shortcut icon" href="~/assets/images/demans_logo_sm.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <!-- jvectormap -->
+    <!-- App css -->
+
+    <link href="~/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+
+
+    <link href="~/plugins/datatables/datatable2/datatables-1.13.4/css/jquery.datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/icons.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/metisMenu.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/app.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/datatables/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/datatables/buttons.bootstrap5.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/sweet-alert2/sweetalert2.min.css" />
+    <link href="~/plugins/datatables/datatable2/responsive-2.4.1/css/responsive.datatables.css" rel="stylesheet" />
+    <link href="~/plugins/datatables/datatable2/responsive-2.4.1/css/responsive.datatables.min.css" rel="stylesheet" />
+    <link href="~/plugins/datatables/datatable2/responsive-2.4.1/css/responsive.bootstrap5.css" rel="stylesheet" />
+    <link href="~/plugins/datatables/datatable2/responsive-2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/app.min.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Select2/css/select2.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css" />
+    <style type="text/css">
+        * {
+            vertical-align: middle !important;
+        }
+
+        .authority_label_style {
+            font-weight: 800 !important;
+        }
+
+        .card {
+            margin-left: 5px !important;
+            margin-right: 5px !important;
+        }
+
+        .card-top {
+            margin-top: 120px !important;
+        }
+
+        .page-title {
+            font-size: 30px;
+            text-align: left !important;
+            padding-top: 0.25rem !important;
+        }
+
+        .details-control {
+            width: 15px !important;
+        }
+
+        #parsley-id-password {
+            display: none;
+        }
+
+        .ozel_islem {
+            margin-left: 20px;
+            font-weight: 400 !important;
+        }
+
+        label {
+            font-weight: 700;
+        }
+
+
+        .b-6wedejzdwa {
+            display: flex !important
+        }
+
+        @@media only screen and (max-width: 1024px) {
+            .navbar-style {
+                padding-left: 140px;
+            }
+        }
+
+        .demans_logo {
+            height: 50px !important;
+            margin-top: 10px !important;
+        }
+
+        .nav-style {
+            margin-top: 15px !important;
+            color: #ED5E31 !important;
+        }
+
+        .special-style {
+            margin-top: 30px !important;
+            color: #ED5E31 !important;
+        }
+
+        .left-sidenav-menu li {
+            margin-top: 0px !important;
+        }
+
+            .left-sidenav-menu li > a {
+                padding: 0px !important;
+            }
+    </style>
+
+    @RenderSection("css", required:false);
+</head>
+
+<body class="light-sidenav">
+
+    <!-- Left Sidenav -->
+    <div class="left-sidenav">
+        <!-- LOGO -->
+        <div class="brand">
+            <a href="index.html" class="logo">
+                <span>
+                    <img src="~/assets/images/demans_logo_sm.png" alt="logo-small" class="logo-sm demans_logo">
+                </span>
+            </a>
+        </div>
+        <!--end logo-->
+        <div class="menu-content h-100" data-simplebar>
+            <ul class="metismenu left-sidenav-menu">
+                <li>
+
+                    <a href=@Url.Action("Index", "U_CompanionDetails", new { id = @ViewData["UserId"] })> <i data-feather="user" class="align-self-center special-style menu-icon"></i><span class="special-style">Hasta Yakını Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+
+                    <a href=@Url.Action("Index", "U_ProfileDetails", new { id = @ViewData["UserId"] })> <i data-feather="user" class="align-self-center special-style menu-icon"></i><span class="special-style">Hasta Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "U_AudioBooks", new { id = @ViewData["UserId"] })> <i data-feather="book-open" class="align-self-center special-style menu-icon"></i><span class="special-style">Sesli Kitap</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "U_Commands", new { id = @ViewData["UserId"] })> <i data-feather="command" class="align-self-center special-style menu-icon"></i><span class="special-style">Komutlar</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "U_LocationInformation", new { id = @ViewData["UserId"] })> <i data-feather="map" class="align-self-center special-style menu-icon"></i><span class="special-style">Konum Bilgileri</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "U_Medicines", new { id = @ViewData["UserId"] })> <i data-feather="feather" class="align-self-center special-style menu-icon"></i><span class="special-style">İlaçlar</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "U_Pictures", new { id = @ViewData["UserId"] })> <i data-feather="image" class="align-self-center special-style menu-icon"></i><span class="special-style">Resimler</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li>
+                    <a href=@Url.Action("Index", "U_TracesOfLove", new { id = @ViewData["UserId"] })> <i data-feather="heart" class="align-self-center special-style menu-icon"></i><span class="special-style">Sevgi İzi</span><span class="menu-arrow"><i class="mdi mdi-chevron-right special-style"></i></span></a>
+
+                </li>
+                <li class="menu-item" style="position: fixed; bottom: 30px;">
+                    <a href="@Url.Action("LogOut","Login")" class="menu-link btn-danger" style="border-radius: 2px !important;color: white;width: 200px;height: 35px;">
+                        <i class='bx bx-exit' style="font-size: x-large;"></i>
+                        <div style="padding-left: 45px;">Çıkış Yap</div>
+                    </a>
+                </li>
+            </ul>
+            </ul>
+
+        </div>
+    </div>
+    <!-- end left-sidenav-->
+
+
+    <div class="page-wrapper">
+        <!-- Top Bar Start -->
+        <div class="topbar">
+            <!-- Navbar -->
+            <nav class="navbar-custom">
+
+                <ul class="list-unstyled topbar-nav mb-0">
+                    <li>
+                        <button class="nav-link button-menu-mobile nav-style">
+                            <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- end navbar-->
+        </div>
+        <!-- Top Bar End -->
+        <!-- Page Content-->
+        <div>
+            <main role="main" class="" style="width: 100% !important; position: unset;">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+
+    <!-- end page-wrapper -->
+    <!-- jQuery  -->
+
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/metismenu.min.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/feather.min.js"></script>
+    <script src="~/assets/js/simplebar.min.js"></script>
+    <script src="~/assets/js/moment.js"></script>
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/assets/pages/jquery.sweet-alert.init.js"></script>
+    <script src="~/plugins/sweet-alert2/sweetalert2.min.js"></script>
+    <script src="~/assets/pages/jquery.sweet-alert.init.js"></script>
+    <script src="~/Select2/js/select2.js"></script>
+
+    @*<script src="~/plugins/apex-charts/apexcharts.min.js"></script>*@
+    <script src="~/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
+
+    <script src="~/plugins/datatables/datatable2/datatables-1.13.4/js/jquery.datatables.min.js"></script>
+    <script src="~/plugins/datatables/dataTables.bootstrap5.min.js"></script>
+    <script src="~/plugins/datatables/datatable2/responsive-2.4.1/js/datatables.responsive.js"></script>
+    <script src="~/plugins/datatables/datatable2/responsive-2.4.1/js/datatables.responsive.min.js"></script>
+    <script src="~/plugins/datatables/datatable2/responsive-2.4.1/js/responsive.bootstrap5.js"></script>
+    <script src="~/plugins/datatables/datatable2/responsive-2.4.1/js/responsive.bootstrap5.min.js"></script>
+    <!-- App js -->
+    <script src="~/assets/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+
+    <footer class="footer text-center text-sm-start">
+        &copy; <script>
+                   document.write(new Date().getFullYear())
+        </script><span class="text-muted d-none d-sm-inline-block float-end">
+            <i class="mdi mdi-heart text-danger"></i>
+        </span>
+    </footer><!--end footer-->
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

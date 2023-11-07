@@ -1,0 +1,245 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "ProfileDetails Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@section css{
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+        .dbutton-style {
+            background-color: white !important;
+            color: #ED5E31 !important;
+        }
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+
+        .form-control, .form-select {
+            width: 75% !important;
+        }
+
+        .parsley-equalto {
+            margin-left: 200px !important;
+        }
+    </style>
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hasta Yakını Profil Detay</font></font></h4>
+            <p class="text-muted mb-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Hasta yakını profilini oluşturun.</font></font></p>
+        </div><!--end card-header-->
+        <div class="card-body">
+            <form>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adı</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder="Ad" id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Soyadı</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder="Soyad" id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cinsiyet</font></font></label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Varsayılan seçim örneği">
+                            <option selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Seçiniz</font></font></option>
+                            <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kadın</font></font></option>
+                            <option value="2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Erkek</font></font></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-tel-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Telefon</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="tel" placeholder="1-(555)-555-5555" id="example-tel-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-email-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">E-mail</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="email" placeholder="email@email.com" id="example-email-input">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-sm-2 form-label align-self-center mb-lg-0 text-end"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kısa Adres</font></font></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" id="example-text-input">
+                    </div>
+                </div>
+
+                <div style="margin-left:183px !important;">
+                    <button type="submit" class="btn btn-primary button-style" onclick="javascript: addCompanion();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Değişiklikleri Kaydet</font></font></button>
+                    <button type="button" class="btn btn-danger dbutton-style" onclick="javascript: reloadPage();"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Değişikliklerden vazgeç</font></font></button>
+                </div>
+
+            </form>
+        </div><!--end card-body-->
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+
+        $((_$) => {
+            showCompanion();
+        });
+        var reloadPage = () => {
+            location.reload();
+        };
+
+        var showCompanion = () => {
+
+        }
+
+        var addCompanion = () => {
+
+            var UserControl = $('[id = "Dropdown1"]').val();
+            var CompanionNameControl = $('[id = "refakatciAdi"]').val();
+            var CompanionSurnameControl = $('[id ="refakatciSoyadi"]').val();
+            var AddressControl = $('[id ="adres"]').val();
+            var EpostaControl = $('[id ="eposta"]').val();
+            var PhoneControl = $('[id ="tel"]').val();
+            var SexControl = true;
+            if (document.getElementById('women').checked == true) {
+                SexControl = true;
+                console.log("true" + SexControl);
+            }
+            else {
+                SexControl = false;
+                console.log("false" + SexControl);
+
+            }
+
+            if (!UserControl || !CompanionNameControl || !CompanionSurnameControl || !AddressControl || !EpostaControl || !PhoneControl) {
+                Command: toastr["warning"]("Lütfen Kullanıcı / Refakatçi Adı / Refakatçi Soyadı / Adres / Email / Telefon bilgisini giriniz.", "Ekleme başarısız!")
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "8000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                return;
+            }
+            var formData = new FormData();
+            formData.append('UserId', UserControl);
+            formData.append('Name', CompanionNameControl);
+            formData.append('Surname', CompanionSurnameControl);
+            formData.append('Adress', AddressControl);
+            formData.append('Email', EpostaControl);
+            formData.append('Phone', PhoneControl);
+            formData.append('Sex', SexControl);
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddCompanion","U_CompanionDetails")',
+                data: formData,
+                async: true,
+                contentType: false,
+                processData: false,
+                success: data => {
+
+                    if (data.Status == true) {
+
+                        Command: toastr["success"]("Ekleme işlemi başarıyla gerçekleşti.")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        document.getElementById("companionsAddOrUpdate-form").reset();
+
+                        $('#companionModal').modal('hide');
+
+                        if (companionTablo != null)
+                            companionTablo.ajax.reload();
+                    }
+                    else {
+                        Command: toastr["error"]("Ekleme işlemi gerçekleşemedi.'")
+
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "8000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                    }
+                    $('#companionModal').modal('hide');
+                },
+            });
+        }
+
+
+
+        function passworControl() {
+            var password = document.getElementById("Password").value;
+            var again_password = document.getElementById("AgainPassword").value;
+
+            if (password != again_password) {
+                document.querySelector("#parsley-id-password").style.display = 'block';
+            }
+            else {
+                document.querySelector("#parsley-id-password").style.display = 'none';
+            }
+        }
+
+        $('[type="password"]').keyup(passworControl);
+    </script>
+    }

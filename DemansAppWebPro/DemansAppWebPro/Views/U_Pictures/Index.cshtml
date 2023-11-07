@@ -1,0 +1,263 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "Pictures Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@section css{
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://unpkg.com/file-upload-with-preview/dist/style.css" />
+
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+            color: white !important;
+        }
+
+        .dbutton-style {
+            background-color: white !important;
+            color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+
+        .footer {
+            position: fixed !important;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            width: 50px !important;
+        }
+    </style>
+}
+<div class="container ">
+    <div class="card">
+        <div class="card-header">
+            <div class="row text-center">
+                <h4 class="page-title col-sm-10">Galeri</h4>
+
+                <button type="button" class="btn btn btn-outline-info col-sm-2 align-self-end" data-bs-toggle="modal" onclick="javascripts: showModal();">Fotoğraf Ekle</button>
+            </div>
+        </div><!--end card-header-->
+    </div>
+
+    <div class="card">
+        <div class="table-responsive p-2">
+            <table id="picture_table" class="table table-striped table-bordered dt-responsive nowrap" style="vertical-align:middle; width:100%;">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Url</th>
+                        <th>Bilgi</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="photoModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal_style" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title m-0" id="photoModalLabel">Fotoğraf Ekle </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload();" aria-label="Close"></button>
+                </div><!--end modal-header-->
+                <div class="modal-body">
+                    <form id="photoAdd-form">
+                        <textarea class="form-control" rows="3" id="clipboardTextarea" placeholder="Resim açıklaması giriniz"></textarea>
+                        <div class="mt-3">
+                            <div class="custom-file-container" data-upload-id="myFirstImage"></div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-sm" onclick="javascript:getUpdateOrAdd();">TAMAM</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="reload();" data-bs-dismiss="modal">VAZGEÇ</button>
+                </div>
+            </div>
+        </div>
+    </div><!--end AudioBook's Modal-->
+
+
+</div>
+
+
+@section scripts {
+    <script src="~/js/unpkg.com_file-upload-with-preview@6.0.2_dist_file-upload-with-preview.iife.js"></script>
+
+    <script type="text/javascript">
+
+        var pictureTablo = null;
+
+        $((_$) => {
+            showPicture();
+        });
+
+        var showModal = () => {
+            //$('#ilacAdi').val('');
+            //$('#usage_duration').val('');
+            //$('#AddOrUpdateId').val('');
+
+            $('#photoModal').modal('show');
+        }
+
+        var reload = () => {
+            document.getElementById("photoAdd-form").reset();
+        }
+        var showPicture = () => {
+
+            if (pictureTablo == null)
+                pictureTablo = $('#picture_table').DataTable({
+                    language: { url: '../dil.json' },
+                    processing: true,
+                    serverSide: true,
+                    paging: true,
+                    filter: true,
+                    orderMulti: true,
+                    order: [[1, 'asc']],
+                    ajax: {
+                        url: '@Url.Action("ShowPicture", "U_Pictures")',
+                        type: "POST",
+                        datatype: "json",
+                        //data: function (d) {
+                        //    d.sId = sessionStorage.getItem('selectId');
+                        //}
+                    },
+                    createdRow: function (row, data, dataIndex) {
+
+                    },
+                    columnDefs: [{ "defaultContent": "-", "targets": "_all" }],
+                    columns: [
+                        {
+                            "render": (data, type, row) => {
+                                console.log(row);
+                                return row.id;
+                            }, "name": "id"
+
+                        },
+                        {
+                            "render": (data, type, row) => {
+
+                                return `<img src="${row.url}" style="width:100px; height:auto;" alt="photo"/>`;
+                            }, "name": "url"
+                        },
+                        {
+                            "render": (data, type, row) => {
+                                return row.text;
+                            }, "name": "text"
+                        },
+                        {
+                            "render": function (data, type, row) {
+                                return `<button type="button" id="delete" class="btn btn btn-outline-dark pt-2" onclick="javascript:deletePicture(${row.id})"><i class="mdi mdi-trash-can-outline""></i></button>`;
+
+                            }, "name": "id"
+                        }
+                    ],
+                    fixedColumns: true,
+                    scrollCollapse: true,
+                    initComplete: function (settings, json) {
+                        $('#picture_table input').unbind();
+                        $('#picture_table input').bind('keyup', function (e) {
+                            if (e.keyCode == 13) {
+                                pictureTablo.search(this.value).draw();
+                            }
+                        });
+
+                        $('.dataTables_scrollBody').removeAttr('style').css({
+                            'position': 'relative',
+                            'overflow-y': 'auto',
+                            'overflow-x': 'hidden',
+                            'width': '100%',
+                            'max-height': ((window.innerHeight / 2) + 120) + 'px'
+                        });
+                    }
+                })
+            else { pictureTablo.ajax.reload(); }
+        }
+
+        var deletePicture = (delId) => {
+            Swal.fire({
+                title: 'Silmek istediğinize emin misiniz?',
+                icon: 'question',
+                showCancelButton: true,
+                cancelButtonText: 'Hayır',
+                confirmButtonColor: '#4a804d',
+                cancelButtonColor: '#b22222',
+                confirmButtonText: 'Evet'
+            })
+                .then((result) => {
+
+                    if (result.value == true) {
+                        $.getJSON('@Url.Action("DeletePicture","U_Pictures")', { pr: delId }, (d, s) => {
+                            if (s === "success") {
+
+                                if (d.Status == true) {
+                                    pictureTablo.ajax.reload();
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Silme işlemi başarıyla gerçekleşti.'
+                                    })
+                                } else {
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    })
+
+                                    Toast.fire({
+                                        icon: 'success',
+                                        title: 'Ekleme işlemi gerçekleşemedi.'
+                                    })
+                                }
+                            }
+                            if (pictureTablo != null)
+                                pictureTablo.ajax.reload();
+                        });
+
+                    }
+                });
+        }
+
+        new FileUploadWithPreview.FileUploadWithPreview('myFirstImage', {
+            images: {
+                baseImage: '',
+                backgroundImage: '',
+            },
+        });
+
+    </script>
+
+ }

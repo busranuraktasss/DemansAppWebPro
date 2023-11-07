@@ -1,0 +1,115 @@
+﻿@model DemansAppWebPro.Models.Users
+@{
+    ViewData["UserId"] = Model.Id;
+    ViewData["Title"] = "LocationInformation Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@section css{
+    <style type="text/css">
+        .button-style {
+            background-color: #ED5E31 !important;
+            border-color: #ED5E31 !important;
+        }
+
+        @@media (min-width: 1400px) {
+            .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+                max-width: 1450px;
+            }
+        }
+
+        .container {
+            padding-top: 40px !important;
+        }
+    </style>
+}
+<div class="container">
+    <div class="row">
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Konum Bilgisi</h4>
+                <p class="text-muted mb-0">Hastanıza ait anlık konum bilgisine buradan ulaşabilirsiniz.</p>
+            </div><!--end card-header-->
+            <div class="card-body">
+                <div class="map" id="map" style="height:600px;"></div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+
+
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=en_RU&amp;apikey=<788dcc52-1903-474c-96f8-82b437dcc613"></script>
+    <script type="text/javascript">
+
+
+        $((_$) => {
+
+        });
+
+        ymaps.ready(init);
+
+        function init() {
+            var myMap = new ymaps.Map("map", {
+                center: [40.764476, 29.925781],
+                zoom: 15
+            }, {
+                searchControlProvider: 'yandex#search'
+            })
+
+            $.post('@Url.Action("ShiftMap","U_TracesOfLove")', (d, s) => {
+
+
+                var Lat = "40.764476";
+                var Lng = "29.925781";
+                var Place = "Ayşe Al";
+
+                myGeoObject = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: [Lat, Lng]
+                    },
+                    properties: {
+                        iconContent: Place
+                    }
+                }, {
+                    preset: 'islands#redStretchyIcon'
+                })
+                myMap.geoObjects
+                    .add(myGeoObject);
+
+
+
+            })
+            //$.post('@Url.Action("ShiftMap","U_TracesOfLove")', (d, s) => {
+
+            //    for (var i = 0; i < d.data.length; i++) {
+            //        var Lat = d.data[i].lat;
+            //        var Lng = d.data[i].lng;
+            //        var Place = d.data[i].placeName;
+
+            //        myGeoObject = new ymaps.GeoObject({
+            //            geometry: {
+            //                type: "Point",
+            //                coordinates: [Lat, Lng]
+            //            },
+            //            properties: {
+            //                iconContent: Place
+            //            }
+            //        }, {
+            //            preset: 'islands#redStretchyIcon'
+            //        })
+            //        myMap.geoObjects
+            //            .add(myGeoObject);
+            //    }
+
+
+            //})
+
+        }
+
+
+    </script>
+
+ }

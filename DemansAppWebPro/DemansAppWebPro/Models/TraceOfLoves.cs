@@ -17,6 +17,7 @@ namespace DemansAppWebPro.Models
 
         public string Phone { get; set; }
 
-        public string PlaceName { get; set; }   
+        public string PlaceName { get; set; }
+        public string City { get; set; }
     }
 }

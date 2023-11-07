@@ -16,60 +16,96 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Github Projeleri\DemansAppWebPro\DemansAppWebPro\DemansAppWebPro
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/AudioBooks/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXVkaW9Cb29rc1xJbmRleC5jc2h0bWw=
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_AudioBooks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9BdWRpb0Jvb2tzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Commands/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWFuZHNcSW5kZXguY3NodG1s
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Commands/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Db21tYW5kc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Companions/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFuaW9uc1xJbmRleC5jc2h0bWw=
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Companions/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Db21wYW5pb25zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Ib21lXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Ib21lXFByaXZhY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/LocationInformation/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpb25JbmZvcm1hdGlvblxJbmRleC5jc2h0bWw=
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_LocationInformation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Mb2NhdGlvbkluZm9ybWF0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Medicines/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9NZWRpY2luZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_MotivationSentences/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Nb3RpdmF0aW9uU2VudGVuY2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Pictures/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9QaWN0dXJlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_TracesOfLove/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9UcmFjZXNPZkxvdmVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/A_Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQV9Vc2Vyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Medicines/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNpbmVzXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/MotivationSentences/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aXZhdGlvblNlbnRlbmNlc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Pictures/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGljdHVyZXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Shared/_LayoutUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/TracesOfLove/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhY2VzT2ZMb3ZlXEluZGV4LmNzaHRtbA==
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_AudioBooks/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9BdWRpb0Jvb2tzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/Users/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_Commands/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9Db21tYW5kc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_CompanionDetails/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9Db21wYW5pb25EZXRhaWxzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_LocationInformation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9Mb2NhdGlvbkluZm9ybWF0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_Medicines/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9NZWRpY2luZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_Pictures/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9QaWN0dXJlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_ProfileDetails/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9Qcm9maWxlRGV0YWlsc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/U_TracesOfLove/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVV9UcmFjZXNPZkxvdmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Github Projeleri/DemansAppWebPro/DemansAppWebPro/DemansAppWebPro/Views/_ViewImports.cshtml]
