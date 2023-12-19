@@ -11,25 +11,31 @@ using Azure;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using DemansAppWebPro.Helper.IManager;
 
 namespace DemansAppWebPro.Controllers
 {
     public class LoginController : Controller
     {
         private readonly EntitiesContext db;
+        private readonly IMedicinesManager _medicineManager;
 
-        public LoginController(EntitiesContext _db)
+        public LoginController(EntitiesContext _db, IMedicinesManager medicineManager)
         {
             db = _db;
+            _medicineManager = medicineManager;
+
         }
 
         public IActionResult Index()
         {
+             var medicine = _medicineManager.getAllMedicines();
             return View();
         }
 
         public async Task<ActionResult> LogOut()
         {
+          
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
 

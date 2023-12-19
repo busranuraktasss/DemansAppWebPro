@@ -276,6 +276,7 @@
 
   <ItemGroup>
     <Folder Include="bin\Release\net7.0\" />
+    <Folder Include="Helper\Client\" />
   </ItemGroup>
 
 </Project>
