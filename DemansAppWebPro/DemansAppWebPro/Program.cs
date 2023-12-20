@@ -1,3 +1,4 @@
+using DemansAppWebPro.Helper;
 using DemansAppWebPro.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +14,7 @@ builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.LoginPath = "/Login/Index/"; }
 );
 builder.Services.AddAuthorization();
-
+builder.Services.AddDemansCollection();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
