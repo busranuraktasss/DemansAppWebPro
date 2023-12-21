@@ -17,7 +17,7 @@ namespace DemansAppWebPro.Helper.Manager
             _configuration = configuration;
         }
 
-        public async Task<ClientResult<MedicineRequest>> getAllMedicines()
+        public async Task<ClientResult<getAllMedicines>> getAllMedicines()
         {
             using (var http = new HttpClient())
             {
@@ -26,7 +26,7 @@ namespace DemansAppWebPro.Helper.Manager
                 var uri = $"{baseUrl}api/Medicines/getAllMedicines";
                 var res = await http.GetAsync(uri);
                 var EmpResponse = await res.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<ClientResult<MedicineRequest>>(EmpResponse);
+                var response = JsonConvert.DeserializeObject<ClientResult<getAllMedicines>>(EmpResponse);
                 return response;
 
             }

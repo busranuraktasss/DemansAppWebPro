@@ -5,6 +5,6 @@ namespace DemansAppWebPro.Helper.IManager
 {
     public interface IMedicinesManager
     {
-        Task<ClientResult<MedicineRequest>> getAllMedicines();
+        Task<ClientResult<getAllMedicines>> getAllMedicines();
     }
 }
