@@ -29,7 +29,7 @@ namespace DemansAppWebPro.Controllers
 
         public IActionResult Index()
         {
-             var medicine = _medicineManager.getAllMedicines();
+            
             return View();
         }
 
@@ -45,6 +45,7 @@ namespace DemansAppWebPro.Controllers
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Index(getLoginRequest request)
         {
+            var medicine = await _medicineManager.getAllMedicines();
             if (ModelState.IsValid)
             {
                 var a_response = await db.Admins.Where(w => w.Username == request._email && w.Password == request._password).FirstOrDefaultAsync();
