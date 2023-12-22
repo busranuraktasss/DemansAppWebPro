@@ -21,13 +21,22 @@ namespace DemansAppWebPro.Helper.Manager
         {
             using (var http = new HttpClient())
             {
-              
-                var baseUrl = _configuration.GetValue<string>("BaseUrl");
-                var uri = $"{baseUrl}api/Medicines/getAllMedicines";
-                var res = await http.GetAsync(uri);
-                var EmpResponse = await res.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<ClientResult<getAllMedicines>>(EmpResponse);
-                return response;
+
+                try
+                {
+                    var baseUrl = _configuration.GetValue<string>("BaseUrl");
+                    var uri = $"{baseUrl}api/Medicines/getAllMedicines";
+                    var res = await http.GetAsync(uri);
+                    var EmpResponse = await res.Content.ReadAsStringAsync();
+                    var response = JsonConvert.DeserializeObject<getAllMedicines>(EmpResponse);
+                    var _res = new ClientResult<getAllMedicines>() {  Data = response, Code = 200, Message = "Success" };
+                    return _res;
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex.Message);
+                }
 
             }
         }

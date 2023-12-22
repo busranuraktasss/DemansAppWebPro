@@ -1,10 +1,5 @@
 ﻿namespace DemansAppWebPro.Helper.DTO.Medicines
 {
-    public class getAllMedicines
-    {
-        public string message { get; set; }
-        public List<Datum> data { get; set; }
-    }
     public class Datum
     {
         public int id { get; set; }
@@ -24,4 +19,11 @@
         public object nightTime { get; set; }
         public int? userId { get; set; }
     }
+
+    public class getAllMedicines
+    {
+        public string message { get; set; }
+        public List<Datum> data { get; set; }
+    }
+
 }
