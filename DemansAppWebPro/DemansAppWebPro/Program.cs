@@ -14,7 +14,6 @@ builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => { options.LoginPath = "/Login/Index/"; }
 );
 builder.Services.AddAuthorization();
-builder.Services.AddDemansCollection();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {

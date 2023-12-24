@@ -218,7 +218,7 @@
                             "className": "table_style",
                             "render": function (data, type, row) {
                                 return `<button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:getsetModal(${row.Id})"><i class="dripicons-document-edit"></i></button>
-                                        <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteCommands(${row.Id})"><i class="dripicons-trash"></i></button>`;
+                                                <button type="button" class="btn btn btn-outline-dark pt-2" onclick="javascript:deleteCommands(${row.Id})"><i class="dripicons-trash"></i></button>`;
                             }, "name": "Id", "name": "Id"
                         },
                         {
@@ -238,7 +238,7 @@
                             "render": function (data, type, row) {
                                 let check = row.Status == 1 ? 'checked' : 'nchecked';
                                 return `<div class="form-check form-switch form-switch-warning" style="pading-left:70px;">
-                                        <input class="form-check-input" type="checkbox" id="checked_${row.Id}" onclick="javascript: checkCommands(${row.Id})" ${check}></div>`;
+                                                <input class="form-check-input" type="checkbox" id="checked_${row.Id}" onclick="javascript: checkCommands(${row.Id})" ${check}></div>`;
                             }, "name": "Status"
                         },
                     ],
@@ -280,7 +280,7 @@
             var ProcessNameControl = $('[id = "komutAdi"]').val();
 
             if (!ProcessNameControl) {
-               
+
                 Swal.fire(
                     'Ekleme başarısız!',
                     'Lütfen Komut Adı bilgisini giriniz.',
@@ -367,7 +367,7 @@
             var Id = document.getElementById("AddOrUpdateId").value;
 
             if (!ProcessName) {
-            
+
                 Swal.fire(
                     'Güncelleme başarısız!',
                     'Lütfen Komut Adı bilgisini giriniz.',
@@ -378,7 +378,7 @@
             var formData = new FormData(document.getElementById('commandsAddOrUpdate-form'));
             formData.append('ProcessName', ProcessName);
             formData.append('Id', Id);
-        
+
 
             $.ajax({
                 type: "POST",
@@ -738,7 +738,7 @@
                     })
                 }
                 else {
-                             const Toast = Swal.mixin({
+                    const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,

@@ -17,7 +17,6 @@ namespace DemansAppWebPro.Controllers
         public IActionResult Index(int id)
         {
             var userInfo = db.Users.Where(w => w.Id == id).FirstOrDefault();
-
             return View(userInfo);
         }
     }

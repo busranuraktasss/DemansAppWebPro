@@ -3,7 +3,7 @@
     ViewData["UserId"] = Model.Id;
     ViewData["Title"] = "TracesOfLove Page";
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
-  
+
 }
 
 @section css{
@@ -87,11 +87,10 @@
             })
 
             $.post('@Url.Action("ShiftMap","U_TracesOfLove")', (d, s) => {
-
                 for (var i = 0; i < d.data.length; i++) {
-                    var Lat = d.data[i].lat;
-                    var Lng = d.data[i].lng;
-                    var Place = d.data[i].placeName;
+                    var Lat = d.data[i].Lat;
+                    var Lng = d.data[i].Lng;
+                    var Place = d.data[i].PlaceName;
 
                     myGeoObject = new ymaps.GeoObject({
                         geometry: {
@@ -107,10 +106,7 @@
                     myMap.geoObjects
                         .add(myGeoObject);
                 }
-
-
             })
-
         }
 
         var searchButton = () => {
@@ -140,18 +136,19 @@
                     columns: [
                         {
                             "render": (data, type, row) => {
-                                return row.city;
-                            }, "name": "city"
+                                console.log(row);
+                                return row.City;
+                            }, "name": "City"
                         },
                         {
                             "render": (data, type, row) => {
-                                return row.placeName;
-                            }, "name": "placeName",
+                                return row.PlaceName;
+                            }, "name": "PlaceName",
                         },
                         {
                             "render": (data, type, row) => {
-                                return row.phone;
-                            }, "name": "phone"
+                                return row.Phone;
+                            }, "name": "Phone"
                         },
                     ],
                     fixedColumns: true,

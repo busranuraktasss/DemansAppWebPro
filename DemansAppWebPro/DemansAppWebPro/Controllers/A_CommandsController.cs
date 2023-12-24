@@ -113,7 +113,7 @@ namespace DemansAppWebPro.Controllers
                 return Json(new { status = true, data = "", messages = ex.Message });
             }
         }
-        
+
         [HttpPost]
         public async Task<JsonResult> AddCommands(string ProcessName)
         {
@@ -138,7 +138,7 @@ namespace DemansAppWebPro.Controllers
         [HttpGet]
         public async Task<JsonResult> GetCommands(int sId)
         {
-            var _commands_current = await db.Commands.Where(f => f.Id == sId).Select(s => new { s.Id, s.ProcessName}).FirstOrDefaultAsync();
+            var _commands_current = await db.Commands.Where(f => f.Id == sId).Select(s => new { s.Id, s.ProcessName }).FirstOrDefaultAsync();
             return Json(new { Status = true, data = _commands_current, Messages = "Success", Code = 200 });
         }
 
@@ -178,7 +178,7 @@ namespace DemansAppWebPro.Controllers
                 var _d_commands = await db.Commands.Where(w => w.Id == pr).FirstOrDefaultAsync();
                 if (_d_commands == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
 
-                var _d_commands_list = db.Commands.Where(w => w.ProcessName == _d_commands.ProcessName ).Select(s => s.Id).ToList();
+                var _d_commands_list = db.Commands.Where(w => w.ProcessName == _d_commands.ProcessName).Select(s => s.Id).ToList();
 
                 for (var _d_command_count = 0; _d_command_count < _d_commands_list.Count(); _d_command_count++)
                 {
@@ -236,23 +236,12 @@ namespace DemansAppWebPro.Controllers
         {
             List<showUsersRequest> ListCount;
             List<string> lıd = new List<string>();
-            List<int> companion = new List<int>();
 
             var _command_name = db.Commands.Where(w => w.Id == sId).Select(s => s.ProcessName).FirstOrDefault();
+
             lıd = db.Commands.Where(w => w.ProcessName == _command_name).Select(s => s.UserId.ToString()).ToList();
 
-
-            var users = db.Users.Select(s => s.Id).ToList();
-            for(var i =0; i < users.Count(); i++)
-            {
-                var userId = users[i];
-                var companionId = db.Companions.Where(w => w.UserId == userId).Select(s => s.UserId).FirstOrDefault();
-                if(companionId != null) companion.Add((int)companionId);
-
-            }
-
-
-            ListCount = db.Users.Where(w => w.Status == 1 && companion.Contains(w.Id))
+            ListCount = db.Users.Where(w => w.Status == 1)
            .Select(s => new showUsersRequest()
            {
                Id = s.Id,
@@ -267,7 +256,7 @@ namespace DemansAppWebPro.Controllers
         [HttpPost]
         public async Task<JsonResult> AddUser(int commandId, int[] userIds)
         {
-            if (userIds != null)
+            if (userIds != null && userIds.Length > 0)
             {
                 var command = db.Commands.Where(w => w.Id == commandId).FirstOrDefault();
 
@@ -277,16 +266,26 @@ namespace DemansAppWebPro.Controllers
                     var _registered_user = db.Commands.Where(w => w.ProcessName == command.ProcessName && w.UserId == userId).FirstOrDefault();
                     if (_registered_user == null)
                     {
-                        var _add_user = new Commands()
-                        {
-                            ProcessName = command.ProcessName,
-                            Status = command.Status,
-                            UserId = userId,
-                            CompanionId = db.Companions.Where(w => w.UserId == userId).Select(w => w.Id).First(),
 
-                        };
-                        db.Commands.Add(_add_user);
-                        await db.SaveChangesAsync();
+                        var companionId = db.Companions.Where(w => w.UserId == userId).Select(w => w.Id).FirstOrDefault();
+                        if (companionId == 0)
+                        {
+                            return Json(new { Status = false, Messages = "Hastanın refakatçısı Bulunamadı" });
+                        }
+                        else
+                        {
+                            var _add_user = new Commands()
+                            {
+                                ProcessName = command.ProcessName,
+                                Status = command.Status,
+                                UserId = userId,
+                                CompanionId = companionId,
+
+                            };
+                            db.Commands.Add(_add_user);
+                            await db.SaveChangesAsync();
+
+                        }
                     }
                 }
                 return Json(new { Status = true, Messages = "Success", Code = 200 });
@@ -301,7 +300,7 @@ namespace DemansAppWebPro.Controllers
             try
             {
                 var _d_command_user = await db.Commands.Where(w => w.Id == commandId).FirstOrDefaultAsync();
-                var _d_user = await db.Commands.Where(w => w.UserId == pr && w.ProcessName == _d_command_user.ProcessName ).FirstOrDefaultAsync();
+                var _d_user = await db.Commands.Where(w => w.UserId == pr && w.ProcessName == _d_command_user.ProcessName).FirstOrDefaultAsync();
                 if (_d_user == null) return Json(new { Status = false, data = "", Messages = "Ürün bulunamadı." });
 
                 db.Commands.Remove(_d_user);//Hard Delete
@@ -320,14 +319,14 @@ namespace DemansAppWebPro.Controllers
         {
             try
             {
-                var _c_command =await db.Commands.Where(w => w.Id == request).FirstOrDefaultAsync();
-                var _c_command_list =await db.Commands.Where(w => w.ProcessName == _c_command.ProcessName ).Select(s => new { s.Status, s.Id }).ToListAsync();
+                var _c_command = await db.Commands.Where(w => w.Id == request).FirstOrDefaultAsync();
+                var _c_command_list = await db.Commands.Where(w => w.ProcessName == _c_command.ProcessName).Select(s => new { s.Status, s.Id }).ToListAsync();
 
                 for (var j = 0; j < _c_command_list.Count(); j++)
                 {
                     var _status = _c_command_list[j].Status;
                     var _s_command_id = _c_command_list[j].Id;
-                    var _s_command =await db.Commands.Where(w => w.Id == _s_command_id).FirstOrDefaultAsync();
+                    var _s_command = await db.Commands.Where(w => w.Id == _s_command_id).FirstOrDefaultAsync();
 
                     if (_status == true)
                     {

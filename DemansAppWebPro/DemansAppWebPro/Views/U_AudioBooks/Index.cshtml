@@ -142,7 +142,10 @@
                     ajax: {
                         url: '@Url.Action("ShowAudioBooks", "U_AudioBooks")',
                         type: "POST",
-                        datatype: "json"
+                        datatype: "json",
+                        data: function(d){
+                            d.userId = @Model.Id;
+                        }
                     },
                     createdRow: function (row, data, dataIndex) {
                     },
@@ -151,6 +154,7 @@
                         {
                             "className": "table_style",
                             "render": (data, type, row) => {
+                                console.log(row);
                                 return row.name;
                             }, "name": "name",
                         },

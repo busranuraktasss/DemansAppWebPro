@@ -27,7 +27,7 @@ namespace DemansAppWebPro.Controllers
         {
             try
             {
-                userId = 1002;
+                //userId = 1002;
                 Request.Form.TryGetValue("draw", out Microsoft.Extensions.Primitives.StringValues drawOut);
 
                 var draw = drawOut.FirstOrDefault();
@@ -52,7 +52,7 @@ namespace DemansAppWebPro.Controllers
                 int pageSize = length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
 
-                var showAudioBooksRequest = db.AudioBooks/*.Where(w => w.UserId == userId)*/
+                var showAudioBooksRequest = db.AudioBooks.Where(w => w.UserId == userId)
                   .Select(s => new showAudioBooksRequest()
                   {
                       Id = s.Id,
@@ -92,7 +92,7 @@ namespace DemansAppWebPro.Controllers
                             break;
                     }
                 }
-                var recordsTotal = showAudioBooksRequest.Count();
+                var recordsTotal = db.AudioBooks.Where(w => w.UserId == userId).Count();
 
                 return Json(new
                 {

@@ -333,7 +333,7 @@ namespace DemansAppWebPro.Controllers
                 Moon = rq.Moon,
                 Afternoon = rq.Afternoon,
                 Evening = rq.Evening,
-                Night = rq.Evening,
+                Night = rq.Night,
                 MoonTime = rq.MoonTime,
                 AfternoonTime = rq.AfternoonTime,
                 EveningTime = rq.EveningTime,

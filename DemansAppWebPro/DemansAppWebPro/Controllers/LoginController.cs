@@ -7,23 +7,18 @@ using System.Security.Claims;
 using DemansAppWebPro.Helper.DTO.Login;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Azure;
 using System.Net.Mail;
 using System.Net;
-using Microsoft.AspNetCore.Http;
-using DemansAppWebPro.Helper.IManager;
 
 namespace DemansAppWebPro.Controllers
 {
     public class LoginController : Controller
     {
         private readonly EntitiesContext db;
-        private readonly IMedicinesManager _medicineManager;
 
-        public LoginController(EntitiesContext _db, IMedicinesManager medicineManager)
+        public LoginController(EntitiesContext _db)
         {
             db = _db;
-            _medicineManager = medicineManager;
 
         }
 
@@ -45,7 +40,6 @@ namespace DemansAppWebPro.Controllers
         [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Index(getLoginRequest request)
         {
-            var medicine = await _medicineManager.getAllMedicines();
             if (ModelState.IsValid)
             {
                 var a_response = await db.Admins.Where(w => w.Username == request._email && w.Password == request._password).FirstOrDefaultAsync();
@@ -106,10 +100,10 @@ namespace DemansAppWebPro.Controllers
         [HttpPost]
         public JsonResult getActivation(string email, string name)
         {
-            MailMessage msg = new MailMessage();
-            msg.Subject = "DemansApp";
-            msg.From = new MailAddress("demansapplication@gmail.com", "DemansApp ONAY KODU");//Obezindex maili olunca değiştir
-            msg.To.Add(new MailAddress(email, name));
+            //MailMessage msg = new MailMessage();
+            //msg.Subject = "DemansApp";
+            //msg.From = new MailAddress("busranuraktas@outlook.com", "DemansApp ONAY KODU");//Obezindex maili olunca değiştir
+            //msg.To.Add(new MailAddress(email, name));
 
             Random rastgele = new Random();
             string sayilar = "0123456789";
@@ -119,18 +113,18 @@ namespace DemansAppWebPro.Controllers
                 _OnayKodu += sayilar[rastgele.Next(sayilar.Length)];
             }
 
-            msg.IsBodyHtml = false;
-            msg.Body = "Onay Kodu : " + _OnayKodu;
+            //msg.IsBodyHtml = false;
+            //msg.Body = "Onay Kodu : " + _OnayKodu;
 
-            msg.Priority = MailPriority.High;
+            //msg.Priority = MailPriority.High;
 
-            SmtpClient smtp = new SmtpClient("mail.kurumsaleposta.com", 587); //Bu alanda gönderim yapacak hizmetin smtp adresini ve size verilen portu girmelisiniz.
-            NetworkCredential AccountInfo = new NetworkCredential("demansapplication@gmail.com", "7/8*9-6+");
-            smtp.UseDefaultCredentials = false; //Standart doğrulama kullanılsın mı? -> Yalnızca gönderici özellikle istiyor ise TRUE işaretlenir.
-            smtp.Credentials = AccountInfo;
-            smtp.EnableSsl = false; //SSL kullanılarak mı gönderilsin...
+            //SmtpClient smtp = new SmtpClient("mail.kurumsaleposta.com", 587); //Bu alanda gönderim yapacak hizmetin smtp adresini ve size verilen portu girmelisiniz.
+            //NetworkCredential AccountInfo = new NetworkCredential("busranuraktas@outlook.com", "yusuf258");
+            //smtp.UseDefaultCredentials = false; //Standart doğrulama kullanılsın mı? -> Yalnızca gönderici özellikle istiyor ise TRUE işaretlenir.
+            //smtp.Credentials = AccountInfo;
+            //smtp.EnableSsl = false; //SSL kullanılarak mı gönderilsin...
 
-            smtp.Send(msg);
+            //smtp.Send(msg);
             return Json(new { msg = "E-Posta başarıyla gönderildi.", status = true, data = _OnayKodu });
         }
 
